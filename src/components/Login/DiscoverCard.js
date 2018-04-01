@@ -12,13 +12,14 @@ export default class DiscoverCard extends React.Component {
             <View style={styles.container}>
                 <View style={styles.textWindow}>
                     <Text style={styles.text}> 
-                        Discover new adoptable pets in your area
+                        Discover new adoptable {"\n"}
+                        pets in your area
                     </Text>
                 </View>
 
                 <View style={styles.imageWindow}>
                     <Image style={styles.image}
-                        source={require('../../images/test.jpg')}
+                        source={require('../../images/dog.png')}
                         resizeMode="contain"
                     />
                 </View>
@@ -36,7 +37,6 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-start',
         alignItems: 'center',
         paddingTop: 20,  
-        paddingBottom: 10,      
     },
     text: {
         flex: 1,
@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
     },
     imageWindow: {
         flex: 7,
-        justifyContent: 'center',
+        justifyContent: 'flex-start',
         alignItems: 'center',
         shadowColor: 'black',
         shadowOpacity: 0.1,

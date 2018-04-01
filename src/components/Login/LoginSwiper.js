@@ -7,6 +7,7 @@ import {
 import Swiper from 'react-native-swiper';
 import DiscoverCard from './DiscoverCard';
 import SwiperCard from './SwiperCard';
+import FilterCard from './FilterCard';
 
 export default class LoginSwiper extends React.Component {
     render() {
@@ -24,7 +25,7 @@ export default class LoginSwiper extends React.Component {
                     marginBottom: 0,}} 
                 />}
                 activeDot={<View style={{
-                    backgroundColor:'rgba(255,0,0,1)', 
+                    backgroundColor:'#005C97', 
                     width: 10, 
                     height: 10,       
                     borderRadius: 5, 
@@ -44,7 +45,7 @@ export default class LoginSwiper extends React.Component {
                 </View>
 
                 <View style={styles.card}>
-                    <Text style={styles.text}>And simple</Text>
+                    <FilterCard />
                 </View>
             </Swiper>
         );
@@ -58,6 +59,6 @@ const styles = StyleSheet.create({
     },
     card: {
         flex: 1,
-        paddingBottom: 55,
+        paddingBottom: 30,
     },
 })
