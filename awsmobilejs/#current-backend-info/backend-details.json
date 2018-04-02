@@ -4,9 +4,98 @@
 	"region": "us-east-1",
 	"state": "NORMAL",
 	"createdDate": "2018-04-02T02:23:36.595Z",
-	"lastUpdatedDate": "2018-04-02T02:23:36.595Z",
+	"lastUpdatedDate": "2018-04-02T02:34:34.608Z",
 	"consoleUrl": "https://console.aws.amazon.com/mobilehub/home#/d924780a-361c-11e8-bae5-871246b01dfc/build",
 	"resources": [
+		{
+			"type": "AWS::IAM::Policy",
+			"name": "loginproject_nosqldatabase_MOBILEHUB_1062896856",
+			"arn": null,
+			"feature": "database",
+			"attributes": {
+				"authType": "authenticated",
+				"lastUpdateRequestID": "60d54bea-361e-11e8-8055-dda2c92f297c",
+				"role": "loginproject_auth_MOBILEHUB_1062896856"
+			}
+		},
+		{
+			"type": "AWS::IAM::Policy",
+			"name": "loginproject_nosqldatabase_MOBILEHUB_1062896856",
+			"arn": null,
+			"feature": "database",
+			"attributes": {
+				"authType": "unauthenticated",
+				"lastUpdateRequestID": "60d54bea-361e-11e8-8055-dda2c92f297c",
+				"role": "loginproject_unauth_MOBILEHUB_1062896856"
+			}
+		},
+		{
+			"type": "AWS::DynamoDB::Table",
+			"name": "loginproject-mobilehub-1062896856-LikedDogs",
+			"arn": "arn:aws:dynamodb:us-east-1:303690460697:table/loginproject-mobilehub-1062896856-LikedDogs",
+			"feature": "database",
+			"attributes": {
+				"lastUpdateRequestID": "60d54bea-361e-11e8-8055-dda2c92f297c"
+			}
+		},
+		{
+			"type": "AWS::Cognito::IdentityPool",
+			"name": "loginproject_MOBILEHUB_1062896856",
+			"arn": "us-east-1:da2d7bcd-9674-4e61-a2eb-f5693af30b21",
+			"feature": "user-signin",
+			"attributes": {
+				"lastUpdateRequestID": "40559826-361e-11e8-9848-659dda6583c0",
+				"poolid": "us-east-1:da2d7bcd-9674-4e61-a2eb-f5693af30b21",
+				"roleARNs": "arn:aws:iam::303690460697:role/loginproject_auth_MOBILEHUB_1062896856,arn:aws:iam::303690460697:role/loginproject_unauth_MOBILEHUB_1062896856"
+			}
+		},
+		{
+			"type": "AWS::IAM::Role",
+			"name": "loginproject_smsverification_MOBILEHUB_1062896856",
+			"arn": "arn:aws:iam::303690460697:role/service-role/loginproject_smsverification_MOBILEHUB_1062896856",
+			"feature": "user-signin",
+			"attributes": {
+				"lastUpdateRequestID": "40559826-361e-11e8-9848-659dda6583c0",
+				"user-pools-role-key": "user-pools-execution-role"
+			}
+		},
+		{
+			"type": "AWS::Cognito::UserPool",
+			"name": "loginproject_userpool_MOBILEHUB_1062896856",
+			"arn": "us-east-1_LRfVgJvcJ",
+			"feature": "user-signin",
+			"attributes": {
+				"alias-attributes": "[\"email\"]",
+				"lastUpdateRequestID": "40559826-361e-11e8-9848-659dda6583c0",
+				"mfa-configuration": "OFF",
+				"password-policy": "{\"minimumLength\":8,\"requireUppercase\":true,\"requireLowercase\":true,\"requireNumbers\":true,\"requireSymbols\":true}",
+				"region": "us-east-1",
+				"user-pools-client-id": "5n04l47tqdiasr4s6s0ps952di",
+				"user-pools-client-secret": "lokk504bgha8opas3ne7l8ljk4e780fddv99umlb3k60j4bblq0",
+				"user-pools-id": "us-east-1_LRfVgJvcJ",
+				"user-pools-web-client-id": "3otk7uk3qnuvps67aimm3ovgsb"
+			}
+		},
+		{
+			"type": "AWS::IAM::Role",
+			"name": "loginproject_auth_MOBILEHUB_1062896856",
+			"arn": "arn:aws:iam::303690460697:role/loginproject_auth_MOBILEHUB_1062896856",
+			"feature": "user-signin",
+			"attributes": {
+				"authType": "authenticated",
+				"lastUpdateRequestID": "40559826-361e-11e8-9848-659dda6583c0"
+			}
+		},
+		{
+			"type": "AWS::IAM::Role",
+			"name": "loginproject_unauth_MOBILEHUB_1062896856",
+			"arn": "arn:aws:iam::303690460697:role/loginproject_unauth_MOBILEHUB_1062896856",
+			"feature": "user-signin",
+			"attributes": {
+				"authType": "unauthenticated",
+				"lastUpdateRequestID": "d9286f18-361c-11e8-8f48-6360b69e497c"
+			}
+		},
 		{
 			"type": "AWS::Pinpoint::AnalyticsApplication",
 			"name": "loginproject20180401192329_MobileHub",
@@ -22,30 +111,20 @@
 			"arn": null,
 			"feature": "analytics",
 			"attributes": {
+				"authType": "authenticated",
+				"lastUpdateRequestID": "40559826-361e-11e8-9848-659dda6583c0",
+				"role": "loginproject_auth_MOBILEHUB_1062896856"
+			}
+		},
+		{
+			"type": "AWS::IAM::Policy",
+			"name": "loginproject_mobileanalytics_MOBILEHUB_1062896856",
+			"arn": null,
+			"feature": "analytics",
+			"attributes": {
 				"authType": "unauthenticated",
-				"lastUpdateRequestID": "d9286f18-361c-11e8-8f48-6360b69e497c",
+				"lastUpdateRequestID": "40559826-361e-11e8-9848-659dda6583c0",
 				"role": "loginproject_unauth_MOBILEHUB_1062896856"
-			}
-		},
-		{
-			"type": "AWS::Cognito::IdentityPool",
-			"name": "loginproject_MOBILEHUB_1062896856",
-			"arn": "us-east-1:da2d7bcd-9674-4e61-a2eb-f5693af30b21",
-			"feature": "user-signin",
-			"attributes": {
-				"lastUpdateRequestID": "d9286f18-361c-11e8-8f48-6360b69e497c",
-				"poolid": "us-east-1:da2d7bcd-9674-4e61-a2eb-f5693af30b21",
-				"roleARNs": "arn:aws:iam::303690460697:role/loginproject_unauth_MOBILEHUB_1062896856"
-			}
-		},
-		{
-			"type": "AWS::IAM::Role",
-			"name": "loginproject_unauth_MOBILEHUB_1062896856",
-			"arn": "arn:aws:iam::303690460697:role/loginproject_unauth_MOBILEHUB_1062896856",
-			"feature": "user-signin",
-			"attributes": {
-				"authType": "unauthenticated",
-				"lastUpdateRequestID": "d9286f18-361c-11e8-8f48-6360b69e497c"
 			}
 		},
 		{
@@ -76,8 +155,19 @@
 			"arn": null,
 			"feature": "hosting",
 			"attributes": {
+				"authType": "authenticated",
+				"lastUpdateRequestID": "40559826-361e-11e8-9848-659dda6583c0",
+				"role": "loginproject_auth_MOBILEHUB_1062896856"
+			}
+		},
+		{
+			"type": "AWS::IAM::Policy",
+			"name": "loginproject_hosting_MOBILEHUB_1062896856",
+			"arn": null,
+			"feature": "hosting",
+			"attributes": {
 				"authType": "unauthenticated",
-				"lastUpdateRequestID": "d9286f18-361c-11e8-8f48-6360b69e497c",
+				"lastUpdateRequestID": "40559826-361e-11e8-9848-659dda6583c0",
 				"role": "loginproject_unauth_MOBILEHUB_1062896856"
 			}
 		},
