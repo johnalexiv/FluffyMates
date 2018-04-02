@@ -13,8 +13,8 @@ export default class LoginScreen extends React.Component {
         header: null,
     }
 
-    onFacebookPress = () => {
-        this.props.navigation.navigate('PhoneLogin');
+    onSignUpPress = () => {
+        this.props.navigation.navigate('EmailLogin');
     }
 
     onEmailPress = () => {
@@ -31,7 +31,7 @@ export default class LoginScreen extends React.Component {
                 <View style={styles.buttons}>
                     <View style={styles.viewSignupButton}>
                         <TouchableOpacity style={styles.signupButton}
-                            onPress={this.onEmailPress}
+                            onPress={this.onSignUpPress}
                             >
                             <LinearGradient 
                                 colors={['#363795', '#005C97']}

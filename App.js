@@ -8,6 +8,8 @@ import {
 import Root from './src/config/Router';
 import Loading from './src/screens/Loading';
 import LoadScreen from './src/screens/LoadScreen';
+import Amplify, { AUTH } from 'aws-amplify';
+import AWSConfig from './aws-exports';
 
 export default class App extends React.Component {
     state = {
