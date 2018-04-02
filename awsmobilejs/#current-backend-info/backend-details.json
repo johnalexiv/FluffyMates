@@ -1,0 +1,106 @@
+{
+	"name": "LoginProject-2018-04-01-19-23-29",
+	"projectId": "d924780a-361c-11e8-bae5-871246b01dfc",
+	"region": "us-east-1",
+	"state": "NORMAL",
+	"createdDate": "2018-04-02T02:23:36.595Z",
+	"lastUpdatedDate": "2018-04-02T02:23:36.595Z",
+	"consoleUrl": "https://console.aws.amazon.com/mobilehub/home#/d924780a-361c-11e8-bae5-871246b01dfc/build",
+	"resources": [
+		{
+			"type": "AWS::Pinpoint::AnalyticsApplication",
+			"name": "loginproject20180401192329_MobileHub",
+			"arn": "6fac3458af8c459eb102ad684c2656e6",
+			"feature": "analytics",
+			"attributes": {
+				"lastUpdateRequestID": "d9286f18-361c-11e8-8f48-6360b69e497c"
+			}
+		},
+		{
+			"type": "AWS::IAM::Policy",
+			"name": "loginproject_mobileanalytics_MOBILEHUB_1062896856",
+			"arn": null,
+			"feature": "analytics",
+			"attributes": {
+				"authType": "unauthenticated",
+				"lastUpdateRequestID": "d9286f18-361c-11e8-8f48-6360b69e497c",
+				"role": "loginproject_unauth_MOBILEHUB_1062896856"
+			}
+		},
+		{
+			"type": "AWS::Cognito::IdentityPool",
+			"name": "loginproject_MOBILEHUB_1062896856",
+			"arn": "us-east-1:da2d7bcd-9674-4e61-a2eb-f5693af30b21",
+			"feature": "user-signin",
+			"attributes": {
+				"lastUpdateRequestID": "d9286f18-361c-11e8-8f48-6360b69e497c",
+				"poolid": "us-east-1:da2d7bcd-9674-4e61-a2eb-f5693af30b21",
+				"roleARNs": "arn:aws:iam::303690460697:role/loginproject_unauth_MOBILEHUB_1062896856"
+			}
+		},
+		{
+			"type": "AWS::IAM::Role",
+			"name": "loginproject_unauth_MOBILEHUB_1062896856",
+			"arn": "arn:aws:iam::303690460697:role/loginproject_unauth_MOBILEHUB_1062896856",
+			"feature": "user-signin",
+			"attributes": {
+				"authType": "unauthenticated",
+				"lastUpdateRequestID": "d9286f18-361c-11e8-8f48-6360b69e497c"
+			}
+		},
+		{
+			"type": "AWS::S3::Bucket",
+			"name": "loginproject-hosting-mobilehub-1062896856",
+			"arn": null,
+			"feature": "hosting",
+			"attributes": {
+				"lastUpdateRequestID": "d9286f18-361c-11e8-8f48-6360b69e497c",
+				"region": "us-east-1",
+				"s3-bucket-console-url": "https://s3.console.aws.amazon.com/s3/buckets/loginproject-hosting-mobilehub-1062896856",
+				"s3-bucket-website-url": "https://s3.amazonaws.com/loginproject-hosting-mobilehub-1062896856"
+			}
+		},
+		{
+			"type": "AWS::CloudFront::Distribution",
+			"name": "d2v1yaihxqbgci.cloudfront.net",
+			"arn": null,
+			"feature": "hosting",
+			"attributes": {
+				"id": "E1EP89XQ9RYHN9",
+				"lastUpdateRequestID": "d9286f18-361c-11e8-8f48-6360b69e497c"
+			}
+		},
+		{
+			"type": "AWS::IAM::Policy",
+			"name": "loginproject_hosting_MOBILEHUB_1062896856",
+			"arn": null,
+			"feature": "hosting",
+			"attributes": {
+				"authType": "unauthenticated",
+				"lastUpdateRequestID": "d9286f18-361c-11e8-8f48-6360b69e497c",
+				"role": "loginproject_unauth_MOBILEHUB_1062896856"
+			}
+		},
+		{
+			"type": "AWS::S3::Bucket",
+			"name": "loginproject-deployments-mobilehub-1062896856",
+			"arn": null,
+			"feature": "common",
+			"attributes": {
+				"region": "us-east-1",
+				"s3-bucket-console-url": "https://s3.console.aws.amazon.com/s3/buckets/loginproject-deployments-mobilehub-1062896856"
+			}
+		},
+		{
+			"type": "AWS::CloudFormation::Stack",
+			"name": "Development",
+			"arn": null,
+			"feature": "cloud-api",
+			"attributes": {
+				"primary": "true",
+				"region": "us-east-1",
+				"stateSummary": "NOT_YET_DEPLOYED"
+			}
+		}
+	]
+}

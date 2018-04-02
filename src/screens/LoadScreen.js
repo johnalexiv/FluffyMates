@@ -11,14 +11,14 @@ export default class LoadScreen extends React.Component {
         return (
         <View style={styles.container}>
             <View style={styles.contrain}>
-            </View>
-            <View style={styles.imageWindow}>
-                <Image style={styles.image}
-                    source={require('../images/FMicon.png')}
-                    resizeMode="contain"
-                />
-            </View>
-            <View style={styles.contrain}>
+                </View>
+                    <View style={styles.imageWindow}>
+                        <Image style={styles.image}
+                            source={require('../images/FMicon.png')}
+                            resizeMode="contain"
+                        />
+                    </View>
+                <View style={styles.contrain}>
             </View>
         </View>
         );

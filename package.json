@@ -19,6 +19,7 @@
     "preset": "jest-expo"
   },
   "dependencies": {
+    "aws-amplify": "^0.2.14",
     "expo": "^26.0.0",
     "react": "16.3.0-alpha.1",
     "react-native": "0.54.0",
@@ -26,6 +27,7 @@
     "react-native-linear-gradient": "^2.4.0",
     "react-native-navigation": "^1.1.428",
     "react-native-swiper": "^1.5.13",
+    "react-native-vector-icons": "^4.5.0",
     "react-navigation": "^1.5.9"
   }
 }

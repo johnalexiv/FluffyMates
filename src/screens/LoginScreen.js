@@ -17,6 +17,10 @@ export default class LoginScreen extends React.Component {
         this.props.navigation.navigate('PhoneLogin');
     }
 
+    onEmailPress = () => {
+        this.props.navigation.navigate('EmailLogin');
+    }
+
     render() {
         return (
             <View style={styles.container}>
@@ -25,26 +29,26 @@ export default class LoginScreen extends React.Component {
                 </View>
 
                 <View style={styles.buttons}>
-                    <View style={styles.viewFacebookButton}>
-                        <TouchableOpacity style={styles.facebookButton}
-                            onPress={this.onFacebookPress}
+                    <View style={styles.viewSignupButton}>
+                        <TouchableOpacity style={styles.signupButton}
+                            onPress={this.onEmailPress}
                             >
                             <LinearGradient 
                                 colors={['#363795', '#005C97']}
-                                style={{ padding: 15, alignItems: 'center', borderRadius: 30 }} 
+                                style={{ padding: 15, alignItems: 'center', borderRadius: 50 }} 
                                 start={{ x: 0, y: 1 }}
                                 end={{ x: 1, y: 1 }}>
                                 <Text style={{backgroundColor: 'transparent', color: 'white', textAlign: 'center', fontSize: 20}} >
-                                    LOG IN WITH FACEBOOK
+                                    SIGNUP WITH EMAIL
                                 </Text>
                             </LinearGradient>
                         </TouchableOpacity>
                     </View>
 
-                    <View style={styles.viewPhoneButton}>
-                        <TouchableOpacity style={styles.phoneButton}>
+                    <View style={styles.viewLoginButton}>
+                        <TouchableOpacity style={styles.loginButton}>
                             <Text style={{color: '#989898', textAlign: 'center', fontSize: 16}} >
-                                LOG IN WITH PHONE NUMBER
+                                LOGIN WITH EMAIL
                             </Text>
                         </TouchableOpacity>
                     </View>
@@ -75,34 +79,34 @@ const styles = StyleSheet.create({
         flex: 3,
         justifyContent: 'flex-start',
     },
-    viewFacebookButton: {
+    viewSignupButton: {
         flex: 3,
         margin: 5,
         justifyContent: 'flex-start',
         paddingHorizontal: 30,
     },
-    facebookButton: {
+    signupButton: {
         flex: 1,
         backgroundColor: 'transparent',
         justifyContent: 'center',
-        borderRadius: 40,
+        borderRadius: 50,
         shadowColor: 'black',
         shadowOpacity: 0.2,
         shadowRadius: 2,
         shadowOffset: {width: 2, height: 2},
     },
-    viewPhoneButton: {
+    viewLoginButton: {
         flex: 2,
         margin: 5,
         paddingHorizontal: 50,
     },
-    phoneButton: {
+    loginButton: {
         flex: 1,
         justifyContent: 'center',
         backgroundColor: '#FFFFFF',
         borderColor: '#989898',
         borderWidth: 1,
-        borderRadius: 40,
+        borderRadius: 50,
         shadowColor: 'black',
         shadowOpacity: 0.1,
         shadowRadius: 1,
