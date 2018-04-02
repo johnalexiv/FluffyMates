@@ -18,7 +18,7 @@ export default class LoginScreen extends React.Component {
     }
 
     onEmailPress = () => {
-        this.props.navigation.navigate('EmailLogin');
+        this.props.navigation.navigate('MainScreen');
     }
 
     render() {
@@ -46,7 +46,9 @@ export default class LoginScreen extends React.Component {
                     </View>
 
                     <View style={styles.viewLoginButton}>
-                        <TouchableOpacity style={styles.loginButton}>
+                        <TouchableOpacity style={styles.loginButton}
+                            onPress={this.onEmailPress}
+                            >
                             <Text style={{color: '#989898', textAlign: 'center', fontSize: 16}} >
                                 LOGIN WITH EMAIL
                             </Text>

@@ -1,8 +1,8 @@
 import React from 'react';
 import { StackNavigator } from 'react-navigation';
 import LoginScreen from '../screens/LoginScreen';
-import PhoneLogin from '../screens/PhoneLogin';
 import EmailLogin from '../screens/EmailLogin';
+import MainScreen from '../screens/MainScreen';
 
 export const LoginStack = StackNavigator({
     LoginScreen: {
@@ -14,11 +14,11 @@ export default Root = StackNavigator({
     LoginScreen: {
         screen: LoginStack,
     },
-    PhoneLogin: {
-        screen: PhoneLogin,
-    },
     EmailLogin: {
         screen: EmailLogin,
+    },
+    MainScreen: {
+        screen: MainScreen,
     },
 },  {
     mode: 'modal',
