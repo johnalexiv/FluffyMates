@@ -12,13 +12,13 @@ export default class MainScreen extends React.Component {
         return (
         <View style={styles.container}>
             <View style={styles.navigationBar}>
-            <NavigationBar/>
+                <NavigationBar/>
             </View>
             <View style={styles.swipeCards}>
-            <SwipeCards/>
+                <SwipeCards/>
             </View>
             <View style={styles.choiceButtons}>
-            <ChoiceButtons/>
+                <ChoiceButtons/>
             </View>
 
         </View>

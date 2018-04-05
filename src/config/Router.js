@@ -21,5 +21,5 @@ export default Root = StackNavigator({
         screen: MainScreen,
     },
 },  {
-    mode: 'modal',
+    mode: 'card',
 });
