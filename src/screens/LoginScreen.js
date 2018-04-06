@@ -34,7 +34,7 @@ export default class LoginScreen extends React.Component {
                             onPress={this.onSignUpPress}
                             >
                             <LinearGradient 
-                                colors={['#363795', '#005C97']}
+                                colors={['#1e3c72', '#2a5298',]}
                                 style={{ padding: 15, alignItems: 'center', borderRadius: 50 }} 
                                 start={{ x: 0, y: 1 }}
                                 end={{ x: 1, y: 1 }}>
@@ -57,9 +57,15 @@ export default class LoginScreen extends React.Component {
                 </View>
 
                 <View style={styles.termsAndConditions}>
-                    <Text style={{color: '#C0C0C0', textAlign: 'center', fontSize: 15}}>
-                        We dont post anything to Facebook {"\n"}
-                        By signing in, you agree to our Terms of Service and Private Policy
+                    <Text style={{color: '#C0C0C0', textAlign: 'center', fontSize: 15}}
+                            onPress={() => console.log('Terms of Serive and Private Policy')}>
+                        By signing in, you agree to our{" "}
+                        <Text style={{color: '#C0C0C0', textAlign: 'center', fontSize: 15}}>
+                            Terms of Service and Private Policy{" "}
+                            <Text style={{color: '#a6a6a6', fontWeight: 'bold',  textAlign: 'center', fontSize: 20}}>
+                                ⌄
+                            </Text>
+                        </Text>
                     </Text>
                 </View>
             </View>

@@ -43,7 +43,8 @@ export default class EmailLogin extends React.Component {
     }
 
     static navigationOptions = {
-        title: 'Log into FluffyMates',
+      title: 'Log into FluffyMates',
+      header: null,
     }   
 
     render() {
