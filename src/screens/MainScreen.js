@@ -7,7 +7,6 @@ import {
     Button,
     ScrollView,
 } from 'react-native';
-import NavigationBar from '../components/Main/NavigationBar';
 import SwipeCards from '../components/Main/SwipeCards';
 import ChoiceButtons from '../components/Main/ChoiceButtons';
 import ScrollableTabView, { DefaultTabBar } from 'react-native-scrollable-tab-view';
@@ -32,7 +31,6 @@ export default class MainScreen extends React.Component {
                     </View>
                 </ScrollView>
 
-                
                 <View tabLabel="ios-paw" style={styles.swipeView}>
                     <SwipeCards/>
                 </View>
@@ -52,6 +50,9 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         paddingTop: 35,
+    },
+    test: {
+        flex: 1,
     },
     swipeView: {
         flex: 1,
@@ -73,3 +74,48 @@ const styles = StyleSheet.create({
         shadowRadius: 3,
     },
 });
+
+
+// import React from 'react';
+// import { StyleSheet, Text, View, Image, Button } from 'react-native';
+// // import NavigationBar from '../components/Main/NavigationBar';
+// import SwipeCards from '../components/Main/SwipeCards';
+// import ChoiceButtons from '../components/Main/ChoiceButtons';
+
+// export default class MainScreen extends React.Component {
+//     static navigationOptions = {
+//         header: null,
+//     }
+//     render() {
+//         return (
+//         <View style={styles.container}>
+//             {/* <View style={styles.navigationBar}>
+//                 <NavigationBar/>
+//             </View> */}
+//             <View style={styles.swipeCards}>
+//                 <SwipeCards/>
+//             </View>
+//             <View style={styles.choiceButtons}>
+//                 <ChoiceButtons/>
+//             </View>
+
+//         </View>
+//         );
+//     }
+// }
+
+// const styles = StyleSheet.create({
+//     container: {
+//         flex: 1,
+//         width: '100%',
+//     },
+//     navigationBar: {
+//         flex: 1.5,
+//     },
+//     swipeCards: {
+//         flex: 10,
+//     },
+//     choiceButtons: {
+//         flex: 1.5,
+//     }
+// });
