@@ -21,10 +21,9 @@ export default class App extends React.Component {
     }
     render() {
         return (
-        <View style={styles.container}>
-            {this.state.loaded ? <Root/> : <LoadScreen />}
-            {/* <Root /> */}
-        </View>
+            <View style={styles.container}>
+                {this.state.loaded ? <Root/> : <LoadScreen />}
+            </View>
         );
     }
 }
