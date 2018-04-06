@@ -95,9 +95,8 @@ export default class extends React.Component {
         handleYup={this.handleYup}
         handleNope={this.handleNope}
         //handleMaybe={this.handleMaybe}
-        // stack={true}
+        stack={true}
         loop={true}
-
       />
     )
   }
