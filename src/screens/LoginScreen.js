@@ -1,6 +1,6 @@
 import React from 'react';
-import { 
-    StyleSheet, 
+import {
+    StyleSheet,
     View,
     Text,
     TouchableOpacity,
@@ -21,6 +21,10 @@ export default class LoginScreen extends React.Component {
         this.props.navigation.navigate('MainScreen');
     }
 
+    onPolicyPress = () => {
+        this.props.navigation.navigate('privacypolicy');
+    }
+
     render() {
         return (
             <View style={styles.container}>
@@ -33,9 +37,9 @@ export default class LoginScreen extends React.Component {
                         <TouchableOpacity style={styles.signupButton}
                             onPress={this.onSignUpPress}
                             >
-                            <LinearGradient 
+                            <LinearGradient
                                 colors={['#1e3c72', '#2a5298',]}
-                                style={{ padding: 15, alignItems: 'center', borderRadius: 50 }} 
+                                style={{ padding: 15, alignItems: 'center', borderRadius: 50 }}
                                 start={{ x: 0, y: 1 }}
                                 end={{ x: 1, y: 1 }}>
                                 <Text style={{backgroundColor: 'transparent', color: 'white', textAlign: 'center', fontSize: 20}} >
@@ -58,12 +62,11 @@ export default class LoginScreen extends React.Component {
 
                 <View style={styles.termsAndConditions}>
                     <Text style={{color: '#C0C0C0', textAlign: 'center', fontSize: 15}}
-                            onPress={() => console.log('Terms of Serive and Private Policy')}>
+                            onPress={this.onPolicyPress}>
                         By signing in, you agree to our{" "}
                         <Text style={{color: '#C0C0C0', textAlign: 'center', fontSize: 15}}>
                             Terms of Service and Private Policy{" "}
                             <Text style={{color: '#a6a6a6', fontWeight: 'bold',  textAlign: 'center', fontSize: 20}}>
-                                ⌄
                             </Text>
                         </Text>
                     </Text>
@@ -130,4 +133,3 @@ const styles = StyleSheet.create({
         justifyContent: 'space-around',
     },
 })
-  
