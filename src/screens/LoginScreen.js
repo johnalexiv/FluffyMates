@@ -65,7 +65,7 @@ export default class LoginScreen extends React.Component {
                             onPress={this.onPolicyPress}>
                         By signing in, you agree to our{" "}
                         <Text style={{color: '#C0C0C0', textAlign: 'center', fontSize: 15}}>
-                            Terms of Service and Private Policy{" "}
+                            Terms of Service and Privacy Policy{" "}
                             <Text style={{color: '#a6a6a6', fontWeight: 'bold',  textAlign: 'center', fontSize: 20}}>
                             </Text>
                         </Text>
