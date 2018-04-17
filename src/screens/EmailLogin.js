@@ -4,20 +4,16 @@ import {
 	Text,
 	StyleSheet,
 	TextInput,
-	Button,
 	Image,
 	TouchableOpacity,
 	KeyboardAvoidingView,
 } from 'react-native';
+import Icon from 'react-native-vector-icons/FontAwesome';
 import { Input } from 'react-native-elements';
 import Amplify, { Auth } from 'aws-amplify';
 import AWSConfig from '../../aws-exports';
 import { LinearGradient } from 'expo';
 Amplify.configure(AWSConfig)
-
-const onButtonPress = () => {
-	Alert.alert('Button has been pressed!');
-};
 
 export default class EmailLogin extends React.Component {
 	state = {
@@ -50,6 +46,10 @@ export default class EmailLogin extends React.Component {
 		})
 	}
 
+	onCancelPress = () => {
+		this.props.navigation.goBack(null);
+	}
+	
 	static navigationOptions = {
 		title: 'Log into FluffyMates',
 		header: null,
@@ -64,8 +64,10 @@ export default class EmailLogin extends React.Component {
 						source={require('../images/FMicon.png')}
 						resizeMode="contain" />
 				</View>
+
 				<View style={styles.formContainer}>
-					<View style={styles.form}>
+					<View style={styles.inputFormat}>
+						<Icon name="user-o" size={20} color="white" />
 						<TextInput style = {styles.input} 
 							autoCapitalize="none" 
 							autoCorrect={false} 
@@ -73,78 +75,58 @@ export default class EmailLogin extends React.Component {
 							placeholder='Username' 
 							placeholderTextColor='rgba(225,225,225,0.7)'
 							onChangeText={value => this.onChangeText('username', value)}
-							/>
+						/>
+					</View>
 
+					<View style={styles.inputFormat}>
+						<Icon name="key" size={20} color="white" />
 						<TextInput style={styles.input}
 							onChangeText={value => this.onChangeText('password', value)}
 							secureTextEntry={true}
 							placeholderTextColor='rgba(225,225,225,0.7)'
 							placeholder='Password'
 						/>
+					</View>
 
+					<View style={styles.inputFormat}>
+						<Icon name="envelope" size={20} color="white" />
 						<TextInput style={styles.input}
 							onChangeText={value => this.onChangeText('email', value)}
 							placeholder='Email'
 							placeholderTextColor='rgba(225,225,225,0.7)' 
 						/>
-						<TouchableOpacity style={styles.buttonContainer} onPress={this.signUp.bind(this)}>
-                    		<Text  style={styles.buttonText}>SEND CONFIRMATION CODE</Text>
-                		</TouchableOpacity> 
+					</View>
+					
+					<View style={styles.buttonContainer}>
+						<TouchableOpacity style={styles.button} onPress={this.signUp.bind(this)}>
+							<Text  style={styles.buttonText}>SEND CONFIRMATION CODE</Text>
+						</TouchableOpacity> 
+					</View>
 
-						<TextInput style={styles.inputSignUp}
+					<View style={styles.inputFormat}>
+						<Icon name="check" size={20} color="white" />
+						<TextInput style={styles.input}
 							onChangeText={value => this.onChangeText('confirmationCode', value)}
 							placeholder='Confirmation Code'
 							placeholderTextColor='rgba(225,225,225,0.7)' 
 						/>
+					</View>
 
-						<TouchableOpacity style={styles.buttonContainer} onPress={this.confirmSignUp.bind(this)}>
-                    		<Text  style={styles.buttonText}>SIGN UP</Text>
-                		</TouchableOpacity> 
+					<View style={styles.buttonContainer}>
+						<TouchableOpacity style={styles.button} onPress={this.confirmSignUp.bind(this)}>
+							<Text  style={styles.buttonText}>SIGN UP</Text>
+						</TouchableOpacity> 
+					</View>
 
+					<View style={styles.buttonContainer}>
+						<TouchableOpacity style={styles.button} onPress={this.onCancelPress}>
+							<Text  style={styles.buttonText}>CANCEL</Text>
+						</TouchableOpacity>
 					</View>
 
 				</View>
-
 			</KeyboardAvoidingView>
 
-			// <View style={styles.container}>
-			// 	{/* <View style={styles.imageWindow}>
-			// 	<Image style={styles.image}
-			// 		source={require('../images/FMicon.png')}
-			// 		resizeMode="contain"
-			// 	/>
-			// 	</View> */}
-			// 	<View style={styles.inputs}>
-				// <TextInput
-				// 	onChangeText={value => this.onChangeText('username', value)}
-				// 	style={styles.input}
-				// 	placeholder='username'
-				// />
-				// <TextInput
-				// 	onChangeText={value => this.onChangeText('password', value)}
-				// 	style={styles.input}
-				// 	secureTextEntry={true}
-				// 	placeholder='password'
-				// />
-
-				// <TextInput
-				// 	onChangeText={value => this.onChangeText('email', value)}
-				// 	style={styles.input}
-				// 	placeholder='email'
-				// />
-
-			// 	{/* <Button title="Sign Up" onPress={this.signUp.bind(this)} /> */}
-				// <TextInput
-				// 	onChangeText={value => this.onChangeText('confirmationCode', value)}
-				// 	style={styles.input}
-				// 	placeholder='confirmation Code'
-				// />
-
-				
-
-			// 	{/* <Button title="Confirm Sign Up" onPress={this.confirmSignUp.bind(this)} /> */}
-			// 	</View>
-			// </View>
 		);
 	}
 }
@@ -155,17 +137,15 @@ const styles = StyleSheet.create({
         backgroundColor: '#2c3e50',
     },
     loginContainer:{
+		// backgroundColor: 'white',
         alignItems: 'center',
         flexGrow: 1,
-        justifyContent: 'center'
+        justifyContent: 'flex-end'
     },
     logo: {
         position: 'absolute',
-        width: 500,
-        height: 200,
-	},
-	form: {
-		flex: 1,
+        width: 350,
+        height: 150,
 	},
     title:{
         color: "#FFF",
@@ -175,27 +155,39 @@ const styles = StyleSheet.create({
         opacity: 0.9
     },
     formContainer: {
-        flex: 1,
-    },
-	input:{
-		height: 40,
-		backgroundColor: 'rgba(225,225,225,0.2)',
-		marginBottom: 10,
-		padding: 10,
-		color: '#fff'
+		backgroundColor: 'pink',
+		flex: 1.8,
+		justifyContent: 'center',
+		paddingBottom: 10,
 	},
-	inputSignUp: {
+	inputFormat: {
 		height: 40,
 		backgroundColor: 'rgba(225,225,225,0.2)',
-		marginTop: 15,
-		marginBottom: 10,
-		padding: 10,
+		borderRadius: 40,
+		flexDirection: 'row',
+		justifyContent: 'center',
+		alignItems: 'center',
+		marginHorizontal: 20,
+		paddingHorizontal: 10,
+	},
+	input:{
+		flex: 1,
+		height: 30,
+		paddingLeft: 10,
+		// backgroundColor: 'rgba(225,225,225,0.2)',
 		color: '#fff'
 	},
 	buttonContainer:{
 		backgroundColor: '#2980b6',
-		marginBottom: 10,
-		paddingVertical: 15
+		height: 50,
+		padding: 5,
+		marginHorizontal: 20,
+		borderRadius: 50,
+	},
+	button: {
+		flex: 1,
+		justifyContent: 'center',
+		alignItems: 'center',
 	},
 	buttonText:{
 		color: '#fff',
