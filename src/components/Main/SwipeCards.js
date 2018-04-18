@@ -6,15 +6,53 @@ import { StyleSheet, Text, View, ImageBackground, Button, TouchableOpacity } fro
 
 import MoreInfoButton from './MoreInfoButtons';
 import SwipeCards from 'react-native-swipe-cards';
+import RescuePetsAPI from '../../RescuePetsAPI.js'
  
 class Card extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      sliderOneChanging: false,
+      sliderOneValue: [25],
+      allPets: [],
+      status: '',
+      pet: [],
+      petName: '',
+      petBreed: '',
+      petDescription: '',
+      petPictures: [],
+      petPicture: '',
+      petURL: '',
+      petBirthDate: '',
+      potLocation: '',
+     }
+  }
+
+  componentWillMount() {
+    /*
+    RescuePetsAPI.GetInformation().then((res) => {
+      this.setState({
+        status: res.status,
+        AllPets: res.data,
+        pet: res.data[0],
+        petName: res.data[0].animalName,
+        petDescription: res.data[0].animalDescription,
+        petPictures: res.data[0].animalPictures,
+        petBreed: res.data[0].animalBreed,
+        petPicture: res.data[0].animalPictures[0].url
+      })
+    });
+    */
+    fetch('https://api.rescuegroups.org/http/', RescuePetsAPI.GetInformation())
+    .then((res) => res.json())
+    .then(parsedJSON => console.log(parsedJSON.results))
+    .catch(error => console.log('parsing failed', error))
+
+    console.log(RescuePetsAPI.GetInformation())
   }
  
   render() {
     return ( 
-
       <View style = { styles.card }>
 
         <ImageBackground
