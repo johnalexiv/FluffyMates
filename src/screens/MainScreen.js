@@ -8,7 +8,6 @@ import {
     ScrollView,
 } from 'react-native';
 import SwipeCards from '../components/Main/SwipeCards';
-import ChoiceButtons from '../components/Main/ChoiceButtons';
 import ScrollableTabView, { DefaultTabBar } from 'react-native-scrollable-tab-view';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { Dropdown } from 'react-native-material-dropdown';

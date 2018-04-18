@@ -107,7 +107,9 @@ export default class extends React.Component {
         {name: 'Archie', breed: 'Corgi', distance: '8', source: require('../../images/corgi.jpg')},
         {name: 'Vinnie', breed: 'Italian Greyhound', distance: '16', source: require('../../images/dog.jpeg')},
         {name: 'Popcorn', breed: 'Labrador', distance: '52', source: require('../../images/labrador.jpg')},
+        {name: 'Billy', breed: 'Pitbull Mix', distance: '64', source: require('../../images/pitbull_mix.jpg')},
         {name: 'Julio', breed: 'Labradoodle', distance: '25', source: require('../../images/labradoodle.jpg')},
+        {name: 'Toby', breed: 'Labrador Mix', distance: '80', source: require('../../images/labrador_mix.jpg')},
         {name: 'Lady', breed: 'Cocker Spaniel', distance: '17',source: require('../../images/cocker_spaniel.jpg')},
       ]
     };
