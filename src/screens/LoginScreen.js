@@ -43,8 +43,8 @@ export default class LoginScreen extends React.Component {
                                 style={{ padding: 15, alignItems: 'center', borderRadius: 50 }}
                                 start={{ x: 0, y: 1 }}
                                 end={{ x: 1, y: 1 }}>
-                                <Text style={{backgroundColor: 'transparent', color: 'white', textAlign: 'center', fontSize: 20}} >
-                                    SIGNUP WITH EMAIL
+                                <Text style={{backgroundColor: 'transparent', color: 'white', textAlign: 'center', fontSize: 15}} >
+                                    SIGN UP
                                 </Text>
                             </LinearGradient>
                         </TouchableOpacity>
@@ -54,8 +54,8 @@ export default class LoginScreen extends React.Component {
                         <TouchableOpacity style={styles.loginButton}
                             onPress={this.onEmailPress}
                             >
-                            <Text style={{color: '#989898', textAlign: 'center', fontSize: 16}} >
-                                LOGIN WITH EMAIL
+                            <Text style={{color: '#989898', textAlign: 'center', fontSize: 13}} >
+                                LOGIN
                             </Text>
                         </TouchableOpacity>
                     </View>

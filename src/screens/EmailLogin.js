@@ -7,8 +7,9 @@ import {
 	Image,
 	TouchableOpacity,
 	KeyboardAvoidingView,
+	ImageBackground,
 } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import Icon from 'react-native-vector-icons/Feather';
 import { Input } from 'react-native-elements';
 import Amplify, { Auth } from 'aws-amplify';
 import AWSConfig from '../../aws-exports';
@@ -57,6 +58,11 @@ export default class EmailLogin extends React.Component {
 
 	render() {
 		return (
+			<ImageBackground
+			source={require('../images/corgi.jpg')}
+			resizeMode='cover'
+			blurRadius={5} 
+        	style={styles.testcontainer}>
 			<KeyboardAvoidingView behavior="padding" style={styles.container}>
 
 				<View style={styles.loginContainer}>
@@ -67,11 +73,12 @@ export default class EmailLogin extends React.Component {
 
 				<View style={styles.formContainer}>
 					<View style={styles.inputFormat}>
-						<Icon name="user-o" size={20} color="black" />
+						<Icon name="user" size={22} color="black" />
 						<TextInput style = {styles.input} 
 							autoCapitalize="none" 
 							autoCorrect={false} 
-							returnKeyType="next" 
+							keyboardType="ascii-capable" 
+							returnKeyType="next"
 							placeholder='Username' 
 							placeholderTextColor='rgba(225,225,225,0.8)'
 							onChangeText={value => this.onChangeText('username', value)}
@@ -79,9 +86,13 @@ export default class EmailLogin extends React.Component {
 					</View>
 
 					<View style={styles.inputFormat}>
-						<Icon name="key" size={20} color="black" />
+						<Icon name="lock" size={20} color="black" />
 						<TextInput style={styles.input}
 							onChangeText={value => this.onChangeText('password', value)}
+							autoCapitalize="none"
+							keyboardType="ascii-capable" 
+							autoCorrect={false} 
+							returnKeyType="next"
 							secureTextEntry={true}
 							placeholderTextColor='rgba(225,225,225,0.8)'
 							placeholder='Password'
@@ -89,9 +100,12 @@ export default class EmailLogin extends React.Component {
 					</View>
 
 					<View style={styles.inputFormat}>
-						<Icon name="envelope" size={20} color="black" />
+						<Icon name="mail" size={20} color="black" />
 						<TextInput style={styles.input}
 							onChangeText={value => this.onChangeText('email', value)}
+							autoCapitalize="none" 
+							keyboardType="email-address" 
+							autoCorrect={false} 
 							placeholder='Email'
 							placeholderTextColor='rgba(225,225,225,0.8)' 
 						/>
@@ -115,6 +129,9 @@ export default class EmailLogin extends React.Component {
 						<Icon name="check" size={20} color="black" />
 						<TextInput style={styles.input}
 							onChangeText={value => this.onChangeText('confirmationCode', value)}
+							autoCapitalize="none" 
+							keyboardType="ascii-capable" 
+							autoCorrect={false} 
 							placeholder='Confirmation Code'
 							placeholderTextColor='rgba(225,225,225,0.8)' 
 						/>
@@ -131,13 +148,11 @@ export default class EmailLogin extends React.Component {
 									SIGN UP
 								</Text>
 							</LinearGradient>
-							{/* <Text  style={styles.buttonText}>SIGN UP</Text> */}
 						</TouchableOpacity> 
 					</View>
 
 					<View style={styles.viewSignupButton}>
 						<TouchableOpacity style={styles.signupButton} onPress={this.onCancelPress}>
-							{/* <Text  style={styles.buttonText}>CANCEL</Text> */}
 							<LinearGradient
 								colors={['#1CB5E0', '#37b8cb',]}
 								style={{ padding: 12, alignItems: 'center', borderRadius: 50 }}
@@ -152,15 +167,18 @@ export default class EmailLogin extends React.Component {
 
 				</View>
 			</KeyboardAvoidingView>
-
+			</ImageBackground>
 		);
 	}
 }
 
 const styles = StyleSheet.create({
+	testcontainer: {
+		flex: 1,
+	},
 	container: {
         flex: 1,
-        backgroundColor: 'white',
+        backgroundColor: 'transparent',
 	},
 	signupButton: {
         flex: 1,
@@ -173,9 +191,7 @@ const styles = StyleSheet.create({
         shadowOffset: {width: 2, height: 2},
 	},
 	viewSignupButton: {
-		// flex: 1,
 		height: 45,
-        // margin: 3,
         justifyContent: 'flex-start',
         paddingHorizontal: 50,
     },
@@ -198,7 +214,6 @@ const styles = StyleSheet.create({
         opacity: 0.9
     },
     formContainer: {
-		// backgroundColor: 'green',
 		flex: 1.3,
 		justifyContent: 'flex-start',
 		paddingBottom: 10,
@@ -219,27 +234,6 @@ const styles = StyleSheet.create({
 		height: 30,
 		paddingLeft: 10,
 		// backgroundColor: 'rgba(225,225,225,0.2)',
-		color: '#fff'
+		color: 'black'
 	},
-	buttonContainer:{
-		backgroundColor: '#2980b6',
-		height: 50,
-		padding: 5,
-		marginHorizontal: 20,
-		borderRadius: 50,
-	},
-	button: {
-		flex: 1,
-		justifyContent: 'center',
-		alignItems: 'center',
-	},
-	buttonText:{
-		color: '#fff',
-		textAlign: 'center',
-		fontWeight: '700'
-	}, 
-	loginButton:{
-		backgroundColor:  '#2980b6',
-		color: '#fff'
-	}
 });
