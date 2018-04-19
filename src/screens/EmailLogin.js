@@ -61,66 +61,92 @@ export default class EmailLogin extends React.Component {
 
 				<View style={styles.loginContainer}>
 					<Image  style={styles.logo} 
-						source={require('../images/FMicon.png')}
+						source={require('../images/FMicon2.png')}
 						resizeMode="contain" />
 				</View>
 
 				<View style={styles.formContainer}>
 					<View style={styles.inputFormat}>
-						<Icon name="user-o" size={20} color="white" />
+						<Icon name="user-o" size={20} color="black" />
 						<TextInput style = {styles.input} 
 							autoCapitalize="none" 
 							autoCorrect={false} 
 							returnKeyType="next" 
 							placeholder='Username' 
-							placeholderTextColor='rgba(225,225,225,0.7)'
+							placeholderTextColor='rgba(225,225,225,0.8)'
 							onChangeText={value => this.onChangeText('username', value)}
 						/>
 					</View>
 
 					<View style={styles.inputFormat}>
-						<Icon name="key" size={20} color="white" />
+						<Icon name="key" size={20} color="black" />
 						<TextInput style={styles.input}
 							onChangeText={value => this.onChangeText('password', value)}
 							secureTextEntry={true}
-							placeholderTextColor='rgba(225,225,225,0.7)'
+							placeholderTextColor='rgba(225,225,225,0.8)'
 							placeholder='Password'
 						/>
 					</View>
 
 					<View style={styles.inputFormat}>
-						<Icon name="envelope" size={20} color="white" />
+						<Icon name="envelope" size={20} color="black" />
 						<TextInput style={styles.input}
 							onChangeText={value => this.onChangeText('email', value)}
 							placeholder='Email'
-							placeholderTextColor='rgba(225,225,225,0.7)' 
+							placeholderTextColor='rgba(225,225,225,0.8)' 
 						/>
 					</View>
 					
-					<View style={styles.buttonContainer}>
-						<TouchableOpacity style={styles.button} onPress={this.signUp.bind(this)}>
-							<Text  style={styles.buttonText}>SEND CONFIRMATION CODE</Text>
+					<View style={styles.viewSignupButton}>
+						<TouchableOpacity style={styles.signupButton} onPress={this.signUp.bind(this)}>
+							<LinearGradient
+								colors={['#1CB5E0', '#37b8cb',]}
+								style={{ padding: 12, alignItems: 'center', borderRadius: 50 }}
+								start={{ x: 0, y: 1 }}
+								end={{ x: 1, y: 1 }}>
+								<Text style={{backgroundColor: 'transparent', color: 'white', textAlign: 'center', fontSize: 12}} >
+									SEND CONFIRMATION CODE
+								</Text>
+							</LinearGradient>
 						</TouchableOpacity> 
 					</View>
 
 					<View style={styles.inputFormat}>
-						<Icon name="check" size={20} color="white" />
+						<Icon name="check" size={20} color="black" />
 						<TextInput style={styles.input}
 							onChangeText={value => this.onChangeText('confirmationCode', value)}
 							placeholder='Confirmation Code'
-							placeholderTextColor='rgba(225,225,225,0.7)' 
+							placeholderTextColor='rgba(225,225,225,0.8)' 
 						/>
 					</View>
 
-					<View style={styles.buttonContainer}>
-						<TouchableOpacity style={styles.button} onPress={this.confirmSignUp.bind(this)}>
-							<Text  style={styles.buttonText}>SIGN UP</Text>
+					<View style={styles.viewSignupButton}>
+						<TouchableOpacity style={styles.signupButton} onPress={this.confirmSignUp.bind(this)}>
+							<LinearGradient
+								colors={['#1CB5E0', '#37b8cb',]}
+								style={{ padding: 12, alignItems: 'center', borderRadius: 50 }}
+								start={{ x: 0, y: 1 }}
+								end={{ x: 1, y: 1 }}>
+								<Text style={{backgroundColor: 'transparent', color: 'white', textAlign: 'center', fontSize: 12}} >
+									SIGN UP
+								</Text>
+							</LinearGradient>
+							{/* <Text  style={styles.buttonText}>SIGN UP</Text> */}
 						</TouchableOpacity> 
 					</View>
 
-					<View style={styles.buttonContainer}>
-						<TouchableOpacity style={styles.button} onPress={this.onCancelPress}>
-							<Text  style={styles.buttonText}>CANCEL</Text>
+					<View style={styles.viewSignupButton}>
+						<TouchableOpacity style={styles.signupButton} onPress={this.onCancelPress}>
+							{/* <Text  style={styles.buttonText}>CANCEL</Text> */}
+							<LinearGradient
+								colors={['#1CB5E0', '#37b8cb',]}
+								style={{ padding: 12, alignItems: 'center', borderRadius: 50 }}
+								start={{ x: 0, y: 1 }}
+								end={{ x: 1, y: 1 }}>
+								<Text style={{backgroundColor: 'transparent', color: 'white', textAlign: 'center', fontSize: 12}} >
+									CANCEL
+								</Text>
+							</LinearGradient>
 						</TouchableOpacity>
 					</View>
 
@@ -134,10 +160,27 @@ export default class EmailLogin extends React.Component {
 const styles = StyleSheet.create({
 	container: {
         flex: 1,
-        backgroundColor: '#2c3e50',
+        backgroundColor: 'white',
+	},
+	signupButton: {
+        flex: 1,
+        backgroundColor: 'transparent',
+        justifyContent: 'center',
+        borderRadius: 50,
+        shadowColor: 'black',
+        shadowOpacity: 0.2,
+        shadowRadius: 2,
+        shadowOffset: {width: 2, height: 2},
+	},
+	viewSignupButton: {
+		// flex: 1,
+		height: 45,
+        // margin: 3,
+        justifyContent: 'flex-start',
+        paddingHorizontal: 50,
     },
     loginContainer:{
-		// backgroundColor: 'white',
+		// backgroundColor: 'pink',
         alignItems: 'center',
         flexGrow: 1,
         justifyContent: 'flex-end'
@@ -145,7 +188,7 @@ const styles = StyleSheet.create({
     logo: {
         position: 'absolute',
         width: 350,
-        height: 150,
+        height: 240,
 	},
     title:{
         color: "#FFF",
@@ -155,19 +198,20 @@ const styles = StyleSheet.create({
         opacity: 0.9
     },
     formContainer: {
-		backgroundColor: 'pink',
-		flex: 1.8,
-		justifyContent: 'center',
+		// backgroundColor: 'green',
+		flex: 1.3,
+		justifyContent: 'flex-start',
 		paddingBottom: 10,
 	},
 	inputFormat: {
 		height: 40,
-		backgroundColor: 'rgba(225,225,225,0.2)',
+		backgroundColor: 'rgba(225,225,225,0.4)',
 		borderRadius: 40,
 		flexDirection: 'row',
 		justifyContent: 'center',
 		alignItems: 'center',
 		marginHorizontal: 20,
+		margin: 3,
 		paddingHorizontal: 10,
 	},
 	input:{

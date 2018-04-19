@@ -25,7 +25,7 @@ export default class LoginSwiper extends React.Component {
                     marginBottom: 0,}} 
                 />}
                 activeDot={<View style={{
-                    backgroundColor:'#005C97', 
+                    backgroundColor:'#1CB5E0', 
                     width: 10, 
                     height: 10,       
                     borderRadius: 5, 
