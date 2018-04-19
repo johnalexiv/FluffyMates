@@ -28,7 +28,7 @@ class Card extends React.Component {
      }
   }
 
-  componentWillMount() {
+  UNSAFE_componentWillMount() {
     /*
     RescuePetsAPI.GetInformation().then((res) => {
       this.setState({
@@ -57,8 +57,7 @@ class Card extends React.Component {
 
         <ImageBackground
           source = { this.props.source }
-          style = { {width: '100%', height: '100%'} }
-          >
+          style = { {width: '100%', height: '100%'} } > 
           <View style = {styles.emptySpace}>
           <Text></Text>
           </View>
@@ -78,7 +77,9 @@ class Card extends React.Component {
               </TouchableOpacity>
 
           </View>
+
         </ImageBackground>
+
       </View>
     )
   }
@@ -92,7 +93,10 @@ class NoMoreCards extends Component {
   render() {
     return (
       <View>
-        <Text style={styles.noMoreCardsText}>No more dogs</Text>
+        <Text style={styles.noMoreCardsText}>
+          You've reached the end!{"\n"}
+          Please check back soon.
+        </Text>
       </View>
     )
   }
@@ -116,13 +120,13 @@ export default class extends React.Component {
   }
  
   handleYup (card) {
-    console.log(`Yup for ${card.text}`)
+    console.log(`Yup for ${card.name}`)
   }
   handleNope (card) {
-    console.log(`Nope for ${card.text}`)
+    console.log(`Nope for ${card.name}`)
   }
   handleMaybe (card) {
-    console.log(`Maybe for ${card.text}`)
+    console.log(`Maybe for ${card.name}`)
   }
   render() {
     // If you want a stack of cards instead of one-per-one view, activate stack mode
@@ -136,7 +140,8 @@ export default class extends React.Component {
         handleNope={this.handleNope}
         //handleMaybe={this.handleMaybe}
         stack={true}
-        loop={true}
+        // loop={true}
+        stackDepth={10}
       />
     )
   }
@@ -148,7 +153,11 @@ const styles = StyleSheet.create({
     width: 375,
   },
   noMoreCardsText: {
-    fontSize: 22
+    fontSize: 20,
+    textAlign: 'center',
+    color: '#383838',
+    marginLeft: '10%',
+    marginRight: '10%',
   },
   emptySpace: {
     flex: 3.8
