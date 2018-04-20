@@ -52,17 +52,17 @@ export default class EmailLogin extends React.Component {
 	}
 	
 	static navigationOptions = {
-		title: 'Log into FluffyMates',
-		header: null,
+		// title: 'Log into FluffyMates',
+		// header: null,
 	}   
 
 	render() {
 		return (
-			<ImageBackground
-			source={require('../images/corgi.jpg')}
-			resizeMode='cover'
-			blurRadius={5} 
-        	style={styles.testcontainer}>
+			// <ImageBackground
+			// source={require('../images/corgi.jpg')}
+			// resizeMode='cover'
+			// blurRadius={5} 
+        	// style={styles.testcontainer}>
 			<KeyboardAvoidingView behavior="padding" style={styles.container}>
 
 				<View style={styles.loginContainer}>
@@ -91,7 +91,7 @@ export default class EmailLogin extends React.Component {
 							onChangeText={value => this.onChangeText('password', value)}
 							autoCapitalize="none"
 							keyboardType="ascii-capable" 
-							autoCorrect={false} 
+							autoCorrect={false}
 							returnKeyType="next"
 							secureTextEntry={true}
 							placeholderTextColor='rgba(225,225,225,0.8)'
@@ -99,7 +99,7 @@ export default class EmailLogin extends React.Component {
 						/>
 					</View>
 
-					<View style={styles.inputFormat}>
+					{/* <View style={styles.inputFormat}>
 						<Icon name="mail" size={20} color="black" />
 						<TextInput style={styles.input}
 							onChangeText={value => this.onChangeText('email', value)}
@@ -109,9 +109,9 @@ export default class EmailLogin extends React.Component {
 							placeholder='Email'
 							placeholderTextColor='rgba(225,225,225,0.8)' 
 						/>
-					</View>
+					</View> */}
 					
-					<View style={styles.viewSignupButton}>
+					{/* <View style={styles.viewSignupButton}>
 						<TouchableOpacity style={styles.signupButton} onPress={this.signUp.bind(this)}>
 							<LinearGradient
 								colors={['#1CB5E0', '#37b8cb',]}
@@ -135,13 +135,13 @@ export default class EmailLogin extends React.Component {
 							placeholder='Confirmation Code'
 							placeholderTextColor='rgba(225,225,225,0.8)' 
 						/>
-					</View>
+					</View> */}
 
 					<View style={styles.viewSignupButton}>
 						<TouchableOpacity style={styles.signupButton} onPress={this.confirmSignUp.bind(this)}>
 							<LinearGradient
 								colors={['#1CB5E0', '#37b8cb',]}
-								style={{ padding: 12, alignItems: 'center', borderRadius: 50 }}
+								style={{ padding: 15, alignItems: 'center', borderRadius: 50 }}
 								start={{ x: 0, y: 1 }}
 								end={{ x: 1, y: 1 }}>
 								<Text style={{backgroundColor: 'transparent', color: 'white', textAlign: 'center', fontSize: 12}} >
@@ -151,11 +151,11 @@ export default class EmailLogin extends React.Component {
 						</TouchableOpacity> 
 					</View>
 
-					<View style={styles.viewSignupButton}>
+					{/* <View style={styles.viewSignupButton}>
 						<TouchableOpacity style={styles.signupButton} onPress={this.onCancelPress}>
 							<LinearGradient
 								colors={['#1CB5E0', '#37b8cb',]}
-								style={{ padding: 12, alignItems: 'center', borderRadius: 50 }}
+								style={{ padding: 15, alignItems: 'center', borderRadius: 50 }}
 								start={{ x: 0, y: 1 }}
 								end={{ x: 1, y: 1 }}>
 								<Text style={{backgroundColor: 'transparent', color: 'white', textAlign: 'center', fontSize: 12}} >
@@ -163,11 +163,11 @@ export default class EmailLogin extends React.Component {
 								</Text>
 							</LinearGradient>
 						</TouchableOpacity>
-					</View>
+					</View> */}
 
 				</View>
 			</KeyboardAvoidingView>
-			</ImageBackground>
+			// </ImageBackground>
 		);
 	}
 }
@@ -178,7 +178,7 @@ const styles = StyleSheet.create({
 	},
 	container: {
         flex: 1,
-        backgroundColor: 'transparent',
+        backgroundColor: 'white',
 	},
 	signupButton: {
         flex: 1,
@@ -191,9 +191,11 @@ const styles = StyleSheet.create({
         shadowOffset: {width: 2, height: 2},
 	},
 	viewSignupButton: {
-		height: 45,
+		height: 50,
         justifyContent: 'flex-start',
-        paddingHorizontal: 50,
+		paddingHorizontal: 15,
+		marginTop: 15,
+		margin: 3,
     },
     loginContainer:{
 		// backgroundColor: 'pink',
@@ -204,7 +206,7 @@ const styles = StyleSheet.create({
     logo: {
         position: 'absolute',
         width: 350,
-        height: 240,
+        height: 270,
 	},
     title:{
         color: "#FFF",
@@ -214,7 +216,7 @@ const styles = StyleSheet.create({
         opacity: 0.9
     },
     formContainer: {
-		flex: 1.3,
+		flex: 1.2,
 		justifyContent: 'flex-start',
 		paddingBottom: 10,
 	},
@@ -226,7 +228,7 @@ const styles = StyleSheet.create({
 		justifyContent: 'center',
 		alignItems: 'center',
 		marginHorizontal: 20,
-		margin: 3,
+		margin: 5,
 		paddingHorizontal: 10,
 	},
 	input:{
