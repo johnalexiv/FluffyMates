@@ -18,7 +18,8 @@ export default class LoginScreen extends React.Component {
     }
 
     onEmailPress = () => {
-        this.props.navigation.navigate('MainScreen');
+        //this.props.navigation.navigate('MainScreen');
+        this.props.navigation.navigate('ActualLoginScreen');
     }
 
     onPolicyPress = () => {
