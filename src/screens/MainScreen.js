@@ -14,6 +14,7 @@ import { Dropdown } from 'react-native-material-dropdown';
 import "prop-types";
 import MultiSlider from '@ptomasroos/react-native-multi-slider';
 import CustomMarker from './CustomMarker';
+import LikedHistory from '../components/LikedHistory/LikedHistory';
 
 export default class MainScreen extends React.Component {
     static navigationOptions = {
@@ -267,11 +268,11 @@ export default class MainScreen extends React.Component {
                     <SwipeCards/>
                 </View>
 
-                <ScrollView tabLabel="ios-heart" style={styles.tabView}>
+                <View tabLabel="ios-heart" style={styles.tabView}>
                     <View style={styles.sampleCard}>
-                        <Text>MyPets</Text>
+                        <LikedHistory/>
                     </View>
-                </ScrollView>
+                </View>
 
             </ScrollableTabView>
         );

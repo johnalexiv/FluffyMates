@@ -18,7 +18,6 @@ Amplify.configure(AWSConfig)
 
 export default class EmailLogin extends React.Component {
 	state = {
-
 		email: '',
 		confirmationCode: ''
 	}
@@ -50,8 +49,13 @@ export default class EmailLogin extends React.Component {
 	onCancelPress = () => {
 		this.props.navigation.goBack(null);
 	}
+
+	onSignUpPress = () => {
+		console.log("Button pressed")
+	}
 	
 	static navigationOptions = {
+		headerBackTitle: "back"
 		// title: 'Log into FluffyMates',
 		// header: null,
 	}   
@@ -144,12 +148,21 @@ export default class EmailLogin extends React.Component {
 								style={{ padding: 15, alignItems: 'center', borderRadius: 50 }}
 								start={{ x: 0, y: 1 }}
 								end={{ x: 1, y: 1 }}>
-								<Text style={{backgroundColor: 'transparent', color: 'white', textAlign: 'center', fontSize: 12}} >
-									SIGN UP
+								<Text style={{backgroundColor: 'transparent', color: 'white', textAlign: 'center', fontSize: 15}} >
+									Sign In
 								</Text>
 							</LinearGradient>
 						</TouchableOpacity> 
 					</View>
+
+					<View style={styles.termsAndConditions}>
+						<Text style={{color: '#C0C0C0', marginTop: 10, textAlign: 'center', fontSize: 12}}>
+							Don't have an account? 
+							<Text style={{color: 'black'}}
+								onPress={this.onSignUpPress}> Sign up 
+							</Text>
+						</Text>
+                	</View>	
 
 					{/* <View style={styles.viewSignupButton}>
 						<TouchableOpacity style={styles.signupButton} onPress={this.onCancelPress}>
@@ -192,13 +205,12 @@ const styles = StyleSheet.create({
 	},
 	viewSignupButton: {
 		height: 50,
-        justifyContent: 'flex-start',
+        justifyContent: 'center',
 		paddingHorizontal: 15,
 		marginTop: 15,
 		margin: 3,
     },
     loginContainer:{
-		// backgroundColor: 'pink',
         alignItems: 'center',
         flexGrow: 1,
         justifyContent: 'flex-end'
@@ -216,7 +228,7 @@ const styles = StyleSheet.create({
         opacity: 0.9
     },
     formContainer: {
-		flex: 1.2,
+		flex: 1.3,
 		justifyContent: 'flex-start',
 		paddingBottom: 10,
 	},
@@ -235,7 +247,6 @@ const styles = StyleSheet.create({
 		flex: 1,
 		height: 30,
 		paddingLeft: 10,
-		// backgroundColor: 'rgba(225,225,225,0.2)',
 		color: 'black'
 	},
 });
