@@ -19,6 +19,7 @@ import LikedHistory from '../components/LikedHistory/LikedHistory';
 export default class MainScreen extends React.Component {
     static navigationOptions = {
         header: null,
+        gesturesEnabled: false,
     }
 
     constructor(props){

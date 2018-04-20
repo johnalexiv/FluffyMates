@@ -18,7 +18,8 @@ export default class LoginScreen extends React.Component {
     }
 
     onEmailPress = () => {
-        this.props.navigation.navigate('MainScreen');
+        //this.props.navigation.navigate('MainScreen');
+        this.props.navigation.navigate('ActualLoginScreen');
     }
 
     onPolicyPress = () => {
@@ -28,6 +29,8 @@ export default class LoginScreen extends React.Component {
     render() {
         return (
             <View style={styles.container}>
+                <View style={styles.whiteSpace}></View>
+                
                 <View style={styles.loginSwiper}>
                     <LoginSwiper />
                 </View>
@@ -40,25 +43,25 @@ export default class LoginScreen extends React.Component {
                             <LinearGradient
                                 // colors={['#1e3c72', '#2a5298',]}
                                 colors={['#1CB5E0', '#37b8cb',]}
-                                style={{ padding: 15, alignItems: 'center', borderRadius: 50 }}
+                                style={{ padding: 20, alignItems: 'center', borderRadius: 50 }}
                                 start={{ x: 0, y: 1 }}
                                 end={{ x: 1, y: 1 }}>
-                                <Text style={{backgroundColor: 'transparent', color: 'white', textAlign: 'center', fontSize: 20}} >
-                                    SIGNUP WITH EMAIL
+                                <Text style={{backgroundColor: 'transparent', color: 'white', textAlign: 'center', fontSize: 18}} >
+                                    Get Started
                                 </Text>
                             </LinearGradient>
                         </TouchableOpacity>
                     </View>
 
-                    <View style={styles.viewLoginButton}>
+                    {/* <View style={styles.viewLoginButton}>
                         <TouchableOpacity style={styles.loginButton}
                             onPress={this.onEmailPress}
                             >
-                            <Text style={{color: '#989898', textAlign: 'center', fontSize: 16}} >
-                                LOGIN WITH EMAIL
+                            <Text style={{color: '#989898', textAlign: 'center', fontSize: 13}} >
+                                LOGIN
                             </Text>
                         </TouchableOpacity>
-                    </View>
+                    </View> */}
                 </View>
 
                 <View style={styles.termsAndConditions}>
@@ -73,6 +76,8 @@ export default class LoginScreen extends React.Component {
                         </Text>
                     </Text>
                 </View>
+
+                <View style={styles.whiteSpace}></View>
             </View>
         );
     }
@@ -86,7 +91,7 @@ const styles = StyleSheet.create({
     },
     loginSwiper: {
         flex: 15,
-        paddingTop: 30,
+        // paddingTop: 30,
     },
     buttons: {
         flex: 3,
@@ -130,8 +135,12 @@ const styles = StyleSheet.create({
         backgroundColor: 'white',
         alignItems: 'center',
         paddingHorizontal: 40,
-        paddingTop: 15,
-        paddingBottom: 20,
+        paddingTop: 10,
+        // paddingBottom: 20,
         justifyContent: 'space-around',
+    },
+    whiteSpace: {
+        flex: 1.7,
+        backgroundColor: 'white',
     },
 })
