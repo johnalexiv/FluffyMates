@@ -15,6 +15,7 @@ import "prop-types";
 import MultiSlider from '@ptomasroos/react-native-multi-slider';
 import CustomMarker from './CustomMarker';
 import LikedHistory from '../components/LikedHistory/LikedHistory';
+import Settings from '../components/Settings/Settings';
 import pets from  '../petsdata'
 
 export default class MainScreen extends React.Component {
@@ -160,8 +161,9 @@ export default class MainScreen extends React.Component {
                 tabBarPosition='top'
                 locked={true}>
             <View tabLabel="settings" style={styles.tabView}>
-                <View style={styles.sampleCard}>
-                </View>
+            <View style={styles.sampleCard}>
+                        <Settings/>
+                    </View>
             </View>
                 <ScrollView tabLabel= {"ios-filters"} style={styles.tabView}>
                     <View style={styles.sampleCard}>
