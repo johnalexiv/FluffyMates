@@ -19,7 +19,7 @@ export default class LoginScreen extends React.Component {
 
     onEmailPress = () => {
         //this.props.navigation.navigate('MainScreen');
-        this.props.navigation.navigate('ActualLoginScreen');
+        this.props.navigation.navigate('MainScreen');
     }
 
     onPolicyPress = () => {
@@ -44,7 +44,7 @@ export default class LoginScreen extends React.Component {
                                 // colors={['#1e3c72', '#2a5298',]}
 								colors={['#37b8cb', '#32a9ba',]}
                                 // colors={['#1CB5E0', '#37b8cb',]}
-                                style={{ padding: 20, alignItems: 'center', borderRadius: 50 }}
+                                style={{ padding: 15, alignItems: 'center', borderRadius: 50 }}
                                 start={{ x: 0, y: 1 }}
                                 end={{ x: 1, y: 1 }}>
                                 <Text style={{backgroundColor: 'transparent', color: 'white', textAlign: 'center', fontSize: 18}} >
@@ -54,7 +54,7 @@ export default class LoginScreen extends React.Component {
                         </TouchableOpacity>
                     </View>
 
-                    {/* <View style={styles.viewLoginButton}>
+                    <View style={styles.viewLoginButton}>
                         <TouchableOpacity style={styles.loginButton}
                             onPress={this.onEmailPress}
                             >
@@ -62,7 +62,7 @@ export default class LoginScreen extends React.Component {
                                 LOGIN
                             </Text>
                         </TouchableOpacity>
-                    </View> */}
+                    </View>
                 </View>
 
                 <View style={styles.termsAndConditions}>
