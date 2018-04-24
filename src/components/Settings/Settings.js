@@ -20,7 +20,6 @@ export default class PetProfile extends Component {
                 <Content style={styles.content}>
           
                     { this.renderLinks() }
-                    { this.renderChange() }
                 </Content>
             </Container>
         )
@@ -35,18 +34,26 @@ export default class PetProfile extends Component {
                     title="About Us"
                     color="#37B8CB"
                     />
+                <Button
+                    //onPress={onPressLearnMore}
+                    title="FAQ"
+                    color="#37B8CB"
+                    />
+                                   <Button
+                    //onPress={onPressLearnMore}
+                    title="Agreements Page"
+                    color="#37B8CB"
+                    />
+                                   <Button
+                    //onPress={onPressLearnMore}
+                    title="Change Account Info"
+                    color="#37B8CB"
+                    />
             </View>
         )
     }
 
-    // for the pet's name, age, breed, distance away
-    renderChange() {
-        return (
-            <View style={styles.holder}>
-               
-            </View>
-        )
-    }
+
     
 
 }
