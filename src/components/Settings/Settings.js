@@ -31,7 +31,7 @@ export default class PetProfile extends Component {
         return (
             <View style={styles.holder}>
                 <Button
-                    onPress={onPressLearnMore}
+                    //onPress={onPressLearnMore}
                     title="About Us"
                     color="#37B8CB"
                     />
