@@ -55,23 +55,22 @@ export default class EmailLogin extends React.Component {
 	}
 	
 	static navigationOptions = {
-		headerBackTitle: "back"
 		// title: 'Log into FluffyMates',
-		// header: null,
+		header: null,
 	}   
 
 	render() {
 		return (
 			// <ImageBackground
-			// source={require('../images/corgi.jpg')}
+			// source={require('../images/clouds.png')}
 			// resizeMode='cover'
-			// blurRadius={5} 
+			// // blurRadius={5} 
         	// style={styles.testcontainer}>
 			<KeyboardAvoidingView behavior="padding" style={styles.container}>
 
 				<View style={styles.loginContainer}>
 					<Image  style={styles.logo} 
-						source={require('../images/FMicon2.png')}
+						source={require('../images/fmateslogo.png')}
 						resizeMode="contain" />
 				</View>
 
@@ -144,7 +143,8 @@ export default class EmailLogin extends React.Component {
 					<View style={styles.viewSignupButton}>
 						<TouchableOpacity style={styles.signupButton} onPress={this.confirmSignUp.bind(this)}>
 							<LinearGradient
-								colors={['#1CB5E0', '#37b8cb',]}
+								// colors={['#1CB5E0', '#37b8cb',]}
+								colors={['#37b8cb', '#32a9ba',]}
 								style={{ padding: 15, alignItems: 'center', borderRadius: 50 }}
 								start={{ x: 0, y: 1 }}
 								end={{ x: 1, y: 1 }}>
@@ -228,7 +228,7 @@ const styles = StyleSheet.create({
         opacity: 0.9
     },
     formContainer: {
-		flex: 1.3,
+		flex: 1,
 		justifyContent: 'flex-start',
 		paddingBottom: 10,
 	},
