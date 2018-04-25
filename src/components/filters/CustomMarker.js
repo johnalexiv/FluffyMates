@@ -12,7 +12,7 @@ export default class CustomMarker extends React.Component {
     return (
       <Image
         style={styles.image}
-        source={ require('../images/paw.png')}
+        source={ require('../../images/paw.png')}
         resizeMode='contain'
       />
     );
