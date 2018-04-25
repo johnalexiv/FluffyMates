@@ -12,7 +12,7 @@ import { Dropdown } from 'react-native-material-dropdown';
 import "prop-types";
 import MultiSlider from '@ptomasroos/react-native-multi-slider';
 import CustomMarker from './CustomMarker';
-import pets from  '../../petsdata'
+import {pets} from  '../../petsdata';
 
 export default class Filters extends React.Component {
   static navigationOptions = {
@@ -47,23 +47,18 @@ export default class Filters extends React.Component {
        sliderOneChanging: false,
      });
    }
-
   render() {
-    let colors = [
-      {
-      value: 'black',
-    },
+    var colors = [];
+    var breed = [];
+    let length = pets.length;
+    console.log(length);
+    var count = 15;
+    for(let i = 0; i < count; i++)
     {
-      value: 'white',
-    },
-    {
-      value: 'tan',
-    },
-
-    {
-      value: 'grey',
-    },
-    ];
+      colors.push({value: pets.dogs[i].color});
+      breed.push({value: pets.dogs[i].breed});
+    }
+    //let colors = [{value: pets.dogs[0].color,}];
 
     let species = [
       {
@@ -83,27 +78,6 @@ export default class Filters extends React.Component {
     },
     {
       value: 'alpaca',
-    },
-    ];
-
-    let breed = [
-    {
-      value: 'Pitbull',
-    },
-    {
-      value: 'Great Dane',
-    },
-    {
-      value: 'Maltese',
-    },
-    {
-      value: 'Mix',
-    },
-    {
-      value: 'German Shepard',
-    },
-    {
-      value: 'Pomeranian',
     },
     ];
 

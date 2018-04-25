@@ -36,7 +36,7 @@ export default class MainScreen extends React.Component {
                         <Settings/>
                     </View>
             </View>
-                <ScrollView tabLabel= 'ios-construct' style={styles.tabView}>
+                <ScrollView tabLabel= 'md-options' style={styles.tabView}>
                     <View style={styles.sampleCard}>
                       <Filters/>
                       </View>
