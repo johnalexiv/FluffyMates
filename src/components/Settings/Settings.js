@@ -1,113 +1,144 @@
-// SwipeCards.js
-'use strict';
- 
-    import React, { Component } from 'react'
-    import { Button, Image, View, StyleSheet, TouchableOpacity, Dimensions, Text } from 'react-native'
-    import { Icon, Container, Content } from 'native-base'; // Version can be specified in package.json
+import React from 'react';
+import {
+    StyleSheet,
+    View,
+    Text,
+    TouchableOpacity,
+} from 'react-native';
+import { LinearGradient } from 'expo';
 
-    import colors                       from '../../style/colors.js'
-    import Swiper                       from 'react-native-swiper'
-
-const {width} = Dimensions.get('window')
-export default class PetProfile extends Component {
+export default class Settings extends React.Component {
     static navigationOptions = {
-        tabBarVisible: false
+        header: null,
+    }
+
+    onFAQPress = () => {
+        this.props.navigation.navigate('FAQ.js');
+    }
+
+    onChangePress = () => {
+        //this.props.navigation.navigate('MainScreen');
+        this.props.navigation.navigate('ChangeInfo.js');
+    }
+
+    onPolicyPress = () => {
+        this.props.navigation.navigate('privacypolicy.js');
     }
 
     render() {
+        
         return (
-            <Container>
-                <Content style={styles.content}>
-          
-                    { this.renderLinks() }
-                </Content>
-            </Container>
-        )
-    }
+            <View style={styles.container}>
+                <View style={styles.whiteSpace}></View>
+                
+                <View style={styles.buttons}>
 
-    // for the pet profile images
-    renderLinks() {
-        return (
-            <View style={styles.holder}>
-                <Button
-                    //onPress={onPressLearnMore}
-                    title="About Us"
-                    color="#37B8CB"
-                    />
-                <Button
-                    //onPress={onPressLearnMore}
-                    title="FAQ"
-                    color="#37B8CB"
-                    />
-                                   <Button
-                    //onPress={onPressLearnMore}
-                    title="Agreements Page"
-                    color="#37B8CB"
-                    />
-                                   <Button
-                    //onPress={onPressLearnMore}
-                    title="Change Account Info"
-                    color="#37B8CB"
-                    />
+                    <View style={styles.viewLoginButton}>
+                        <TouchableOpacity style={styles.loginButton}
+                            //onPress={this.onEmailPress}
+                            >
+                            <Text style={{color: '#989898', textAlign: 'center', fontSize: 13}} >
+                                About Us
+                            </Text>
+                        </TouchableOpacity>
+                    </View>
+
+                    <View style={styles.viewLoginButton}>
+                        <TouchableOpacity style={styles.loginButton}
+                            onPress={this.onFAQPress}
+                            >
+                            <Text style={{color: '#989898', textAlign: 'center', fontSize: 13}} >
+                                FAQ
+                            </Text>
+                        </TouchableOpacity>
+                    </View>
+
+                    <View style={styles.viewLoginButton}>
+                        <TouchableOpacity style={styles.loginButton}
+                            onPress={this.onPolicyPress}
+                            >
+                            <Text style={{color: '#989898', textAlign: 'center', fontSize: 13}} >
+                                Privacy Policy
+                            </Text>
+                        </TouchableOpacity>
+                    </View>
+                    <View style={styles.viewLoginButton}>
+                        <TouchableOpacity style={styles.loginButton}
+                            onPress={this.onChangePress}
+                            >
+                            <Text style={{color: '#989898', textAlign: 'center', fontSize: 13}} >
+                               Change Account Details
+                            </Text>
+                        </TouchableOpacity>
+                    </View>
+
+
+                </View>
+
+                <View style={styles.whiteSpace}></View>
             </View>
-        )
+        );
     }
-
-
-    
-
 }
+
+
 const styles = StyleSheet.create({
-    content: {
-        backgroundColor: '#ffffff'
+    container: {
+        flex: 1,
+        backgroundColor: 'white',
     },
-    holder: {
-        padding: 15,
-        borderBottomWidth: StyleSheet.hairlineWidth,
-        borderColor: colors.bdLine
+    loginSwiper: {
+        flex: 15,
+        // paddingTop: 30,
     },
-    petName: {
-        fontSize: 20,
-        marginBottom: 10
-    },
-    infoRow: {
-        flexDirection: 'row',
-        alignItems: 'center'
-    },
-    infoIcon: {
-        color: colors.txtDescription,
-        fontSize: 20,
-        marginRight: 10
-    },
-    info: {
-        fontSize: 16,
-        color: colors.txtDescription
-    },
-    info2: {
-        fontSize: 16,
-        textAlign: 'center',
-        color: colors.txtDescription
-    },
-    headerTitle: {
-        fontSize: 16
-    },
-    tagContainer: {
+    buttons: {
+        flex: 3,
         justifyContent: 'flex-start',
-        flexDirection: 'row',
-        flexWrap: 'wrap'
     },
-    tag: {
-        paddingVertical: 5,
-        paddingHorizontal: 10,
-        borderWidth: StyleSheet.hairlineWidth,
-        borderColor: colors.txtMainBlue,
-        borderRadius: 3,
-        alignItems: 'center',
+    viewSignupButton: {
+        flex: 3,
+        margin: 5,
+        justifyContent: 'flex-start',
+        paddingHorizontal: 30,
+    },
+    signupButton: {
+        flex: 1,
+        backgroundColor: 'transparent',
         justifyContent: 'center',
-        marginRight: 10,
-        marginTop: 10
+        borderRadius: 50,
+        shadowColor: 'black',
+        shadowOpacity: 0.2,
+        shadowRadius: 2,
+        shadowOffset: {width: 2, height: 2},
     },
-    tagLabel: {
-        color: colors.txtMainBlue
-    }
+    viewLoginButton: {
+        flex: 2,
+        margin: 5,
+        paddingHorizontal: 50,
+    },
+    loginButton: {
+        flex: 1,
+        justifyContent: 'center',
+        backgroundColor: '#FFFFFF',
+        borderColor: '#989898',
+        borderWidth: 1,
+        borderRadius: 50,
+        shadowColor: 'black',
+        shadowOpacity: 0.1,
+        shadowRadius: 1,
+        shadowOffset: {width: 2, height: 2},
+    },
+    termsAndConditions: {
+        flex: 2,
+        backgroundColor: 'white',
+        alignItems: 'center',
+        paddingHorizontal: 40,
+        paddingTop: 10,
+        // paddingBottom: 20,
+        justifyContent: 'space-around',
+    },
+    whiteSpace: {
+        flex: 1.7,
+        backgroundColor: 'white',
+    },
 })
