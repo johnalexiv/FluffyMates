@@ -1,74 +1,185 @@
 import React from 'react';
 import { 
-    StyleSheet, 
-    Text, 
-    View, 
-    Image, 
-    Button,
-    ScrollView,
+	View,
+	Text,
+	StyleSheet,
+	TextInput,
+	Image,
+	TouchableOpacity,
+	KeyboardAvoidingView,
+	ImageBackground,
 } from 'react-native';
-import Profile from '../components/Settings/ChangeInfo.js';
-import ScrollableTabView, { DefaultTabBar } from 'react-native-scrollable-tab-view';
-//import Icon from 'react-native-vector-icons';
-import { Icon, Container, Content } from 'native-base'; // Version can be specified in package.json
-export default class PetProfile extends React.Component {
-    static navigationOptions = {
-        header: null,
-    }
+import Icon from 'react-native-vector-icons/Feather';
+import { Input } from 'react-native-elements';
+import Amplify, { Auth } from 'aws-amplify';
+import AWSConfig from '../../aws-exports';
+import { LinearGradient } from 'expo';
+Amplify.configure(AWSConfig)
 
-    render() {
-        return (
-            <ScrollableTabView
-                style={styles.container}
-                initialPage={1}
-                tabBarPosition='top'
-                locked={true}
-            >
-                <ScrollView tabLabel="ios-arrow-back" style={styles.tabView}>                    
-                    <View style={styles.sampleCard}>
-                        <Text>Back</Text>
-                    </View>
-                </ScrollView>
+export default class ChangeInfo extends React.Component {
+	state = {
+		email: '',
+		confirmationCode: ''
+	}
 
-                <View tabLabel="Change Account Info" style={styles.swipeView}>
-                    <ChangeInfo/>
-                </View>
+	signUp() {
+		Auth.signUp({
+			username: this.state.username,
+			password: this.state.password,
+			attributes: {
+			email: this.state.email,
+			}
+		})
+		.then(() => console.log('successful sign up!'))
+		.catch(err => console.log('error signing up!: ', err))
+	}
 
-                <ScrollView tabLabel="" style={styles.tabView}>
-             
-                </ScrollView>
+	confirmSignUp() {
+		Auth.confirmSignUp(this.state.username, this.state.confirmationCode)
+		.then(() => console.log('successful confirm sign up!'))
+		.catch(err => console.log('error confirming signing up!: ', err))
+	}  
 
-            </ScrollableTabView>
-        );
-    }
+	onChangeText(key, value) {
+		this.setState({
+			[key]: value
+		})
+	}
+
+	onCancelPress = () => {
+		this.props.navigation.goBack(null);
+	}
+
+	onSignUpPress = () => {
+		console.log("Button pressed")
+	}
+	
+	static navigationOptions = {
+		// title: 'Log into FluffyMates',
+		header: null,
+	}   
+
+	render() {
+		return (
+			<KeyboardAvoidingView behavior="padding" style={styles.container}>
+
+				<View style={styles.formContainer}>
+					<View style={styles.inputFormat}>
+						<Icon name="mail" size={22} color="black" />
+						<TextInput style = {styles.input} 
+							autoCapitalize="none" 
+							autoCorrect={false} 
+							keyboardType="email-address" 
+							returnKeyType="next"
+							placeholder='Email' 
+							placeholderTextColor='rgba(225,225,225,0.8)'
+							onChangeText={value => this.onChangeText('email', value)}
+						/>
+					</View>
+
+					<View style={styles.inputFormat}>
+						<Icon name="lock" size={20} color="black" />
+						<TextInput style={styles.input}
+							onChangeText={value => this.onChangeText('password', value)}
+							autoCapitalize="none"
+							keyboardType="ascii-capable" 
+							autoCorrect={false}
+							returnKeyType="next"
+							secureTextEntry={true}
+							placeholderTextColor='rgba(225,225,225,0.8)'
+							placeholder='Password'
+						/>
+					</View>
+
+					
+
+					<View style={styles.viewSignupButton}>
+						<TouchableOpacity style={styles.signupButton} onPress={this.confirmSignUp.bind(this)}>
+							<LinearGradient
+								// colors={['#1CB5E0', '#37b8cb',]}
+								colors={['#37b8cb', '#32a9ba',]}
+								style={{ padding: 15, alignItems: 'center', borderRadius: 50 }}
+								start={{ x: 0, y: 1 }}
+								end={{ x: 1, y: 1 }}>
+								<Text style={{backgroundColor: 'transparent', color: 'white', textAlign: 'center', fontSize: 15}} >
+									Update
+								</Text>
+							</LinearGradient>
+						</TouchableOpacity> 
+					</View>
+
+
+				
+
+				</View>
+			</KeyboardAvoidingView>
+			// </ImageBackground>
+		);
+	}
 }
 
 const styles = StyleSheet.create({
-    container: {
+	testcontainer: {
+		flex: 1,
+	},
+	container: {
         flex: 1,
-        paddingTop: 35,
-    },
-    test: {
+        backgroundColor: 'white',
+	},
+	signupButton: {
         flex: 1,
+        backgroundColor: 'transparent',
+        justifyContent: 'center',
+        borderRadius: 50,
+        shadowColor: 'black',
+        shadowOpacity: 0.2,
+        shadowRadius: 2,
+        shadowOffset: {width: 2, height: 2},
+	},
+	viewSignupButton: {
+		height: 50,
+        justifyContent: 'center',
+		paddingHorizontal: 15,
+		marginTop: 15,
+		margin: 3,
     },
-    swipeView: {
-        flex: 1,
+    loginContainer:{
+        alignItems: 'center',
+        flexGrow: 1,
+        justifyContent: 'flex-end'
     },
-    tabView: {
-        flex: 1,
-        padding: 10,
+    logo: {
+        position: 'absolute',
+        width: 350,
+        height: 270,
+	},
+    title:{
+        color: "#FFF",
+        marginTop: 120,
+        width: 180,
+        textAlign: 'center',
+        opacity: 0.9
     },
-    sampleCard: {
-        flex: 1,
-        borderWidth: 1,
-        backgroundColor: '#fff',
-        borderColor: 'rgba(0,0,0,0.1)',
-        margin: 5,
-        padding: 15,
-        shadowColor: '#ccc',
-        shadowOffset: { width: 2, height: 2, },
-        shadowOpacity: 0.5,
-        shadowRadius: 3,
-    },
+    formContainer: {
+		flex: 1,
+		justifyContent: 'flex-start',
+		paddingBottom: 10,
+	},
+	inputFormat: {
+		height: 40,
+		backgroundColor: 'rgba(225,225,225,0.4)',
+		borderRadius: 40,
+		flexDirection: 'row',
+		justifyContent: 'center',
+		alignItems: 'center',
+		marginHorizontal: 20,
+		margin: 5,
+		paddingHorizontal: 10,
+	},
+	input:{
+		flex: 1,
+		height: 30,
+		paddingLeft: 10,
+		color: 'black'
+	},
 });
-

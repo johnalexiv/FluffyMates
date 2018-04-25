@@ -12,7 +12,6 @@ import ScrollableTabView, { DefaultTabBar } from 'react-native-scrollable-tab-vi
 import Icon from 'react-native-vector-icons/Ionicons';
 import "prop-types";
 import LikedHistory from '../components/LikedHistory/LikedHistory';
-//import Settings from '../components/Settings/Settings';
 import Settings from './Settings';
 import TabBar from './tabBar';
 import Filters from '../components/filters/filters';
