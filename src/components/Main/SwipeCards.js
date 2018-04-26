@@ -4,6 +4,7 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, ImageBackground, Button, TouchableOpacity } from 'react-native';
 
+import LikedHistory from '../LikedHistory/LikedHistory';
 import MoreInfoButton from './MoreInfoButtons';
 import SwipeCards from 'react-native-swipe-cards';
 import RescuePetsAPI from '../../RescuePetsAPI.js'
@@ -115,7 +116,7 @@ export default class extends React.Component {
         {name: 'Julio', breed: 'Labradoodle', distance: '25', source: require('../../images/labradoodle.jpg')},
         {name: 'Toby', breed: 'Labrador Mix', distance: '80', source: require('../../images/labrador_mix.jpg')},
         {name: 'Lady', breed: 'Cocker Spaniel', distance: '17',source: require('../../images/cocker_spaniel.jpg')},
-      ]
+      ],
     };
   }
  
