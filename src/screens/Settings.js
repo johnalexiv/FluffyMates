@@ -11,7 +11,6 @@ export default class Settings extends React.Component {
     static navigationOptions = {
         header: null,
     }
-
     onFAQPress = () => {
         this.props.navigation.navigate('FAQ');
     }
@@ -24,20 +23,21 @@ export default class Settings extends React.Component {
         this.props.navigation.navigate('privacypolicy');
     }
 
+  onAboutPress = () => {
+    this.props.navigation.navigate('AboutUs');
+    }
+
     render() {
-
-
         return (
             <View style={styles.container}>
                 <View style={styles.whiteSpace}></View>
-                
+
 
                 <View style={styles.buttons}>
 
                     <View style={styles.viewLoginButton}>
                         <TouchableOpacity style={styles.loginButton}
-                            //onPress={this.onEmailPress}
-                            >
+                            onPress={this.onAboutPress}>
                             <Text style={{color: '#989898', textAlign: 'center', fontSize: 13}} >
                                 About Us
                             </Text>
