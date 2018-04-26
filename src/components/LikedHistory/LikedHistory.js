@@ -2,11 +2,29 @@ import React, { Component } from "react";
 import { View, Text, StyleSheet, FlatList, ActivityIndicator } from "react-native";
 import { List, ListItem, Avatar } from 'react-native-elements';
 
-class FlatListDemo extends Component {
+class LikedHistory extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
+      // data: [
+      //   {name: 'Fluffy', breed: 'Golden Retriever', distance: '32', source: require('../../images/golden_retriever.jpg')},
+      //   {name: 'Archie', breed: 'Corgi', distance: '8', source: require('../../images/corgi.jpg')},
+      //   {name: 'Vinnie', breed: 'Italian Greyhound', distance: '16', source: require('../../images/dog.jpeg')},
+      //   {name: 'Popcorn', breed: 'Labrador', distance: '52', source: require('../../images/labrador.jpg')},
+      //   {name: 'Julio', breed: 'Labradoodle', distance: '25', source: require('../../images/labradoodle.jpg')},
+      //   {name: 'Lady', breed: 'Cocker Spaniel', distance: '17',source: require('../../images/cocker_spaniel.jpg')},
+      // ], 
+      data: [],
+      refreshing: false,
+
+    };
+  }
+
+
+  handleRefresh = () => {
+    this.setState({
+      refreshing: true,
       data: [
         {name: 'Fluffy', breed: 'Golden Retriever', distance: '32', source: require('../../images/golden_retriever.jpg')},
         {name: 'Archie', breed: 'Corgi', distance: '8', source: require('../../images/corgi.jpg')},
@@ -15,11 +33,12 @@ class FlatListDemo extends Component {
         {name: 'Julio', breed: 'Labradoodle', distance: '25', source: require('../../images/labradoodle.jpg')},
         {name: 'Lady', breed: 'Cocker Spaniel', distance: '17',source: require('../../images/cocker_spaniel.jpg')},
       ], 
-      // data: []
-    };
-  }
-
-
+    }, () => {
+      this.setState({
+        refreshing: false,
+      })
+    })
+  };
 
   renderSeparator = () => {
     return (
@@ -55,6 +74,8 @@ class FlatListDemo extends Component {
         ItemSeparatorComponent={this.renderSeparator}
         onEndReachedThreshold={50}
         onPressItem={this._onPressItem}
+        refreshing = {this.state.refreshing}
+        onRefresh = {this.handleRefresh}
         ListHeaderComponent={() => (!this.state.data.length ? 
             <Text
               style= {styles.emptyMessage}>
@@ -69,7 +90,7 @@ class FlatListDemo extends Component {
 }
 
 
-export default FlatListDemo;
+export default LikedHistory;
 
 const styles = StyleSheet.create({
   container: {

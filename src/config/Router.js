@@ -7,6 +7,8 @@ import privacypolicy from '../screens/privacypolicy';
 import ActualLoginScreen from '../screens/ActualLoginScreen';
 import FAQ from '../screens/FAQ';
 import ChangeInfo from '../screens/ChangeInfo';
+import AboutUs from '../screens/AboutUs';
+import Settings from '../screens/Settings';
 
 export const LoginStack = StackNavigator({
     LoginScreen: {
@@ -17,6 +19,12 @@ export const LoginStack = StackNavigator({
 export default Root = StackNavigator({
     LoginScreen: {
         screen: LoginStack,
+    },
+    Settings: {
+        screen: Settings,
+    },
+    AboutUs: {
+        screen: AboutUs,
     },
     EmailLogin: {
         screen: EmailLogin,
@@ -35,8 +43,7 @@ export default Root = StackNavigator({
     },
     ChangeInfo: {
         screen: ChangeInfo,
-    }
-
-},  {
+    },  
+    
     mode: 'card',
 });
