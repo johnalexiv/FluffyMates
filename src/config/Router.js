@@ -43,7 +43,7 @@ export default Root = StackNavigator({
     },
     ChangeInfo: {
         screen: ChangeInfo,
-
-},  {
+    },  
+    
     mode: 'card',
 });
