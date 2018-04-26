@@ -48,78 +48,71 @@ export default class Filters extends React.Component {
      });
    }
   render() {
+    var color = new Set();
+    var breeds = new Set();
+    var sp = new Set();
     var colors = [];
     var breed = [];
-    let length = pets.length;
-    console.log(length);
-    var count = 15;
-    for(let i = 0; i < count; i++)
+    var species = [];
+    var count = (Object.keys(pets.dogs).length);
+
+   for(let i = 0; i < count; i++)
     {
-      colors.push({value: pets.dogs[i].color});
-      breed.push({value: pets.dogs[i].breed});
+      color.add(pets.dogs[i].color);
+      breeds.add(pets.dogs[i].breed);
+      sp.add(pets.dogs[i].species);
     }
-    //let colors = [{value: pets.dogs[0].color,}];
 
-    let species = [
-      {
-      value: 'dog',
-    },
-    {
-      value: 'cat',
-    },
-    {
-      value: 'rabbit',
-    },
-    {
-      value: 'horse',
-    },
-    {
-      value: 'cow',
-    },
-    {
-      value: 'alpaca',
-    },
-    ];
+    sp.forEach(function(sp){
+      species.push({value: sp})
+    });
 
+    color.forEach(function(color){
+      colors.push({value: color})
+    });
+
+    breeds.forEach(function(breeds){
+      breed.push({value: breeds})
+    });
     let gender = [
     {
-      value: 'female',
+      value: 'Female',
     },
     {
-      value: 'male',
+      value: 'Male',
     },
     {
-      value: 'both',
+      value: 'Both',
     },
     ];
 
     let age = [
     {
-      value: 'puppy',
+      value: 'Puppy',
     },
     {
-      value: 'young',
+      value: 'Young',
     },
     {
-      value: 'adult',
+      value: 'Adult',
     },
     {
-      value: 'senior',
+      value: 'Senior',
     },
     ];
 
     let size = [
     {
-      value: 'small',
+      value: 'Small',
     },
     {
-      value: 'medium',
+      value: 'Medium',
     },
     {
-      value: 'large',
+      value: 'Large',
     },
     {
-      value: 'extra large',
+      value: 'Extra Large',
     },
     ];
       return (

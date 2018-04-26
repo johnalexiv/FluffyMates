@@ -4,7 +4,7 @@
     {
       "name" : "Seal",
       "species" : "Dogs",
-      "breed" : "Pit Bull Terrier Mix",
+      "breed" : "Pitbull Terrier Mix",
       "sex" : "Female",
       "age" : "Young",
       "color" : "Brown",
@@ -17,7 +17,7 @@
       "shelter" : "The Animal Foundation",
       "health" :"Spayed / Neutered",
       "photo" : "https://dl5zpyw5k3jeb.cloudfront.net/photos/pets/41439705/1/?bust=1524159138.jpg"
-    }, 
+    },
     {
       "name" : "Bristol",
       "species" : "Dogs",
@@ -34,7 +34,7 @@
       "shelter" : "The Animal Foundation",
       "health" :"Spayed / Neutered",
       "photo" : "https://dl5zpyw5k3jeb.cloudfront.net/photos/pets/41439706/1/?bust=1524159112.jpg"
-    }, 
+    },
     {
       "name" : "Iris",
       "species" : "Dogs",
@@ -51,7 +51,7 @@
       "shelter" : "The Animal Foundation",
       "health" :"Spayed / Neutered",
       "photo" : "https://dl5zpyw5k3jeb.cloudfront.net/photos/pets/41439696/1/?bust=1524159118.jpg"
-    }, 
+    },
     {
       "name" : "Whompus",
       "species" : "Dogs",
@@ -68,7 +68,7 @@
       "shelter" : "The Animal Foundation",
       "health" :"Spayed / Neutered",
       "photo" : "https://dl5zpyw5k3jeb.cloudfront.net/photos/pets/41439680/1/?bust=1524159114.jpg"
-    }, 
+    },
     {
       "name" : "Kong",
       "species" : "Dogs",
@@ -85,7 +85,7 @@
       "shelter" : "The Animal Foundation",
       "health" :"Spayed / Neutered",
       "photo" : "https://dl5zpyw5k3jeb.cloudfront.net/photos/pets/41439680/1/?bust=1524159114.jpg"
-    }, 
+    },
     {
       "name" : "Chico",
       "species" : "Dogs",
@@ -102,7 +102,7 @@
       "shelter" : "The Animal Foundation",
       "health" :"Spayed / Neutered",
       "photo" : "https://dl5zpyw5k3jeb.cloudfront.net/photos/pets/41439681/1/?bust=1524159133.jpg"
-    }, 
+    },
     {
       "name" : "Kelpie",
       "species" : "Dogs",
@@ -119,11 +119,11 @@
       "shelter" : "The Animal Foundation",
       "health" :"Spayed / Neutered",
       "photo" : "https://dl5zpyw5k3jeb.cloudfront.net/photos/pets/41439701/1/?bust=1524159127.jpg"
-    }, 
+    },
     {
       "name" : "Malarkey",
       "species" : "Dogs",
-      "breed" : "Pit Bull Terrier Mix",
+      "breed" : "Pitbull Terrier Mix",
       "sex" : "Male",
       "age" : "Adult",
       "color" : "Brown",
@@ -136,7 +136,7 @@
       "shelter" : "The Animal Foundation",
       "health" :"Spayed / Neutered",
       "photo" : "https://dl5zpyw5k3jeb.cloudfront.net/photos/pets/41439699/1/?bust=1524159144.jpg"
-    }, 
+    },
     {
       "name" : "Captain",
       "species" : "Dogs",
@@ -153,11 +153,11 @@
       "shelter" : "The Animal Foundation",
       "health" :"Spayed / Neutered",
       "photo" : "https://dl5zpyw5k3jeb.cloudfront.net/photos/pets/41436987/1/?bust=1524129767.jpg"
-    }, 
+    },
     {
       "name" : "Shamus",
       "species" : "Dogs",
-      "breed" : "Pit Bull Terrier & Mixed Breed Mix",
+      "breed" : "Pitbull Terrier & Mixed Breed Mix",
       "sex" : "Male",
       "age" : "Young",
       "color" : "Brown",
@@ -170,7 +170,7 @@
       "shelter" : "The Animal Foundation",
       "health" :"Spayed / Neutered",
       "photo" : "https://dl5zpyw5k3jeb.cloudfront.net/photos/pets/41436990/1/?bust=1524129767.jpg"
-    }, 
+    },
     {
       "name" : "Reesee",
       "species" : "Dogs",
@@ -187,11 +187,11 @@
       "shelter" : "The Animal Foundation",
       "health" :"Spayed / Neutered",
       "photo" : "https://dl5zpyw5k3jeb.cloudfront.net/photos/pets/41436990/1/?bust=1524129767.jpg"
-    }, 
+    },
     {
       "name" : "Cricket",
       "species" : "Dogs",
-      "breed" : "Pit Bull & Mixed Breed Mix",
+      "breed" : "Pitbull & Mixed Breed Mix",
       "sex" : "Male",
       "age" : "Adult",
       "color" : "Brown",
@@ -204,7 +204,7 @@
       "shelter" : "The Animal Foundation",
       "health" :"",
       "photo" : "https://dl5zpyw5k3jeb.cloudfront.net/photos/pets/41436985/1/?bust=1524129779.jpg"
-    }, 
+    },
     {
       "name" : "Chauncy",
       "species" : "Dogs",
@@ -221,11 +221,11 @@
       "shelter" : "The Animal Foundation",
       "health" :"Spayed / Neutered",
       "photo" : "https://dl5zpyw5k3jeb.cloudfront.net/photos/pets/41436980/1/?bust=1524129784.jpg"
-    }, 
+    },
     {
       "name" : "Marge",
       "species" : "Dogs",
-      "breed" : "Pit Bull Terrier",
+      "breed" : "Pitbull Terrier",
       "sex" : "Female",
       "age" : "Young",
       "color" : "Brown",
@@ -238,7 +238,7 @@
       "shelter" : "The Animal Foundation",
       "health" :"",
       "photo" : "https://dl5zpyw5k3jeb.cloudfront.net/photos/pets/41436989/1/?bust=1524129785.jpg"
-    }, 
+    },
     {
       "name" : "Sandy",
       "species" : "Dogs",
