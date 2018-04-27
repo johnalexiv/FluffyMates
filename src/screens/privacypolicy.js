@@ -2,15 +2,27 @@ import React from 'react';
 import { View, StyleSheet,Image, Text, ScrollView} from 'react-native';
 import { Constants } from 'expo';
 import { Button } from 'native-base';
-import Icon from 'react-native-vector-icons';
+import Icon from 'react-native-vector-icons/Feather';
+
 
 export default class privacypolicy extends React.Component {
   static navigationOptions = {
       header: null,
   }
+
+  onBackButton = () => {
+		this.props.navigation.goBack(null);
+  }
+  
   render() {
     return (
       <View style={styles.container}>
+        <View style={styles.backContainer}>
+          <View style={styles.back}>
+            <Icon name="chevron-left" size={40} color="#32a9ba" 
+              onPress={this.onBackButton}/>
+          </View>
+        </View>
         <ScrollView>
         <Text style = {styles.title}>Terms of Service</Text>
         <Text style= {styles.subtitle}>Last updated March 28, 2018</Text>
@@ -611,7 +623,12 @@ const styles = StyleSheet.create({
     textAlignVertical:'center',
     textAlign: 'left',
     color: '#4d4d4d'
-  }
-
-
+  },
+  back: {
+    flex: 1,
+  },
+  backContainer: {
+    flex: 0.08,
+    flexDirection: 'row',
+  },
 });

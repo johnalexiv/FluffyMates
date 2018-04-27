@@ -55,8 +55,6 @@ export default class EmailLogin extends React.Component {
 				<View style={styles.back}>
 					<Icon name="chevron-left" size={40} color="#32a9ba" 
 						onPress={this.onBackButton}/>
-					{/* <Text style={{color: "#32a9ba", fontSize: 16}}> back </Text> */}
-					{/* <Text> HI </Text> */}
 				</View>
 
 				<View style={styles.loginContainer}>

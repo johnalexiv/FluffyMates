@@ -92,7 +92,6 @@ const styles = StyleSheet.create({
     },
     loginSwiper: {
         flex: 15,
-        // paddingTop: 30,
     },
     buttons: {
         flex: 3,
