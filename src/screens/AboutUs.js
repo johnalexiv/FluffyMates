@@ -6,6 +6,10 @@ import { Header, Button } from 'native-base';
 
 
 export default class AboutUs extends React.Component {
+  static navigationOptions = {
+    header: null,
+  }
+
   render() {
     return (
       <View style={styles.container}>
