@@ -7,24 +7,17 @@ class LikedHistory extends Component {
     super(props);
 
     this.state = {
-      // data: [
-      //   {name: 'Fluffy', breed: 'Golden Retriever', distance: '32', source: require('../../images/golden_retriever.jpg')},
-      //   {name: 'Archie', breed: 'Corgi', distance: '8', source: require('../../images/corgi.jpg')},
-      //   {name: 'Vinnie', breed: 'Italian Greyhound', distance: '16', source: require('../../images/dog.jpeg')},
-      //   {name: 'Popcorn', breed: 'Labrador', distance: '52', source: require('../../images/labrador.jpg')},
-      //   {name: 'Julio', breed: 'Labradoodle', distance: '25', source: require('../../images/labradoodle.jpg')},
-      //   {name: 'Lady', breed: 'Cocker Spaniel', distance: '17',source: require('../../images/cocker_spaniel.jpg')},
-      // ], 
-      data: [],
+      list: [],
       refreshing: false,
     };
   }
 
 
   handleRefresh = () => {
+
     this.setState({
       refreshing: true,
-      data: this.state.data.slice(0)
+      list: this.props.data,
     }, () => {
       this.setState({
         refreshing: false,
@@ -50,10 +43,10 @@ class LikedHistory extends Component {
 
   render() {
     return (
-          
+        
         <FlatList
           style={styles.flatList}
-          data={this.state.data}
+          data={this.state.list}
           renderItem={({ item }) => (
           <ListItem
             key={item.id}
@@ -69,7 +62,7 @@ class LikedHistory extends Component {
         onPressItem={this._onPressItem}
         refreshing = {this.state.refreshing}
         onRefresh = {this.handleRefresh}
-        ListHeaderComponent={() => (!this.state.data.length ? 
+        ListHeaderComponent={() => (!this.state.list.length ? 
             <Text
               style= {styles.emptyMessage}>
                 Swipe right on a pet{"\n"} for them to show up here
@@ -77,7 +70,6 @@ class LikedHistory extends Component {
           : null)}
 
         />
-
     );
   }
 }

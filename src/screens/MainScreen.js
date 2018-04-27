@@ -18,6 +18,22 @@ import TabBar from './tabBar';
 import Filters from '../components/filters/filters';
 
 export default class MainScreen extends React.Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+          cards: []
+        };
+      }
+
+    onUpdate = (val) => {
+        let array = this.state.cards.slice(0)
+        array.push(val)
+        this.setState({
+            cards: array.slice(0)
+        })
+    };
+
     static navigationOptions = {
         header: null,
         gesturesEnabled: false,
@@ -111,12 +127,16 @@ export default class MainScreen extends React.Component {
                 </ScrollView>
 
                 <View tabLabel="ios-paw" style={styles.swipeView}>
-                    <SwipeCards/>
+                    <SwipeCards
+                        onUpdate={this.onUpdate}
+                    />
                 </View>
 
                 <View tabLabel="ios-heart" style={styles.tabView}>
                     <View style={styles.sampleCard}>
-                        <LikedHistory/>
+                        <LikedHistory
+                            data = {this.state.cards}
+                        />
                     </View>
                 </View>
 

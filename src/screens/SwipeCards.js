@@ -4,7 +4,6 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, ImageBackground, Button, TouchableOpacity } from 'react-native';
 
-import LikedHistory from './LikedHistory';
 import MoreInfoButton from './MoreInfoButtons';
 import SwipeCards from 'react-native-swipe-cards';
 import RescuePetsAPI from '../RescuePetsAPI';
@@ -126,9 +125,8 @@ export default class extends React.Component {
     array.push(card)
     this.setState({list: array.slice(0)});
 
-    <LikedHistory
-      data = {array}
-    />
+    console.log(card)
+    this.props.onUpdate(card);
 
     console.log(`Yup for ${card.name}`)
   }
