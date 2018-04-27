@@ -128,12 +128,8 @@
     {
       "name" : "Malarkey",
       "species" : "Dogs",
-<<<<<<< HEAD
       "breed" : "Pit Bull Terrier Mix",
       "breed2" : "Mix",
-=======
-      "breed" : "Pitbull Terrier Mix",
->>>>>>> 9bd73d20cd9f23481c5679d69306a45d7fb9f710
       "sex" : "Male",
       "age" : "Adult",
       "color" : "Brown",
@@ -168,12 +164,8 @@
     {
       "name" : "Shamus",
       "species" : "Dogs",
-<<<<<<< HEAD
       "breed" : "Pit Bull Terrier & Mixed Breed Mix",
       "breed2" : "Mix",
-=======
-      "breed" : "Pitbull Terrier & Mixed Breed Mix",
->>>>>>> 9bd73d20cd9f23481c5679d69306a45d7fb9f710
       "sex" : "Male",
       "age" : "Young",
       "color" : "Brown",
@@ -208,12 +200,8 @@
     {
       "name" : "Cricket",
       "species" : "Dogs",
-<<<<<<< HEAD
       "breed" : "Pit Bull & Mixed Breed Mix",
       "breed2" : "Mix",
-=======
-      "breed" : "Pitbull & Mixed Breed Mix",
->>>>>>> 9bd73d20cd9f23481c5679d69306a45d7fb9f710
       "sex" : "Male",
       "age" : "Adult",
       "color" : "Brown",
