@@ -12,7 +12,7 @@ export default class MoreInfoButton extends React.Component {
       <View style={styles.container}>
       
         <ImageBackground
-            source = {require('../../images/shade_box.png')}
+            source = {require('../images/shade_box.png')}
             style = {styles.shadeBox}>
 
           <View style={styles.topRows}>
@@ -24,7 +24,7 @@ export default class MoreInfoButton extends React.Component {
 
             <View style={styles.pinContainer}>
               <Image
-                source = {require('../../images/destination-pin.png')}
+                source = {require('../images/destination-pin.png')}
                 style = {styles.pin} />
             </View>
 
@@ -34,7 +34,7 @@ export default class MoreInfoButton extends React.Component {
 
             <View style={styles.moreInfoContainer}>
               <Image
-                source = {require('../../images/more-info.png')}
+                source = {require('../images/more-info.png')}
                 style = {styles.moreInfo} />
             </View>
 

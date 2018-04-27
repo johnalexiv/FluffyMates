@@ -36,30 +36,30 @@ export default class LoginScreen extends React.Component {
                 </View>
 
                 <View style={styles.buttons}>
-                    <View style={styles.viewSignupButton}>
-                        <TouchableOpacity style={styles.signupButton}
+                    <View style={styles.viewLoginButton}>
+                        <TouchableOpacity style={styles.loginButton}
                             onPress={this.onSignUpPress}
                             >
                             <LinearGradient
                                 // colors={['#1e3c72', '#2a5298',]}
 								colors={['#37b8cb', '#32a9ba',]}
                                 // colors={['#1CB5E0', '#37b8cb',]}
-                                style={{ padding: 15, alignItems: 'center', borderRadius: 50 }}
+                                style={{ padding: 14, alignItems: 'center', borderRadius: 50 }}
                                 start={{ x: 0, y: 1 }}
                                 end={{ x: 1, y: 1 }}>
                                 <Text style={{backgroundColor: 'transparent', color: 'white', textAlign: 'center', fontSize: 16}} >
-                                    Get Started
+                                    Login
                                 </Text>
                             </LinearGradient>
                         </TouchableOpacity>
                     </View>
 
-                    <View style={styles.viewLoginButton}>
-                        <TouchableOpacity style={styles.loginButton}
+                    <View style={styles.viewDemoButton}>
+                        <TouchableOpacity style={styles.demoButton}
                             onPress={this.onEmailPress}
                             >
                             <Text style={{color: '#989898', textAlign: 'center', fontSize: 13}} >
-                                LOGIN
+                                DEMO
                             </Text>
                         </TouchableOpacity>
                     </View>
@@ -98,13 +98,13 @@ const styles = StyleSheet.create({
         flex: 3,
         justifyContent: 'flex-start',
     },
-    viewSignupButton: {
+    viewLoginButton: {
         flex: 3,
         margin: 5,
         justifyContent: 'flex-start',
         paddingHorizontal: 30,
     },
-    signupButton: {
+    loginButton: {
         flex: 1,
         backgroundColor: 'transparent',
         justifyContent: 'center',
@@ -114,12 +114,12 @@ const styles = StyleSheet.create({
         shadowRadius: 2,
         shadowOffset: {width: 2, height: 2},
     },
-    viewLoginButton: {
+    viewDemoButton: {
         flex: 2,
         margin: 5,
         paddingHorizontal: 50,
     },
-    loginButton: {
+    demoButton: {
         flex: 1,
         justifyContent: 'center',
         backgroundColor: '#FFFFFF',
