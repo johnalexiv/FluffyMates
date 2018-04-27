@@ -18,26 +18,15 @@ Amplify.configure(AWSConfig)
 
 export default class EmailLogin extends React.Component {
 	state = {
-		email: '',
-		confirmationCode: ''
+		username: '',
+		password: ''
 	}
 
-	signUp() {
-		Auth.signUp({
-			username: this.state.username,
-			password: this.state.password,
-			attributes: {
-			email: this.state.email,
-			}
-		})
-		.then(() => console.log('successful sign up!'))
-		.catch(err => console.log('error signing up!: ', err))
-	}
-
-	confirmSignUp() {
-		Auth.confirmSignUp(this.state.username, this.state.confirmationCode)
-		.then(() => console.log('successful confirm sign up!'))
-		.catch(err => console.log('error confirming signing up!: ', err))
+	onSignInPress() {
+		Auth.signIn(this.state.username, this.state.password)
+		.then(() => console.log('successful confirm sign in!'))
+		.then(() => this.props.navigation.navigate('MainScreen'))
+		.catch(err => console.log('error confirming signing in!: ', err));
 	}  
 
 	onChangeText(key, value) {
@@ -104,8 +93,8 @@ export default class EmailLogin extends React.Component {
 						/>
 					</View>
 
-					<View style={styles.viewSignupButton}>
-						<TouchableOpacity style={styles.signupButton} onPress={this.confirmSignUp.bind(this)}>
+					<View style={styles.viewSignInButton}>
+						<TouchableOpacity style={styles.signInButton} onPress={this.onSignInPress.bind(this)}>
 							<LinearGradient
 								// colors={['#1CB5E0', '#37b8cb',]}
 								colors={['#37b8cb', '#32a9ba',]}
@@ -142,7 +131,7 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: 'white',
 	},
-	signupButton: {
+	signInButton: {
         flex: 1,
         backgroundColor: 'transparent',
         justifyContent: 'center',
@@ -152,7 +141,7 @@ const styles = StyleSheet.create({
         shadowRadius: 2,
         shadowOffset: {width: 2, height: 2},
 	},
-	viewSignupButton: {
+	viewSignInButton: {
 		height: 50,
         justifyContent: 'center',
 		paddingHorizontal: 15,
