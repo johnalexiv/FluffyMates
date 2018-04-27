@@ -11,6 +11,8 @@ import LoadScreen from './src/screens/LoadScreen';
 import Amplify, { AUTH } from 'aws-amplify';
 import AWSConfig from './aws-exports';
 
+console.disableYellowBox = true;
+
 export default class App extends React.Component {
     state = {
         loaded: false

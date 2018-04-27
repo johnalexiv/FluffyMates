@@ -62,9 +62,6 @@ const styles = StyleSheet.create({
         flex: 1,
         paddingTop: 35,
     },
-    test: {
-        flex: 1,
-    },
     swipeView: {
         flex: 1,
     },
