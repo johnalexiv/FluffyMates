@@ -4,12 +4,8 @@
     {
       "name" : "Seal",
       "species" : "Dogs",
-<<<<<<< HEAD
       "breed" : "Pit Bull Terrier Mix",
       "breed2" : "Mix",
-=======
-      "breed" : "Pitbull Terrier Mix",
->>>>>>> 9bd73d20cd9f23481c5679d69306a45d7fb9f710
       "sex" : "Female",
       "age" : "Young",
       "color" : "Brown",
