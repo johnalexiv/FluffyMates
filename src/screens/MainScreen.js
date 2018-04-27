@@ -8,11 +8,11 @@ import {
     ScrollView,
     TouchableOpacity,
 } from 'react-native';
-import SwipeCards from '../components/Main/SwipeCards';
+import SwipeCards from './SwipeCards';
 import ScrollableTabView, { DefaultTabBar } from 'react-native-scrollable-tab-view';
 import Icon from 'react-native-vector-icons/Ionicons';
 import "prop-types";
-import LikedHistory from '../components/Main/LikedHistory';
+import LikedHistory from './LikedHistory';
 import Settings from './Settings';
 import TabBar from './tabBar';
 import Filters from '../components/filters/filters';
