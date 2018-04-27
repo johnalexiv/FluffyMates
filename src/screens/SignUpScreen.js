@@ -111,7 +111,6 @@ export default class SignUpScreen extends React.Component {
 							keyboardType="email" 
 							autoCorrect={false}
 							returnKeyType="next"
-							secureTextEntry={true}
 							placeholderTextColor='rgba(225,225,225,0.8)'
 							placeholder='Email'
 						/>
