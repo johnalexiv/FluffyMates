@@ -13,7 +13,7 @@ import "prop-types";
 import MultiSlider from '@ptomasroos/react-native-multi-slider';
 import CustomMarker from './CustomMarker';
 import {pets} from  '../../petsdata';
-
+import filters from '../../../global';
 export default class Filters extends React.Component {
   static navigationOptions = {
       header: null,
@@ -24,7 +24,7 @@ export default class Filters extends React.Component {
 
    this.state = {
      sliderOneChanging: false,
-     sliderOneValue: [25],
+     sliderOneValue: [100],
      selectedSpecies: "null",
      selectedBreed: "null",
      selectedColor: "null",
@@ -55,6 +55,7 @@ export default class Filters extends React.Component {
 
    onSpeciesChangeText = (text) => {
        this.setState({selectedSpecies: text});
+       filters.species = text[0];
      }
 
      onBreedChangeText = (text) => {
