@@ -7,7 +7,7 @@ import { StyleSheet, Text, View, ImageBackground, Button, TouchableOpacity } fro
 import LikedHistory from './LikedHistory';
 import MoreInfoButton from './MoreInfoButtons';
 import SwipeCards from 'react-native-swipe-cards';
-import RescuePetsAPI from '../../RescuePetsAPI.js'
+import RescuePetsAPI from '../RescuePetsAPI';
  
 class Card extends React.Component {
   constructor(props) {
@@ -51,10 +51,6 @@ class Card extends React.Component {
 
     console.log(RescuePetsAPI.GetInformation())
   }
-
-  onInfoPress = () => {
-    this.props.navigation.navigate('AboutUs');
-  }
  
   render() {
     return ( 
@@ -70,7 +66,7 @@ class Card extends React.Component {
           <View style = { styles.moreInfoContainer }>
              
               <TouchableOpacity
-                onPress={this.onInfoPress}
+                onPress={this._onPressButton}
                 style={styles.moreInfoButton}>
 
                 <MoreInfoButton
@@ -113,14 +109,14 @@ export default class extends React.Component {
     this.state = {
       list: [],
       cards: [
-        {name: 'Fluffy', breed: 'Golden Retriever', distance: '32', source: require('../../images/golden_retriever.jpg')},
-        {name: 'Archie', breed: 'Corgi', distance: '8', source: require('../../images/corgi.jpg')},
-        {name: 'Vinnie', breed: 'Italian Greyhound', distance: '16', source: require('../../images/dog.jpeg')},
-        {name: 'Popcorn', breed: 'Labrador', distance: '52', source: require('../../images/labrador.jpg')},
-        {name: 'Billy', breed: 'Pitbull Mix', distance: '64', source: require('../../images/pitbull_mix.jpg')},
-        {name: 'Julio', breed: 'Labradoodle', distance: '25', source: require('../../images/labradoodle.jpg')},
-        {name: 'Toby', breed: 'Labrador Mix', distance: '80', source: require('../../images/labrador_mix.jpg')},
-        {name: 'Lady', breed: 'Cocker Spaniel', distance: '17',source: require('../../images/cocker_spaniel.jpg')},
+        {name: 'Fluffy', breed: 'Golden Retriever', distance: '32', source: require('../images/golden_retriever.jpg')},
+        {name: 'Archie', breed: 'Corgi', distance: '8', source: require('../images/corgi.jpg')},
+        {name: 'Vinnie', breed: 'Italian Greyhound', distance: '16', source: require('../images/dog.jpeg')},
+        {name: 'Popcorn', breed: 'Labrador', distance: '52', source: require('../images/labrador.jpg')},
+        {name: 'Billy', breed: 'Pitbull Mix', distance: '64', source: require('../images/pitbull_mix.jpg')},
+        {name: 'Julio', breed: 'Labradoodle', distance: '25', source: require('../images/labradoodle.jpg')},
+        {name: 'Toby', breed: 'Labrador Mix', distance: '80', source: require('../images/labrador_mix.jpg')},
+        {name: 'Lady', breed: 'Cocker Spaniel', distance: '17',source: require('../images/cocker_spaniel.jpg')},
       ],
     };
   }
@@ -132,7 +128,6 @@ export default class extends React.Component {
 
     <LikedHistory
       data = {array}
-      text = "hai"
     />
 
     console.log(`Yup for ${card.name}`)
@@ -166,7 +161,6 @@ export default class extends React.Component {
 const styles = StyleSheet.create({
   card: {
     flex: 1,
-    // width: 415,
     width: 375,
   },
   noMoreCardsText: {
