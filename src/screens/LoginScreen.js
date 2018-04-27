@@ -47,7 +47,7 @@ export default class LoginScreen extends React.Component {
                                 style={{ padding: 15, alignItems: 'center', borderRadius: 50 }}
                                 start={{ x: 0, y: 1 }}
                                 end={{ x: 1, y: 1 }}>
-                                <Text style={{backgroundColor: 'transparent', color: 'white', textAlign: 'center', fontSize: 18}} >
+                                <Text style={{backgroundColor: 'transparent', color: 'white', textAlign: 'center', fontSize: 16}} >
                                     Get Started
                                 </Text>
                             </LinearGradient>
@@ -141,7 +141,7 @@ const styles = StyleSheet.create({
         justifyContent: 'space-around',
     },
     whiteSpace: {
-        flex: 1.7,
+        flex: 1,
         backgroundColor: 'white',
     },
 })

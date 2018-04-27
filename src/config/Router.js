@@ -9,6 +9,7 @@ import FAQ from '../screens/FAQ';
 import ChangeInfo from '../screens/ChangeInfo';
 import AboutUs from '../screens/AboutUs';
 import Settings from '../screens/Settings';
+import SignUpScreen from '../screens/SignUpScreen';
 
 export const LoginStack = StackNavigator({
     LoginScreen: {
@@ -44,6 +45,9 @@ export default Root = StackNavigator({
     ChangeInfo: {
         screen: ChangeInfo,
     },  
+    SignUpScreen: {
+        screen: SignUpScreen,
+    },
     
     mode: 'card',
 });

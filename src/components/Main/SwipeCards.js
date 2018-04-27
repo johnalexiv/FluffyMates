@@ -51,6 +51,10 @@ class Card extends React.Component {
 
     console.log(RescuePetsAPI.GetInformation())
   }
+
+  onInfoPress = () => {
+    this.props.navigation.navigate('AboutUs');
+  }
  
   render() {
     return ( 
@@ -66,7 +70,7 @@ class Card extends React.Component {
           <View style = { styles.moreInfoContainer }>
              
               <TouchableOpacity
-                onPress={this._onPressButton}
+                onPress={this.onInfoPress}
                 style={styles.moreInfoButton}>
 
                 <MoreInfoButton
@@ -162,6 +166,7 @@ export default class extends React.Component {
 const styles = StyleSheet.create({
   card: {
     flex: 1,
+    // width: 415,
     width: 375,
   },
   noMoreCardsText: {
