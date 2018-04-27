@@ -17,7 +17,6 @@ class LikedHistory extends Component {
       // ], 
       data: [],
       refreshing: false,
-
     };
   }
 
@@ -25,19 +24,13 @@ class LikedHistory extends Component {
   handleRefresh = () => {
     this.setState({
       refreshing: true,
-      data: [
-        {name: 'Fluffy', breed: 'Golden Retriever', distance: '32', source: require('../../images/golden_retriever.jpg')},
-        {name: 'Archie', breed: 'Corgi', distance: '8', source: require('../../images/corgi.jpg')},
-        {name: 'Vinnie', breed: 'Italian Greyhound', distance: '16', source: require('../../images/dog.jpeg')},
-        {name: 'Popcorn', breed: 'Labrador', distance: '52', source: require('../../images/labrador.jpg')},
-        {name: 'Julio', breed: 'Labradoodle', distance: '25', source: require('../../images/labradoodle.jpg')},
-        {name: 'Lady', breed: 'Cocker Spaniel', distance: '17',source: require('../../images/cocker_spaniel.jpg')},
-      ], 
+      data: this.state.data.slice(0)
     }, () => {
       this.setState({
         refreshing: false,
       })
     })
+    
   };
 
   renderSeparator = () => {
@@ -57,7 +50,7 @@ class LikedHistory extends Component {
 
   render() {
     return (
-    
+          
         <FlatList
           style={styles.flatList}
           data={this.state.data}
@@ -79,12 +72,12 @@ class LikedHistory extends Component {
         ListHeaderComponent={() => (!this.state.data.length ? 
             <Text
               style= {styles.emptyMessage}>
-                Swipe right on a dog{"\n"} for them to show up here
+                Swipe right on a pet{"\n"} for them to show up here
             </Text>  
           : null)}
 
         />
-      
+
     );
   }
 }
