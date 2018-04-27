@@ -22,9 +22,9 @@ export default class Settings extends React.Component {
     onPolicyPress = () => {
         this.props.navigation.navigate('privacypolicy');
     }
-
-  onAboutPress = () => {
-    this.props.navigation.navigate('AboutUs');
+    
+    onAboutPress = () => {
+        this.props.navigation.navigate('AboutUs');
     }
 
     render() {

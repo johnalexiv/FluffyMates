@@ -4,7 +4,7 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, ImageBackground, Button, TouchableOpacity } from 'react-native';
 
-import LikedHistory from '../LikedHistory/LikedHistory';
+import LikedHistory from './LikedHistory';
 import MoreInfoButton from './MoreInfoButtons';
 import SwipeCards from 'react-native-swipe-cards';
 import RescuePetsAPI from '../../RescuePetsAPI.js'
@@ -51,6 +51,10 @@ class Card extends React.Component {
 
     console.log(RescuePetsAPI.GetInformation())
   }
+
+  onInfoPress = () => {
+    this.props.navigation.navigate('AboutUs');
+  }
  
   render() {
     return ( 
@@ -66,7 +70,7 @@ class Card extends React.Component {
           <View style = { styles.moreInfoContainer }>
              
               <TouchableOpacity
-                onPress={this._onPressButton}
+                onPress={this.onInfoPress}
                 style={styles.moreInfoButton}>
 
                 <MoreInfoButton
@@ -107,6 +111,7 @@ export default class extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      list: [],
       cards: [
         {name: 'Fluffy', breed: 'Golden Retriever', distance: '32', source: require('../../images/golden_retriever.jpg')},
         {name: 'Archie', breed: 'Corgi', distance: '8', source: require('../../images/corgi.jpg')},
@@ -120,9 +125,19 @@ export default class extends React.Component {
     };
   }
  
-  handleYup (card) {
+  handleYup = (card) => {
+    var array = [...this.state.list];
+    array.push(card)
+    this.setState({list: array.slice(0)});
+
+    <LikedHistory
+      data = {array}
+      text = "hai"
+    />
+
     console.log(`Yup for ${card.name}`)
   }
+
   handleNope (card) {
     console.log(`Nope for ${card.name}`)
   }

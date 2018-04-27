@@ -25,9 +25,14 @@ export default class Filters extends React.Component {
    this.state = {
      sliderOneChanging: false,
      sliderOneValue: [25],
+     selectedSpecies: "null",
+     selectedBreed: "null",
+     selectedColor: "null",
+     selectedAge: "null",
+     selectedSex: "null",
+     selectedSize: "null",
    };
    }
-
    sliderOneValuesChangeStart = () => {
      this.setState({
        sliderOneChanging: true,
@@ -47,6 +52,27 @@ export default class Filters extends React.Component {
        sliderOneChanging: false,
      });
    }
+
+   onSpeciesChangeText = (text) => {
+       this.setState({selectedSpecies: text});
+     }
+
+     onBreedChangeText = (text) => {
+         this.setState({selectedBreed: text});
+       }
+    onColorChangeText = (text) => {
+           this.setState({selectedColor: text});
+      }
+    onAgeChangeText = (text) => {
+             this.setState({selectedAge: text});
+           }
+    onSexChangeText = (text) => {
+               this.setState({selectedSex: text});
+             }
+
+    onSizeChangeText = (text) => {
+                this.setState({selectedSize: text});
+                }
   render() {
     var color = new Set();
     var breeds = new Set();
@@ -59,7 +85,7 @@ export default class Filters extends React.Component {
    for(let i = 0; i < count; i++)
     {
       color.add(pets.dogs[i].color);
-      breeds.add(pets.dogs[i].breed);
+      breeds.add(pets.dogs[i].breed2);
       sp.add(pets.dogs[i].species);
     }
 
@@ -123,6 +149,8 @@ export default class Filters extends React.Component {
                data={species}
                fontSize = {20}
                textColor = {'#37B8CB'}
+               value = {this.selectedSpecies}
+               onChangeText={this.onSpeciesChangeText}
              />
         </View>
 
@@ -132,6 +160,8 @@ export default class Filters extends React.Component {
                data={breed}
                fontSize = {20}
                textColor = {'#37B8CB'}
+               value = {this.selectedBreed}
+               onChangeText={this.onBreedChangeText}
              />
         </View>
 
@@ -141,6 +171,8 @@ export default class Filters extends React.Component {
                data={colors}
                fontSize = {20}
                textColor = {'#37B8CB'}
+               value = {this.selectedColor}
+               onChangeText={this.onColorChangeText}
              />
         </View>
 
@@ -150,6 +182,8 @@ export default class Filters extends React.Component {
                data={gender}
                fontSize = {20}
                textColor = {'#37B8CB'}
+               value = {this.selectedSex}
+               onChangeText={this.onSexChangeText}
              />
         </View>
 
@@ -159,6 +193,8 @@ export default class Filters extends React.Component {
                data={age}
                fontSize = {20}
                textColor = {'#37B8CB'}
+               value = {this.selectedAge}
+               onChangeText={this.onAgeChangeText}
              />
         </View>
 
@@ -168,6 +204,8 @@ export default class Filters extends React.Component {
                data={size}
                fontSize = {20}
                textColor = {'#37B8CB'}
+               value = {this.selectedSize}
+               onChangeText={this.onSizeChangeText}
              />
         </View>
 
