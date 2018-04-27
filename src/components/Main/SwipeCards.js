@@ -151,6 +151,7 @@ export default class extends React.Component {
 const styles = StyleSheet.create({
   card: {
     flex: 1,
+    // width: 415,
     width: 375,
   },
   noMoreCardsText: {

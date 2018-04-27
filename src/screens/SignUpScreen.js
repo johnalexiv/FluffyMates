@@ -16,7 +16,7 @@ import AWSConfig from '../../aws-exports';
 import { LinearGradient } from 'expo';
 Amplify.configure(AWSConfig)
 
-export default class EmailLogin extends React.Component {
+export default class SignUpScreen extends React.Component {
 	state = {
 		email: '',
 		confirmationCode: ''
@@ -51,7 +51,6 @@ export default class EmailLogin extends React.Component {
 	}
 
 	onSignUpPress = () => {
-		this.props.navigation.navigate('SignUpScreen');
 		console.log("Button pressed")
 	}
 	
@@ -104,6 +103,20 @@ export default class EmailLogin extends React.Component {
 						/>
 					</View>
 
+                    <View style={styles.inputFormat}>
+						<Icon name="mail" size={20} color="black" />
+						<TextInput style={styles.input}
+							onChangeText={value => this.onChangeText('email', value)}
+							autoCapitalize="none"
+							keyboardType="email" 
+							autoCorrect={false}
+							returnKeyType="next"
+							secureTextEntry={true}
+							placeholderTextColor='rgba(225,225,225,0.8)'
+							placeholder='Email'
+						/>
+					</View>
+
 					<View style={styles.viewSignupButton}>
 						<TouchableOpacity style={styles.signupButton} onPress={this.confirmSignUp.bind(this)}>
 							<LinearGradient
@@ -113,20 +126,11 @@ export default class EmailLogin extends React.Component {
 								start={{ x: 0, y: 1 }}
 								end={{ x: 1, y: 1 }}>
 								<Text style={{backgroundColor: 'transparent', color: 'white', textAlign: 'center', fontSize: 15}} >
-									Sign In
+									Sign Up
 								</Text>
 							</LinearGradient>
 						</TouchableOpacity> 
 					</View>
-
-					<View style={styles.termsAndConditions}>
-						<Text style={{color: '#C0C0C0', marginTop: 10, textAlign: 'center', fontSize: 12}}>
-							Don't have an account? 
-							<Text style={{color: 'black'}}
-								onPress={this.onSignUpPress}> Sign up 
-							</Text>
-						</Text>
-                	</View>	
 
 				</View>
 			</KeyboardAvoidingView>
