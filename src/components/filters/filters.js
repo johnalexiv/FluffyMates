@@ -81,14 +81,22 @@ export default class Filters extends React.Component {
     var colors = [];
     var breed = [];
     var species = [];
-    var count = (Object.keys(pets.dogs).length);
+    var dogCount = (Object.keys(pets.dogs).length);
+    var catCount = (Object.keys(pets.cats).length);
 
-   for(let i = 0; i < count; i++)
+   for(let i = 0; i < dogCount; i++)
     {
       color.add(pets.dogs[i].color);
       breeds.add(pets.dogs[i].breed2);
       sp.add(pets.dogs[i].species);
     }
+
+    for(let i = 0; i < catCount; i++)
+     {
+       color.add(pets.cats[i].color);
+       breeds.add(pets.cats[i].breed2);
+       sp.add(pets.cats[i].species);
+     }
 
     sp.forEach(function(sp){
       species.push({value: sp})
