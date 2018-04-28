@@ -146,7 +146,6 @@ export default class extends React.Component {
         handleNope={this.handleNope}
         stack={true}
         stackDepth={10}
-        loop={true}
       />
     )
   }
