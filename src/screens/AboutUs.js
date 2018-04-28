@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, StyleSheet,Image, Text, ScrollView} from 'react-native';
 import { Constants } from 'expo';
-import { Header, Button } from 'native-base';
+import { Header, Button,Left, Icon } from 'native-base';
 
 
 
@@ -9,12 +9,20 @@ export default class AboutUs extends React.Component {
   static navigationOptions = {
     header: null,
   }
-
+  onBackButton = () => {
+		this.props.navigation.goBack(null);
+  }
   render() {
     return (
       <View style={styles.container}>
         <ScrollView>
         <Header style = {{backgroundColor: 'white'}} hasTabs = {true} >
+        <Left>
+        <Button transparent>
+        <Icon name="ios-arrow-back" size={40} color="#32a9ba"
+          onPress={this.onBackButton}/>
+        </Button>
+        </Left>
           <Button transparent>
             <Image source={require('../images/FMicon.png')}   style = {styles.headerButton} /*onPress = {}*/ />
           </Button>
@@ -49,7 +57,8 @@ const styles = StyleSheet.create({
   {
   width:60,
   height:60,
-  marginTop: 0
+  marginTop: 0,
+  marginRight:150
   },
   title:
   {
