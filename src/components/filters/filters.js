@@ -56,6 +56,7 @@ export default class Filters extends React.Component {
    onSpeciesChangeText = (text) => {
        this.setState({selectedSpecies: text});
        filters.species = text[0];
+       console.log(`Species: ${filters.species }`)
      }
 
      onBreedChangeText = (text) => {

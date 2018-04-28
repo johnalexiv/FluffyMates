@@ -3,11 +3,12 @@
  
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, ImageBackground, Button, TouchableOpacity } from 'react-native';
-
+import filters from '../../global';
 import MoreInfoButton from './MoreInfoButtons';
 import SwipeCards from 'react-native-swipe-cards';
 import RescuePetsAPI from '../RescuePetsAPI';
- 
+import { pets } from '../petsdata.json'
+
 class Card extends React.Component {
   constructor(props) {
     super(props);
@@ -91,8 +92,10 @@ class NoMoreCards extends Component {
   }
 
   render() {
+      
     return (
       <View>
+        
         <Text style={styles.noMoreCardsText}>
           You've reached the end!{"\n"}
           Please check back soon.
@@ -105,19 +108,38 @@ class NoMoreCards extends Component {
 export default class extends React.Component {
   constructor(props) {
     super(props);
+    filters.species = "D";
+    filters.index = 0;
+    var image = `${pets.dogs[filters.index].photo}`;
+    var selectedSpecies = filters.species;
+    console.log(`Species: ${filters.species }`)
+    if (selectedSpecies == "D") {
+      this.state = {
+        list: [],
+        cards: [
+          {id: '1', name: `${pets.dogs[filters.index].name}`, breed: `${pets.dogs[filters.index].breed}`, distance: `${pets.dogs[filters.index].radius}`, source: `${pets.dogs[filters.index].photo}`},
+          {id: '2', name: 'Archie', breed: 'Corgi', distance: '8', source: require('../images/corgi.jpg')},
+          {id: '3', name: 'Vinnie', breed: 'Italian Greyhound', distance: '16', source: require('../images/dog.jpeg')},
+          {id: '4', name: 'Popcorn', breed: 'Labrador', distance: '52', source: require('../images/labrador.jpg')},
+          {id: '5', name: 'Billy', breed: 'Pitbull Mix', distance: '64', source: require('../images/pitbull_mix.jpg')},
+          {id: '6', name: 'Julio', breed: 'Labradoodle', distance: '25', source: require('../images/labradoodle.jpg')},
+          {id: '7', name: 'Toby', breed: 'Labrador Mix', distance: '80', source: require('../images/labrador_mix.jpg')},
+          {id: '8', name: 'Lady', breed: 'Cocker Spaniel', distance: '17',source: require('../images/cocker_spaniel.jpg')},
+        ],
+      };
+    } else if (selectedSpecies == "C" ){
+        // for cats
+
+
+
+    }
     this.state = {
       list: [],
       cards: [
-        {id: '1', name: 'Fluffy', breed: 'Golden Retriever', distance: '32', source: require('../images/golden_retriever.jpg')},
-        {id: '2', name: 'Archie', breed: 'Corgi', distance: '8', source: require('../images/corgi.jpg')},
-        {id: '3', name: 'Vinnie', breed: 'Italian Greyhound', distance: '16', source: require('../images/dog.jpeg')},
-        {id: '4', name: 'Popcorn', breed: 'Labrador', distance: '52', source: require('../images/labrador.jpg')},
-        {id: '5', name: 'Billy', breed: 'Pitbull Mix', distance: '64', source: require('../images/pitbull_mix.jpg')},
-        {id: '6', name: 'Julio', breed: 'Labradoodle', distance: '25', source: require('../images/labradoodle.jpg')},
-        {id: '7', name: 'Toby', breed: 'Labrador Mix', distance: '80', source: require('../images/labrador_mix.jpg')},
-        {id: '8', name: 'Lady', breed: 'Cocker Spaniel', distance: '17',source: require('../images/cocker_spaniel.jpg')},
+        {id: '1', name: `${pets.dogs[filters.index].name}`, breed: `${pets.dogs[filters.index].breed}`, distance: `${pets.dogs[filters.index].radius}`, source: ''},
       ],
     };
+    
   }
  
   handleYup = (card) => {
