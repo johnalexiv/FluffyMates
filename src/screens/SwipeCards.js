@@ -57,7 +57,7 @@ class Card extends React.Component {
       <View style = { styles.card }>
 
         <ImageBackground
-          source = { this.props.source }
+          source = {{uri: this.props.source }}
           style = { {width: '100%', height: '100%'} } > 
           <View style = {styles.emptySpace}>
           <Text></Text>
@@ -136,7 +136,7 @@ export default class extends React.Component {
     this.state = {
       list: [],
       cards: [
-        {id: '1', name: `${pets.dogs[filters.index].name}`, breed: `${pets.dogs[filters.index].breed}`, distance: `${pets.dogs[filters.index].radius}`, source: ''},
+        {id: '1', name: `${pets.dogs[filters.index].name}`, breed: `${pets.dogs[filters.index].breed}`, distance: `${pets.dogs[filters.index].radius}`, source: `${pets.dogs[filters.index].photo}`},
       ],
     };
     
