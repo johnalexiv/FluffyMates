@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import { View, Text, StyleSheet, FlatList, ActivityIndicator } from "react-native";
-import { List, ListItem, Avatar } from 'react-native-elements';
+import { View, Text, StyleSheet, FlatList, ActivityIndicator, Image, TouchableOpacity } from "react-native";
+import { List, ListItem, Avatar, Badge } from 'react-native-elements';
 import Swipeout from 'react-native-swipeout';
 
 class LikedHistory extends Component {
@@ -91,6 +91,16 @@ class LikedHistory extends Component {
               subtitle={item.breed}
               containerStyle={{ borderBottomWidth: 0 }}
               button onPress ={() => {console.log(item.name)}}
+              hideChevron = {true}
+              badge={{ 
+                element:
+                  <Badge 
+                    value = {<Image source={require('../images/phone_icon.png')} style = {{width: 40, height: 40, alignContent: 'flex-end', alignSelf: 'center'}}/>}
+                    containerStyle = {{ backgroundColor: 'transparent', alignSelf: 'center', justifyContent: 'center', height: 80, paddingTop: 10 }}
+                    onPress={() => {console.log('pressed')}}
+                />
+              }}
+
             />
           
           </Swipeout>
