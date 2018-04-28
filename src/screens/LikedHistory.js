@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { View, Text, StyleSheet, FlatList, ActivityIndicator } from "react-native";
 import { List, ListItem, Avatar } from 'react-native-elements';
+import Swipeout from 'react-native-swipeout';
 
 class LikedHistory extends Component {
   constructor(props) {
@@ -9,6 +10,7 @@ class LikedHistory extends Component {
     this.state = {
       list: [],
       refreshing: false,
+      activeRowId: null,
     };
   }
 
@@ -39,35 +41,61 @@ class LikedHistory extends Component {
     );
   };
 
-
+  deleteItem = (key) => {
+    var array = this.props.data
+    var index = array.findIndex(function(array) {
+      return array.id === key;
+    })
+    array.splice(index, 1)
+    this.setState({list: array.slice(0)})
+  }
 
   render() {
+
     return (
         
         <FlatList
-          style={styles.flatList}
-          data={this.state.list}
-          renderItem={({ item }) => (
-          <ListItem
-            key={item.id}
-            avatar = { <Avatar rounded large source = {item.source} /> }
-            title={`${item.name}`}
-            subtitle={item.breed}
-            containerStyle={{ borderBottomWidth: 0 }}
-          />
-        )}
-        keyExtractor={item => item.name}
-        ItemSeparatorComponent={this.renderSeparator}
-        onEndReachedThreshold={50}
-        onPressItem={this._onPressItem}
-        refreshing = {this.state.refreshing}
-        onRefresh = {this.handleRefresh}
-        ListHeaderComponent={() => (!this.state.list.length ? 
-            <Text
-              style= {styles.emptyMessage}>
+          style = {styles.flatList}
+          data = {this.state.list}
+          ItemSeparatorComponent = {this.renderSeparator}
+          onEndReachedThreshold = {50}
+          refreshing = {this.state.refreshing}
+          onRefresh = {this.handleRefresh}
+          ListHeaderComponent = {() => (!this.state.list.length ? 
+            <Text style= {styles.emptyMessage}>
                 Swipe right on a pet{"\n"} for them to show up here
             </Text>  
           : null)}
+
+          renderItem = {({ item }) => (
+
+          <Swipeout 
+            autoClose = 'true'
+            backgroundColor ='transparent'
+            buttonWidth = {80}
+            right = {[{
+              text: 'Delete',
+              backgroundColor: '#F44646',
+              onPress: () => {
+                {
+                  this.deleteItem(item.id)
+                }
+              }
+            }]}
+            >
+            
+            <ListItem
+              key={item.id}
+              avatar = { <Avatar rounded large source = {item.source} /> }
+              title={`${item.name}`}
+              subtitle={item.breed}
+              containerStyle={{ borderBottomWidth: 0 }}
+              button onPress ={() => {console.log(item.name)}}
+            />
+          
+          </Swipeout>
+
+        )}
 
         />
     );
@@ -78,16 +106,8 @@ class LikedHistory extends Component {
 export default LikedHistory;
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    width: 375,
-    justifyContent: 'center',
-    alignContent: 'center',
-  },
   flatList: {
     flex: 1,
-    height: 500,
-    width: 340,
   },
   emptyMessage: {
     fontSize: 20,

@@ -133,7 +133,7 @@ export default class MainScreen extends React.Component {
                 </View>
 
                 <View tabLabel="ios-heart" style={styles.tabView}>
-                    <View style={styles.sampleCard}>
+                    <View style={styles.likedHistoryContainer}>
                         <LikedHistory
                             data = {this.state.cards}
                         />
@@ -155,6 +155,17 @@ const styles = StyleSheet.create({
     },
     tabView: {
         flex: 1,
+    },
+    likedHistoryContainer: {
+        flex: 1,
+        borderWidth: 1,
+        backgroundColor: '#fff',
+        borderColor: 'rgba(0,0,0,0.1)',
+        margin: 5,
+        shadowColor: '#ccc',
+        shadowOffset: { width: 2, height: 2, },
+        shadowOpacity: 0.5,
+        shadowRadius: 3,    
     },
     sampleCard: {
         flex: 1,

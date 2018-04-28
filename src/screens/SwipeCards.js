@@ -108,14 +108,14 @@ export default class extends React.Component {
     this.state = {
       list: [],
       cards: [
-        {name: 'Fluffy', breed: 'Golden Retriever', distance: '32', source: require('../images/golden_retriever.jpg')},
-        {name: 'Archie', breed: 'Corgi', distance: '8', source: require('../images/corgi.jpg')},
-        {name: 'Vinnie', breed: 'Italian Greyhound', distance: '16', source: require('../images/dog.jpeg')},
-        {name: 'Popcorn', breed: 'Labrador', distance: '52', source: require('../images/labrador.jpg')},
-        {name: 'Billy', breed: 'Pitbull Mix', distance: '64', source: require('../images/pitbull_mix.jpg')},
-        {name: 'Julio', breed: 'Labradoodle', distance: '25', source: require('../images/labradoodle.jpg')},
-        {name: 'Toby', breed: 'Labrador Mix', distance: '80', source: require('../images/labrador_mix.jpg')},
-        {name: 'Lady', breed: 'Cocker Spaniel', distance: '17',source: require('../images/cocker_spaniel.jpg')},
+        {id: '1', name: 'Fluffy', breed: 'Golden Retriever', distance: '32', source: require('../images/golden_retriever.jpg')},
+        {id: '2', name: 'Archie', breed: 'Corgi', distance: '8', source: require('../images/corgi.jpg')},
+        {id: '3', name: 'Vinnie', breed: 'Italian Greyhound', distance: '16', source: require('../images/dog.jpeg')},
+        {id: '4', name: 'Popcorn', breed: 'Labrador', distance: '52', source: require('../images/labrador.jpg')},
+        {id: '5', name: 'Billy', breed: 'Pitbull Mix', distance: '64', source: require('../images/pitbull_mix.jpg')},
+        {id: '6', name: 'Julio', breed: 'Labradoodle', distance: '25', source: require('../images/labradoodle.jpg')},
+        {id: '7', name: 'Toby', breed: 'Labrador Mix', distance: '80', source: require('../images/labrador_mix.jpg')},
+        {id: '8', name: 'Lady', breed: 'Cocker Spaniel', distance: '17',source: require('../images/cocker_spaniel.jpg')},
       ],
     };
   }
@@ -124,10 +124,7 @@ export default class extends React.Component {
     var array = [...this.state.list];
     array.push(card)
     this.setState({list: array.slice(0)});
-
-    console.log(card)
     this.props.onUpdate(card);
-
     console.log(`Yup for ${card.name}`)
   }
 
@@ -149,6 +146,7 @@ export default class extends React.Component {
         handleNope={this.handleNope}
         stack={true}
         stackDepth={10}
+        loop={true}
       />
     )
   }
