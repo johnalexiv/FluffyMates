@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { View, Text, StyleSheet, FlatList, ActivityIndicator, Image, TouchableOpacity } from "react-native";
 import { List, ListItem, Avatar, Badge } from 'react-native-elements';
 import Swipeout from 'react-native-swipeout';
+import Communications from 'react-native-communications';
+
 
 class LikedHistory extends Component {
   constructor(props) {
@@ -106,7 +108,7 @@ class LikedHistory extends Component {
                   <Badge 
                     value = {<Image source={require('../images/phone.png')} style = {{width: 40, height: 40, alignContent: 'flex-end', alignSelf: 'center'}}/>}
                     containerStyle = {{ backgroundColor: 'transparent', alignSelf: 'center', justifyContent: 'center', height: 80, paddingTop: 10 }}
-                    onPress={() => {console.log('pressed')}}
+                    onPress={() => Communications.phonecall('0123456789', true)}
                 />
               }}
 
