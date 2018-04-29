@@ -51,7 +51,12 @@ class Card extends React.Component {
 
     console.log(RescuePetsAPI.GetInformation())
   }
- 
+
+
+  onProfilePress = () => {
+    this.props.navigation.navigate('PetProfile');
+}
+
   render() {
     return ( 
       <View style = { styles.card }>
@@ -66,7 +71,7 @@ class Card extends React.Component {
           <View style = { styles.moreInfoContainer }>
              
               <TouchableOpacity
-                onPress={this._onPressButton}
+                onPress={this.onProfilePress}
                 style={styles.moreInfoButton}>
 
                 <MoreInfoButton
@@ -92,17 +97,14 @@ class NoMoreCards extends Component {
   }
 
   render() {
-      
     return (
       <View style = {styles.noMoreCardsContainer}>
-        
         <Text style={styles.noMoreCardsTitle}>
           You've reached the end!
         </Text>
         <Text style={styles.noMoreCardsBody}>
           Please check back soon.
         </Text>
-
       </View>
     )
   }
@@ -112,11 +114,26 @@ export default class extends React.Component {
   constructor(props) {
     super(props);
     if (filters.species == "D") {
+      
       this.state = {
         list: [],
         cards: [
-          {id: `filters.index`, name: `${pets.dogs[filters.index].name}`, breed: `${pets.dogs[filters.index].breed}`, distance: `${pets.dogs[filters.index].radius}`, source: `${pets.dogs[filters.index].photo}`},
-          {id: `filters.index+1`, name: `${pets.dogs[filters.index+1].name}`, breed: `${pets.dogs[filters.index+1].breed}`, distance: `${pets.dogs[filters.index+1].radius}`, source: `${pets.dogs[filters.index+1].photo}`},
+          //{id: `filters.index`, name: `${pets.dogs[filters.index].name}`, breed: `${pets.dogs[filters.index].breed}`, distance: `${pets.dogs[filters.index].radius}`, source: `${pets.dogs[filters.index].photo}`},
+          {id: `0`, name: `${pets.dogs[0].name}`, breed: `${pets.dogs[0].breed}`, distance: `${pets.dogs[0].radius}`, source: `${pets.dogs[0].photo}`},
+          {id: `1`, name: `${pets.dogs[1].name}`, breed: `${pets.dogs[1].breed}`, distance: `${pets.dogs[1].radius}`, source: `${pets.dogs[1].photo}`},
+          {id: `2`, name: `${pets.dogs[2].name}`, breed: `${pets.dogs[2].breed}`, distance: `${pets.dogs[2].radius}`, source: `${pets.dogs[2].photo}`},
+          {id: `3`, name: `${pets.dogs[3].name}`, breed: `${pets.dogs[3].breed}`, distance: `${pets.dogs[3].radius}`, source: `${pets.dogs[3].photo}`},
+          {id: `4`, name: `${pets.dogs[4].name}`, breed: `${pets.dogs[4].breed}`, distance: `${pets.dogs[4].radius}`, source: `${pets.dogs[4].photo}`},
+          {id: `5`, name: `${pets.dogs[5].name}`, breed: `${pets.dogs[5].breed}`, distance: `${pets.dogs[5].radius}`, source: `${pets.dogs[5].photo}`},
+          {id: `6`, name: `${pets.dogs[6].name}`, breed: `${pets.dogs[6].breed}`, distance: `${pets.dogs[6].radius}`, source: `${pets.dogs[6].photo}`},
+          {id: `7`, name: `${pets.dogs[7].name}`, breed: `${pets.dogs[7].breed}`, distance: `${pets.dogs[7].radius}`, source: `${pets.dogs[7].photo}`},
+          {id: `8`, name: `${pets.dogs[8].name}`, breed: `${pets.dogs[8].breed}`, distance: `${pets.dogs[8].radius}`, source: `${pets.dogs[8].photo}`},
+          {id: `9`, name: `${pets.dogs[9].name}`, breed: `${pets.dogs[9].breed}`, distance: `${pets.dogs[9].radius}`, source: `${pets.dogs[9].photo}`},
+          {id: `10`, name: `${pets.dogs[10].name}`, breed: `${pets.dogs[10].breed}`, distance: `${pets.dogs[10].radius}`, source: `${pets.dogs[10].photo}`},
+          {id: `11`, name: `${pets.dogs[11].name}`, breed: `${pets.dogs[11].breed}`, distance: `${pets.dogs[11].radius}`, source: `${pets.dogs[11].photo}`},
+          {id: `12`, name: `${pets.dogs[12].name}`, breed: `${pets.dogs[12].breed}`, distance: `${pets.dogs[12].radius}`, source: `${pets.dogs[12].photo}`},
+          {id: `13`, name: `${pets.dogs[13].name}`, breed: `${pets.dogs[13].breed}`, distance: `${pets.dogs[13].radius}`, source: `${pets.dogs[13].photo}`},
+          {id: `14`, name: `${pets.dogs[14].name}`, breed: `${pets.dogs[14].breed}`, distance: `${pets.dogs[14].radius}`, source: `${pets.dogs[14].photo}`},
         ],
       };
     } else if (filters.species  == "C" ){
@@ -124,24 +141,31 @@ export default class extends React.Component {
         this.state = {
           list: [],
           cards: [
-            {id: `filters.index`, name: `${pets.cats[filters.index].name}`, breed: `${pets.cats[filters.index].breed}`, distance: `${pets.cats[filters.index].radius}`, source: `${pets.cats[filters.index].photo}`},
-            {id: `filters.index+1`, name: `${pets.cats[filters.index+1].name}`, breed: `${pets.cats[filters.index+1].breed}`, distance: `${pets.cats[filters.index+1].radius}`, source: `${pets.cats[filters.index+1].photo}`},
+            {id: `0`, name: `${pets.cats[0].name}`, breed: `${pets.cats[0].breed}`, distance: `${pets.cats[0].radius}`, source: `${pets.cats[0].photo}`},
+            {id: `1`, name: `${pets.cats[1].name}`, breed: `${pets.cats[1].breed}`, distance: `${pets.cats[1].radius}`, source: `${pets.cats[1].photo}`},
+            {id: `2`, name: `${pets.cats[2].name}`, breed: `${pets.cats[2].breed}`, distance: `${pets.cats[2].radius}`, source: `${pets.cats[2].photo}`},
+            {id: `3`, name: `${pets.cats[3].name}`, breed: `${pets.cats[3].breed}`, distance: `${pets.cats[3].radius}`, source: `${pets.cats[3].photo}`},
+            {id: `4`, name: `${pets.cats[4].name}`, breed: `${pets.cats[4].breed}`, distance: `${pets.cats[4].radius}`, source: `${pets.cats[4].photo}`},
+            {id: `5`, name: `${pets.cats[5].name}`, breed: `${pets.cats[5].breed}`, distance: `${pets.cats[5].radius}`, source: `${pets.cats[5].photo}`},
+            {id: `6`, name: `${pets.cats[6].name}`, breed: `${pets.cats[6].breed}`, distance: `${pets.cats[6].radius}`, source: `${pets.cats[6].photo}`},
+            {id: `7`, name: `${pets.cats[7].name}`, breed: `${pets.cats[7].breed}`, distance: `${pets.cats[7].radius}`, source: `${pets.cats[7].photo}`},
+            {id: `8`, name: `${pets.cats[8].name}`, breed: `${pets.cats[8].breed}`, distance: `${pets.cats[8].radius}`, source: `${pets.cats[8].photo}`},
+            {id: `9`, name: `${pets.cats[9].name}`, breed: `${pets.cats[9].breed}`, distance: `${pets.cats[9].radius}`, source: `${pets.cats[9].photo}`},
+            {id: `10`, name: `${pets.cats[10].name}`, breed: `${pets.cats[10].breed}`, distance: `${pets.cats[10].radius}`, source: `${pets.cats[10].photo}`},
+            {id: `11`, name: `${pets.cats[11].name}`, breed: `${pets.cats[11].breed}`, distance: `${pets.cats[11].radius}`, source: `${pets.cats[11].photo}`},
+            {id: `12`, name: `${pets.cats[12].name}`, breed: `${pets.cats[12].breed}`, distance: `${pets.cats[12].radius}`, source: `${pets.cats[12].photo}`},
+            {id: `13`, name: `${pets.cats[13].name}`, breed: `${pets.cats[13].breed}`, distance: `${pets.cats[13].radius}`, source: `${pets.cats[13].photo}`},
+            {id: `14`, name: `${pets.cats[14].name}`, breed: `${pets.cats[14].breed}`, distance: `${pets.cats[14].radius}`, source: `${pets.cats[14].photo}`},
           ],
         }
 
     }
-    /*
-    this.state = {
-      list: [],
-      cards: [
-        {id: `filters.index`, name: `${pets.dogs[filters.index].name}`, breed: `${pets.dogs[filters.index].breed}`, distance: `${pets.dogs[filters.index].radius}`, source: `${pets.dogs[filters.index].photo}`},
-        {id: `filters.index+1`, name: `${pets.dogs[filters.index+1].name}`, breed: `${pets.dogs[filters.index+1].breed}`, distance: `${pets.dogs[filters.index+1].radius}`, source: `${pets.dogs[filters.index+1].photo}`},
-      ],
-    };
-    */
   }
+
+  
  
   handleYup = (card) => {
+    filters.index = filters.index + 1;
     var array = [...this.state.list];
     array.push(card)
     this.setState({list: array.slice(0)});
@@ -150,9 +174,11 @@ export default class extends React.Component {
   }
 
   handleNope (card) {
+    filters.index = filters.index + 1;
     console.log(`Nope for ${card.name}`)
   }
   handleMaybe (card) {
+    filters.index = filters.index + 1;
     console.log(`Maybe for ${card.name}`)
   }
   render() {
@@ -166,7 +192,7 @@ export default class extends React.Component {
         handleYup={this.handleYup}
         handleNope={this.handleNope}
         stack={true}
-        stackDepth={10}
+        stackDepth={10} 
       />
     )
   }
