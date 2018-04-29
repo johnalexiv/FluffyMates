@@ -104,7 +104,7 @@ class LikedHistory extends Component {
               badge={{ 
                 element:
                   <Badge 
-                    value = {<Image source={require('../images/phone_icon.png')} style = {{width: 40, height: 40, alignContent: 'flex-end', alignSelf: 'center'}}/>}
+                    value = {<Image source={require('../images/phone.png')} style = {{width: 40, height: 40, alignContent: 'flex-end', alignSelf: 'center'}}/>}
                     containerStyle = {{ backgroundColor: 'transparent', alignSelf: 'center', justifyContent: 'center', height: 80, paddingTop: 10 }}
                     onPress={() => {console.log('pressed')}}
                 />
