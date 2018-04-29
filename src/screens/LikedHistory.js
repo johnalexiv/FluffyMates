@@ -44,13 +44,14 @@ class LikedHistory extends Component {
   deleteItem = (key) => {
     var array = this.props.data
     var index = array.findIndex(function(array) {
-      return array.id === key;
+      return array.id === key; 
     })
     array.splice(index, 1)
     this.setState({list: array.slice(0)})
   }
 
   render() {
+    const B = (props) => <Text style={{fontWeight: 'bold'}}>{props.children}</Text>
 
     return (
         
@@ -61,10 +62,18 @@ class LikedHistory extends Component {
           onEndReachedThreshold = {50}
           refreshing = {this.state.refreshing}
           onRefresh = {this.handleRefresh}
-          ListHeaderComponent = {() => (!this.state.list.length ? 
-            <Text style= {styles.emptyMessage}>
-                Swipe right on a pet{"\n"} for them to show up here
-            </Text>  
+          ListHeaderComponent = {() => (!this.state.list.length ?
+            <View style = {styles.emptyMessageContainer}>
+              <Text style= {styles.emptyMessageTitle}>
+                No pets here.
+              </Text>
+              <Text style = {styles.emptyMessageBody}>
+                <B>Swipe right</B> to add your potential fluffy{"\n"}
+                mate to this page. Unless you already{"\n"}
+                have, in which case: <B>pull to refresh</B>{"\n"}
+                to see the list here. 
+              </Text>  
+            </View>
           : null)}
 
           renderItem = {({ item }) => (
@@ -119,15 +128,23 @@ const styles = StyleSheet.create({
   flatList: {
     flex: 1,
   },
-  emptyMessage: {
-    fontSize: 20,
-    color: '#383838',
-    textAlign: 'center',
+  emptyMessageContainer: {
     justifyContent: 'center',
     alignContent: 'center',
-    marginTop: '85%',
+    marginTop: '75%',
     marginLeft: '10%',
     marginRight: '10%',
-
-  }
+  },
+  emptyMessageTitle: {
+    fontSize: 20,
+    color: '#989898',
+    textAlign: 'center',
+  },
+  emptyMessageBody: {
+    marginTop: 8,
+    fontSize: 15,
+    color: '#989898',
+    textAlign: 'center',
+    height: 80
+  },
 });

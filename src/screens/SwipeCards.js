@@ -94,12 +94,15 @@ class NoMoreCards extends Component {
   render() {
       
     return (
-      <View>
+      <View style = {styles.noMoreCardsContainer}>
         
-        <Text style={styles.noMoreCardsText}>
-          You've reached the end!{"\n"}
+        <Text style={styles.noMoreCardsTitle}>
+          You've reached the end!
+        </Text>
+        <Text style={styles.noMoreCardsBody}>
           Please check back soon.
         </Text>
+
       </View>
     )
   }
@@ -177,12 +180,23 @@ const styles = StyleSheet.create({
   card: {
     flex: 1,
   },
-  noMoreCardsText: {
-    fontSize: 20,
-    textAlign: 'center',
-    color: '#383838',
+  noMoreCardsContainer: {
     marginLeft: '10%',
     marginRight: '10%',
+    justifyContent: 'center',
+    alignContent: 'center',
+  },
+  noMoreCardsTitle: {
+    fontSize: 20,
+    textAlign: 'center',
+    color: '#989898',
+  },
+  noMoreCardsBody: {
+    marginTop: 8,
+    fontSize: 15,
+    textAlign: 'center',
+    color: '#989898',
+    height: 80
   },
   emptySpace: {
     flex: 3.8
