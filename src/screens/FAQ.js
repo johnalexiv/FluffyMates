@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
+import { Constants } from 'expo';
 import {
   StyleSheet,
   Text,
   View,
   TouchableHighlight,
+  Image
 } from 'react-native';
+import {Header, Button, Left, Icon } from 'native-base';
 
 import * as Animatable from 'react-native-animatable';
 import Collapsible from 'react-native-collapsible';
@@ -70,9 +73,11 @@ const FLUFFYQ = [
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
+    //justifyContent: 'center',
     backgroundColor: '#fff',
-  },
+    //paddingTop: Constants.statusBarHeight,
+    alignItems : 'center',
+  }, 
   title: {
     textAlign: 'center',
     fontSize: 22,
@@ -107,6 +112,15 @@ const styles = StyleSheet.create({
     fontWeight: '500',
     padding: 10,
   },
+  back: {
+    flex: 1,
+    color:  'white',
+  },
+  backContainer: {
+    flex: 0.08,
+    flexDirection: 'row',
+    color : 'white',
+  },
 });
 
 export default class FAQ extends Component {
@@ -116,6 +130,10 @@ export default class FAQ extends Component {
     featureSection: false,
     accountSection: false,
   };
+
+  onBackButton = () => {
+		this.props.navigation.goBack(null);
+  }
 
   _toggleExpanded = () => {
     this.setState({ collapsed: !this.state.collapsed });
@@ -153,6 +171,15 @@ export default class FAQ extends Component {
   render() {
     return (
       <View style={styles.container}>
+        <Header style = {{backgroundColor: 'white'}} hasTabs = {true} >
+        <Left>
+        <Button transparent>
+        <Icon name="ios-arrow-back" size={40} color="#32a9ba"
+          onPress={this.onBackButton}/>
+        </Button>
+        </Left>
+        </Header>
+
         <Text style={styles.title}>Frequently Asked Questions</Text>
 
         <TouchableHighlight onPress={this._toggleExpanded}>
