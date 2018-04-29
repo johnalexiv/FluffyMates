@@ -48,7 +48,7 @@ export default class LoginScreen extends React.Component {
                                 start={{ x: 0, y: 1 }}
                                 end={{ x: 1, y: 1 }}>
                                 <Text style={{backgroundColor: 'transparent', color: 'white', textAlign: 'center', fontSize: 16}} >
-                                    Login
+                                    LOGIN
                                 </Text>
                             </LinearGradient>
                         </TouchableOpacity>
@@ -59,7 +59,7 @@ export default class LoginScreen extends React.Component {
                             onPress={this.onEmailPress}
                             >
                             <Text style={{color: '#989898', textAlign: 'center', fontSize: 13}} >
-                                DEMO
+                                GET STARTED
                             </Text>
                         </TouchableOpacity>
                     </View>

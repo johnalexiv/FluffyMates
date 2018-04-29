@@ -30,11 +30,11 @@ class TabBar extends React.Component {
     });
   }
 
-  //color between rgb(59,89,152) and rgb(204,204,204)
+  //main color rgb(55, 184, 203) #37b8cb
   iconColor(progress) {
-    const red = 59 + (204 - 59) * progress;
-    const green = 89 + (204 - 89) * progress;
-    const blue = 152 + (204 - 152) * progress;
+    const red = 55 + (204 - 55) * progress;
+    const green = 184 + (204 - 184) * progress;
+    const blue = 203 + (204 - 203) * progress;
     return `rgb(${red}, ${green}, ${blue})`;
   }
 
@@ -45,7 +45,7 @@ class TabBar extends React.Component {
           <Icon
             name={tab}
             size={30}
-            color={this.props.activeTab === i ? 'rgb(59,89,152)' : 'rgb(204,204,204)'}
+            color={this.props.activeTab === i ? 'rgb(55, 184, 203)' : 'rgb(204,204,204)'}
             ref={(icon) => { this.icons[i] = icon; }}
           />
         </TouchableOpacity>;

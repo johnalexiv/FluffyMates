@@ -62,8 +62,8 @@ export default class MainScreen extends React.Component {
                 initialPage={2}
                 tabBarPosition='top'
                 locked={true}
-                tabBarActiveTextColor = {'#37B8CB'}
-                tabBarInactiveTextColor = {'darkgray'}
+                tabBarActiveTextColor = '#37B8CB'
+                tabBarInactiveTextColor = 'darkgray'
                 renderTabBar={() => <TabBar />}>
             <View tabLabel='ios-construct' style={styles.tabView}>
 
