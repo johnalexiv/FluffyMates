@@ -16,7 +16,7 @@ export default class AboutUs extends React.Component {
     return (
       <View style={styles.container}>
         <ScrollView>
-        <Header style = {{backgroundColor: 'white'}} hasTabs = {true} >
+        <Header style = {{backgroundColor: 'white'}}>
         <Left>
         <Button transparent>
         <Icon name="ios-arrow-back" size={40} color="#32a9ba"
