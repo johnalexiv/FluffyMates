@@ -111,7 +111,7 @@ class NoMoreCards extends Component {
 export default class extends React.Component {
   constructor(props) {
     super(props);
-    if (selectedSpecies == "D") {
+    if (filters.species == "D") {
       this.state = {
         list: [],
         cards: [
@@ -119,7 +119,7 @@ export default class extends React.Component {
           {id: `filters.index+1`, name: `${pets.dogs[filters.index+1].name}`, breed: `${pets.dogs[filters.index+1].breed}`, distance: `${pets.dogs[filters.index+1].radius}`, source: `${pets.dogs[filters.index+1].photo}`},
         ],
       };
-    } else if (selectedSpecies == "C" ){
+    } else if (filters.species  == "C" ){
         // for cats
         this.state = {
           list: [],
