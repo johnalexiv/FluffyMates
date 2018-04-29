@@ -10,7 +10,7 @@ import Loading from './src/screens/Loading';
 import LoadScreen from './src/screens/LoadScreen';
 import Amplify, { AUTH } from 'aws-amplify';
 import AWSConfig from './aws-exports';
-
+import filters from './global';
 console.disableYellowBox = true;
 
 export default class App extends React.Component {
@@ -19,6 +19,9 @@ export default class App extends React.Component {
     }
     constructor() {
         super();
+        filters.species = "D";
+        filters.index = 0;
+        console.log(`Species: ${filters.species }`)
         Loading.load(v => this.setState({loaded: true}));
     }
     render() {
