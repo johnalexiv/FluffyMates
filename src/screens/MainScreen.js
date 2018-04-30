@@ -32,6 +32,7 @@ export default class MainScreen extends React.Component {
         this.state = {
           list: [],
           refreshing: false,
+          currentPet: null,
         };
       }
 
@@ -42,6 +43,35 @@ export default class MainScreen extends React.Component {
             list: array.slice(0)
         })
     };
+
+    generatePetData(id) {
+        var petData = null
+        let species = String(id).charAt(0)
+
+        switch (species) {
+            case 'C':
+                petData  = this.returnArrayElementById(pets.cats, id);
+                break;
+
+            case 'D':
+                petData = this.returnArrayElementById(pets.dogs, id);
+                break;
+
+            default:
+                petData = 'default'
+                break;
+        }
+
+        this.state.currentPet = petData
+        return (petData);
+    }
+
+    returnArrayElementById(array, id) {
+        let index = array.findIndex(function(array) {
+            return array.id === id; 
+        })
+        return (array[index]);
+    }
 
     static navigationOptions = {
         header: null,
@@ -98,12 +128,12 @@ export default class MainScreen extends React.Component {
 
   deleteItem = (key) => {
     var array = this.state.list
-    var index = array.findIndex(function(array) {
-      return array.id === key; 
-    })
+    var index = array.getIndex(key)
     array.splice(index, 1)
     this.setState({list: array.slice(0)})
   }
+
+  
 
   renderLikes() {
     const B = (props) => <Text style={{fontWeight: 'bold'}}>{props.children}</Text>
@@ -140,20 +170,20 @@ export default class MainScreen extends React.Component {
               backgroundColor: '#F44646',
               onPress: () => {
                 {
-                  this.deleteItem(item.id)
+                  this.deleteItem(item)
                 }
               }
-            }]}
+            }]}f
             >
             
             <ListItem
-              key={item.id}
-              avatar = { <Avatar rounded large source = {item.source} /> }
-              title={`${item.name}`}
-              subtitle={item.breed}
+              key={item}
+              avatar = { <Avatar rounded large source = {{uri: this.generatePetData(item).photo}} /> }
+              title={this.state.currentPet.name}
+              subtitle={this.state.currentPet.breed}
               containerStyle={{ borderBottomWidth: 0 }}
               button onPress = {() => 
-                this.onProfilePress(item.id)
+                this.onProfilePress(item)
             }
               hideChevron = {true}
               badge={{ 

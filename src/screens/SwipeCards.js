@@ -117,7 +117,6 @@ export default class extends React.Component {
     if (filters.species == "D") {
       
       this.state = {
-        list: [],
         cards: [
           //{id: `filters.index`, name: `${pets.dogs[filters.index].name}`, breed: `${pets.dogs[filters.index].breed}`, distance: `${pets.dogs[filters.index].radius}`, source: `${pets.dogs[filters.index].photo}`},
           {id: `D00`, name: `${pets.dogs[0].name}`, breed: `${pets.dogs[0].breed}`, distance: `${pets.dogs[0].radius}`, source: `${pets.dogs[0].photo}`},
@@ -140,7 +139,6 @@ export default class extends React.Component {
     } else if (filters.species  == "C" ){
         // for cats
         this.state = {
-          list: [],
           cards: [
             {id: `C00`, name: `${pets.cats[0].name}`, breed: `${pets.cats[0].breed}`, distance: `${pets.cats[0].radius}`, source: `${pets.cats[0].photo}`},
             {id: `C01`, name: `${pets.cats[1].name}`, breed: `${pets.cats[1].breed}`, distance: `${pets.cats[1].radius}`, source: `${pets.cats[1].photo}`},
@@ -167,10 +165,7 @@ export default class extends React.Component {
  
   handleYup = (card) => {
     filters.index = filters.index + 1;
-    var array = [...this.state.list];
-    array.push(card)
-    this.setState({list: array.slice(0)});
-    this.props.onUpdate(card);
+    this.props.onUpdate(card.id);
     console.log(`Yup for ${card.name}`)
   }
 

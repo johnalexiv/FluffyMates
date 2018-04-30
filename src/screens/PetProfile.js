@@ -25,7 +25,7 @@ export default class PetProfile extends React.Component {
     generatePetData() {
         var petData = null
         let id = this.props.navigation.state.params.passedData
-        let species = id.charAt(0)
+        let species = String(id).charAt(0)
 
         switch (species) {
             case 'C':

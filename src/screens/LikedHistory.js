@@ -102,7 +102,7 @@ class LikedHistory extends Component {
             
             <ListItem
               key={item.id}
-              avatar = { <Avatar rounded large source = {item.source} /> }
+              avatar = { <Avatar rounded large source = {{uri: item.source}} /> }
               title={`${item.name}`}
               subtitle={item.breed}
               containerStyle={{ borderBottomWidth: 0 }}
