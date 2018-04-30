@@ -52,9 +52,10 @@ class Card extends React.Component {
     console.log(RescuePetsAPI.GetInformation())
   }
 
-  onPressButton(val) {
-    this.props.onProfilePress(val);
-  }
+
+  onProfilePress = () => {
+    this.props.navigation.navigate('PetProfile');
+}
 
   render() {
     return ( 
@@ -71,7 +72,7 @@ class Card extends React.Component {
           <View style = { styles.moreInfoContainer }>
              
               <TouchableOpacity
-                onPress= {this.onPressButton.bind(this, this.props.id)}
+                onPress={this.onProfilePress}
                 style={styles.moreInfoButton}>
 
                 <MoreInfoButton
@@ -114,7 +115,7 @@ export default class extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      cards: [...pets.dogs, ...pets.cats, ...pets.birds]
+      cards: [...pets.dogs, ...pets.cats]
     };
     // if (filters.species == "D") {
   
@@ -142,7 +143,7 @@ export default class extends React.Component {
     return (
       <SwipeCards
         cards={this.state.cards}
-        renderCard={(cardData) => <Card {...cardData} onProfilePress = {this.props.onProfilePress}/>}
+        renderCard={(cardData) => <Card {...cardData} />}
         renderNoMoreCards={() => <NoMoreCards />}
         handleYup={this.handleYup}
         handleNope={this.handleNope}
