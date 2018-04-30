@@ -10,7 +10,6 @@
     import colors                       from '../../style/colors.js'
     import Swiper                       from 'react-native-swiper'
 
-const {width} = Dimensions.get('window')
 export default class PetProfile extends Component {
     static navigationOptions = {
         tabBarVisible: false
@@ -34,7 +33,7 @@ export default class PetProfile extends Component {
     // for the pet profile images
     renderSwiper() {
         return (
-            <Image style={{width: {width}, height: 400,  }} 
+            <Image style={{width: 375, height: 400,  }} 
             source = {{ uri: pets.dogs[0].photo }}  />
         )
     }
