@@ -64,7 +64,7 @@ class Card extends React.Component {
         <ImageBackground
           source = {{uri: this.props.source }}
 
-          style = { {width: '100%', height: '100%'} } > 
+          style = { {width: '100%', height: '100%', resizeMode: 'contain'} } > 
           <View style = {styles.emptySpace}>
           <Text></Text>
           </View>

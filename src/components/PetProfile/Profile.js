@@ -34,7 +34,7 @@ export default class PetProfile extends Component {
     renderSwiper() {
         return (
             <Image style={{width: 375, height: 400,  }} 
-            source = {{ uri: this.props.source }}  />
+            source = {{ uri: pets.dogs[0].photo }}  />
         )
     }
 
@@ -42,14 +42,14 @@ export default class PetProfile extends Component {
     renderInfo() {
         return (
             <View style={styles.holder}>
-                <Text style={styles.petName}>{this.props.name}</Text>
+                <Text style={styles.petName}>{pets.dogs[0].name}</Text>
                 <View style={styles.infoRow}>
                     <Icon style={styles.infoIcon} name="ios-paw-outline" />
-                    <Text style={styles.info}>Breed: {this.props.breed}</Text>
+                    <Text style={styles.info}>Breed: {pets.dogs[0].breed}</Text>
                 </View>
                 <View style={styles.infoRow}>
                     <Icon style={styles.infoIcon} name="ios-locate-outline" />
-                    <Text style={styles.info}>Location:  {this.props.distance} miles away</Text>
+                    <Text style={styles.info}>Location:  {pets.dogs[0].radius} miles away</Text>
                 </View>
             </View>
         )
