@@ -124,7 +124,7 @@ export default class MainScreen extends React.Component {
 
       handleYup = (card) => {
         filters.index = filters.index + 1;
-        this.props.onUpdate(card.id);
+        this.onUpdate(card.id);
         console.log(`Yup for ${card.name}`)
       }
     
