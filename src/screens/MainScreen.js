@@ -128,7 +128,10 @@ export default class MainScreen extends React.Component {
 
   deleteItem = (key) => {
     var array = this.state.list
-    var index = array.getIndex(key)
+    let index = array.findIndex(function(array) {
+        return array === key; 
+    })
+
     array.splice(index, 1)
     this.setState({list: array.slice(0)})
   }
@@ -191,7 +194,7 @@ export default class MainScreen extends React.Component {
                   <Badge 
                     value = {<Image source={require('../images/phone.png')} style = {{width: 40, height: 40, alignContent: 'flex-end', alignSelf: 'center'}}/>}
                     containerStyle = {{ backgroundColor: 'transparent', alignSelf: 'center', justifyContent: 'center', height: 80, paddingTop: 10 }}
-                    onPress={() => Communications.phonecall('7023843333', true)}
+                    onPress={() => Communications.phonecall(this.state.currentPet.phone, true)}
                 />
               }}
 
