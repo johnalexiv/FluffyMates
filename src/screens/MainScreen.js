@@ -48,10 +48,12 @@ class Card extends React.Component {
     }
   
 
-    onProfilePress = () => {
-      this.props.navigation.navigate('PetProfile');
-  }
-  
+    onProfilePress = (id) => {
+        let item = id
+        this.props.navigation.navigate('PetProfile', { passedData: item });
+    }
+
+
     render() {
       return ( 
         <View style = { styles.card }>
@@ -67,7 +69,7 @@ class Card extends React.Component {
             <View style = { styles.moreInfoContainer }>
                
                 <TouchableOpacity
-                  onPress={this.onProfilePress}
+                  onPress= {() =>  this.onProfilePress(this.props) }
                   style={styles.moreInfoButton}>
   
                   <MoreInfoButton
