@@ -5,12 +5,12 @@ import {
     View,
     Image,
     Button,
+    ImageBackground,
     FlatList, 
     ActivityIndicator,
     ScrollView,
     TouchableOpacity,
 } from 'react-native';
-import SwipeCards from './SwipeCards';
 import ScrollableTabView, { DefaultTabBar } from 'react-native-scrollable-tab-view';
 import Icon from 'react-native-vector-icons/Ionicons';
 import "prop-types";
@@ -21,21 +21,189 @@ import Filters from '../components/filters/filters';
 import { List, ListItem, Avatar, Badge } from 'react-native-elements';
 import Swipeout from 'react-native-swipeout';
 import Communications from 'react-native-communications';
-
 import PetProfile from './PetProfile';
 import { pets } from '../petsdata.json'
+import filters from '../../global';
+import MoreInfoButton from './MoreInfoButtons';
+import SwipeCards from 'react-native-swipe-cards';
+
+class Card extends React.Component {
+    constructor(props) {
+      super(props);
+      this.state = {
+        sliderOneChanging: false,
+        sliderOneValue: [25],
+        allPets: [],
+        status: '',
+        pet: [],
+        petName: '',
+        petBreed: '',
+        petDescription: '',
+        petPictures: [],
+        petPicture: '',
+        petURL: '',
+        petBirthDate: '',
+        potLocation: '',
+       }
+    }
+  
+
+    onProfilePress = () => {
+      this.props.navigation.navigate('PetProfile');
+  }
+  
+    render() {
+      return ( 
+        <View style = { styles.card }>
+  
+          <ImageBackground
+            source = {{uri: this.props.source }}
+  
+            style = { {width: '100%', height: '100%'} } > 
+            <View style = {styles.emptySpace}>
+            <Text></Text>
+            </View>
+  
+            <View style = { styles.moreInfoContainer }>
+               
+                <TouchableOpacity
+                  onPress={this.onProfilePress}
+                  style={styles.moreInfoButton}>
+  
+                  <MoreInfoButton
+                    name = {this.props.name}
+                    breed = {this.props.breed}
+                    distance = {this.props.distance}
+                    />
+  
+                </TouchableOpacity>
+  
+            </View>
+  
+          </ImageBackground>
+  
+        </View>
+      )
+    }
+  }
+   
+  class NoMoreCards extends Component {
+    constructor(props) {
+      super(props);
+    }
+  
+    render() {
+      return (
+        <View style = {styles.noMoreCardsContainer}>
+          <Text style={styles.noMoreCardsTitle}>
+            You've reached the end!
+          </Text>
+          <Text style={styles.noMoreCardsBody}>
+            Please check back soon.
+          </Text>
+        </View>
+      )
+    }
+  }
+   
+
 
 export default class MainScreen extends React.Component {
     constructor(props) {
         super(props);
 
+        if (filters.species == "D") {
+            this.state = {
+              cards: [
+                //{id: `filters.index`, name: `${pets.dogs[filters.index].name}`, breed: `${pets.dogs[filters.index].breed}`, distance: `${pets.dogs[filters.index].radius}`, source: `${pets.dogs[filters.index].photo}`},
+                {id: `D00`, name: `${pets.dogs[0].name}`, breed: `${pets.dogs[0].breed}`, distance: `${pets.dogs[0].radius}`, source: `${pets.dogs[0].photo}`},
+                {id: `D01`, name: `${pets.dogs[1].name}`, breed: `${pets.dogs[1].breed}`, distance: `${pets.dogs[1].radius}`, source: `${pets.dogs[1].photo}`},
+                {id: `D02`, name: `${pets.dogs[2].name}`, breed: `${pets.dogs[2].breed}`, distance: `${pets.dogs[2].radius}`, source: `${pets.dogs[2].photo}`},
+                {id: `D03`, name: `${pets.dogs[3].name}`, breed: `${pets.dogs[3].breed}`, distance: `${pets.dogs[3].radius}`, source: `${pets.dogs[3].photo}`},
+                {id: `D04`, name: `${pets.dogs[4].name}`, breed: `${pets.dogs[4].breed}`, distance: `${pets.dogs[4].radius}`, source: `${pets.dogs[4].photo}`},
+                {id: `D05`, name: `${pets.dogs[5].name}`, breed: `${pets.dogs[5].breed}`, distance: `${pets.dogs[5].radius}`, source: `${pets.dogs[5].photo}`},
+                {id: `D06`, name: `${pets.dogs[6].name}`, breed: `${pets.dogs[6].breed}`, distance: `${pets.dogs[6].radius}`, source: `${pets.dogs[6].photo}`},
+                {id: `D07`, name: `${pets.dogs[7].name}`, breed: `${pets.dogs[7].breed}`, distance: `${pets.dogs[7].radius}`, source: `${pets.dogs[7].photo}`},
+                {id: `D08`, name: `${pets.dogs[8].name}`, breed: `${pets.dogs[8].breed}`, distance: `${pets.dogs[8].radius}`, source: `${pets.dogs[8].photo}`},
+                {id: `D09`, name: `${pets.dogs[9].name}`, breed: `${pets.dogs[9].breed}`, distance: `${pets.dogs[9].radius}`, source: `${pets.dogs[9].photo}`},
+                {id: `D10`, name: `${pets.dogs[10].name}`, breed: `${pets.dogs[10].breed}`, distance: `${pets.dogs[10].radius}`, source: `${pets.dogs[10].photo}`},
+                {id: `D11`, name: `${pets.dogs[11].name}`, breed: `${pets.dogs[11].breed}`, distance: `${pets.dogs[11].radius}`, source: `${pets.dogs[11].photo}`},
+                {id: `D12`, name: `${pets.dogs[12].name}`, breed: `${pets.dogs[12].breed}`, distance: `${pets.dogs[12].radius}`, source: `${pets.dogs[12].photo}`},
+                {id: `D13`, name: `${pets.dogs[13].name}`, breed: `${pets.dogs[13].breed}`, distance: `${pets.dogs[13].radius}`, source: `${pets.dogs[13].photo}`},
+                {id: `D14`, name: `${pets.dogs[14].name}`, breed: `${pets.dogs[14].breed}`, distance: `${pets.dogs[14].radius}`, source: `${pets.dogs[14].photo}`},
+              ],
+
+          list: [],
+          refreshing: false,
+          currentPet: null,
+            };
+          } else if (filters.species  == "C" ){
+              // for cats
+              this.state = {
+                cards: [
+                  {id: `C00`, name: `${pets.cats[0].name}`, breed: `${pets.cats[0].breed}`, distance: `${pets.cats[0].radius}`, source: `${pets.cats[0].photo}`},
+                  {id: `C01`, name: `${pets.cats[1].name}`, breed: `${pets.cats[1].breed}`, distance: `${pets.cats[1].radius}`, source: `${pets.cats[1].photo}`},
+                  {id: `C02`, name: `${pets.cats[2].name}`, breed: `${pets.cats[2].breed}`, distance: `${pets.cats[2].radius}`, source: `${pets.cats[2].photo}`},
+                  {id: `C03`, name: `${pets.cats[3].name}`, breed: `${pets.cats[3].breed}`, distance: `${pets.cats[3].radius}`, source: `${pets.cats[3].photo}`},
+                  {id: `C04`, name: `${pets.cats[4].name}`, breed: `${pets.cats[4].breed}`, distance: `${pets.cats[4].radius}`, source: `${pets.cats[4].photo}`},
+                  {id: `C05`, name: `${pets.cats[5].name}`, breed: `${pets.cats[5].breed}`, distance: `${pets.cats[5].radius}`, source: `${pets.cats[5].photo}`},
+                  {id: `C06`, name: `${pets.cats[6].name}`, breed: `${pets.cats[6].breed}`, distance: `${pets.cats[6].radius}`, source: `${pets.cats[6].photo}`},
+                  {id: `C07`, name: `${pets.cats[7].name}`, breed: `${pets.cats[7].breed}`, distance: `${pets.cats[7].radius}`, source: `${pets.cats[7].photo}`},
+                  {id: `C08`, name: `${pets.cats[8].name}`, breed: `${pets.cats[8].breed}`, distance: `${pets.cats[8].radius}`, source: `${pets.cats[8].photo}`},
+                  {id: `C09`, name: `${pets.cats[9].name}`, breed: `${pets.cats[9].breed}`, distance: `${pets.cats[9].radius}`, source: `${pets.cats[9].photo}`},
+                  {id: `C10`, name: `${pets.cats[10].name}`, breed: `${pets.cats[10].breed}`, distance: `${pets.cats[10].radius}`, source: `${pets.cats[10].photo}`},
+                  {id: `C11`, name: `${pets.cats[11].name}`, breed: `${pets.cats[11].breed}`, distance: `${pets.cats[11].radius}`, source: `${pets.cats[11].photo}`},
+                  {id: `C12`, name: `${pets.cats[12].name}`, breed: `${pets.cats[12].breed}`, distance: `${pets.cats[12].radius}`, source: `${pets.cats[12].photo}`},
+                  {id: `C13`, name: `${pets.cats[13].name}`, breed: `${pets.cats[13].breed}`, distance: `${pets.cats[13].radius}`, source: `${pets.cats[13].photo}`},
+                  {id: `C14`, name: `${pets.cats[14].name}`, breed: `${pets.cats[14].breed}`, distance: `${pets.cats[14].radius}`, source: `${pets.cats[14].photo}`},
+                ],
+                list: [],
+                refreshing: false,
+                currentPet: null,
+              };
+      
+            }
+
+/*
         this.state = {
           list: [],
           refreshing: false,
           currentPet: null,
+          
         };
+        */
       }
 
+      handleYup = (card) => {
+        filters.index = filters.index + 1;
+        this.props.onUpdate(card.id);
+        console.log(`Yup for ${card.name}`)
+      }
+    
+      handleNope (card) {
+        filters.index = filters.index + 1;
+        console.log(`Nope for ${card.name}`)
+      }
+      handleMaybe (card) {
+        filters.index = filters.index + 1;
+        console.log(`Maybe for ${card.name}`)
+      }
+      renderSwipeCards() {
+        // If you want a stack of cards instead of one-per-one view, activate stack mode
+        // stack={true}
+        return (
+          <SwipeCards
+            cards={this.state.cards}
+            renderCard={(cardData) => <Card {...cardData} />}
+            renderNoMoreCards={() => <NoMoreCards />}
+            handleYup={this.handleYup}
+            handleNope={this.handleNope}
+            stack={true}
+            stackDepth={10} 
+          />
+        )
+      }
+    
     onUpdate = (val) => {
         let array = this.state.list.slice(0)
         array.push(val)
@@ -275,9 +443,7 @@ export default class MainScreen extends React.Component {
                 </ScrollView>
 
                 <View tabLabel="ios-paw" style={styles.swipeView}>
-                    <SwipeCards
-                        onUpdate={this.onUpdate}
-                    />
+                        {this.renderSwipeCards()}
                 </View>
 
                 <View tabLabel="ios-heart" style={styles.tabView}>
@@ -402,4 +568,55 @@ const styles = StyleSheet.create({
         flex: 1.7,
         backgroundColor: 'white',
     },
+    card: {
+        flex: 1,
+      },
+      noMoreCardsContainer: {
+        marginLeft: '10%',
+        marginRight: '10%',
+        justifyContent: 'center',
+        alignContent: 'center',
+      },
+      noMoreCardsTitle: {
+        fontSize: 20,
+        textAlign: 'center',
+        color: '#989898',
+      },
+      noMoreCardsBody: {
+        marginTop: 8,
+        fontSize: 15,
+        textAlign: 'center',
+        color: '#989898',
+        height: 80
+      },
+      emptySpace: {
+        flex: 3.8
+      },
+      moreInfoContainer: {
+        flex: .8,
+      },
+      moreInfoButton: {
+        flex: 1,
+      },
+      name: {
+        fontSize: 60,
+        color: 'white',
+        fontWeight: 'bold',
+      },
+      breed: {
+        fontSize: 30,
+        color: 'white',
+      },
+      pin: {
+        height: 25,
+        width: 25,
+      },
+      distance: {
+        fontSize: 25,
+        color: 'white',
+      },
+      moreInfo: {
+        height: 30,
+        width: 30,
+      },
 });
