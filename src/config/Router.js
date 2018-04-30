@@ -10,6 +10,7 @@ import ChangeInfo from '../screens/ChangeInfo';
 import AboutUs from '../screens/AboutUs';
 import Settings from '../screens/Settings';
 import SignUpScreen from '../screens/SignUpScreen';
+import PetProfile from '../screens/PetProfile';
 
 export const LoginStack = StackNavigator({
     LoginScreen: {
@@ -47,6 +48,9 @@ export default Root = StackNavigator({
     },  
     SignUpScreen: {
         screen: SignUpScreen,
+    },
+    PetProfile: {
+        screen: PetProfile,
     },
     
     mode: 'card',

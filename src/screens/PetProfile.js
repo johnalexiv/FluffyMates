@@ -7,9 +7,7 @@ import {
     Button,
     ScrollView,
 } from 'react-native';
-import SwipeCards from '../components/Main/SwipeCards.js';
 import Profile from '../components/PetProfile/Profile.js';
-import ChoiceButtons from '../components/Main/ChoiceButtons.js';
 import ScrollableTabView, { DefaultTabBar } from 'react-native-scrollable-tab-view';
 //import Icon from 'react-native-vector-icons';
 import { Icon, Container, Content } from 'native-base'; // Version can be specified in package.json

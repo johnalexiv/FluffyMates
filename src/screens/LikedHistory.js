@@ -4,6 +4,8 @@ import { List, ListItem, Avatar, Badge } from 'react-native-elements';
 import Swipeout from 'react-native-swipeout';
 import Communications from 'react-native-communications';
 
+import PetProfile from './PetProfile';
+import { pets } from '../petsdata.json'
 
 class LikedHistory extends Component {
   constructor(props) {
@@ -16,6 +18,9 @@ class LikedHistory extends Component {
     };
   }
 
+  onProfilePress = () => {
+    this.props.navigation.navigate('PetProfile');
+  }
 
   handleRefresh = () => {
 
@@ -101,7 +106,7 @@ class LikedHistory extends Component {
               title={`${item.name}`}
               subtitle={item.breed}
               containerStyle={{ borderBottomWidth: 0 }}
-              button onPress ={() => {console.log(item.name)}}
+              button onPress ={this.onProfilePress}
               hideChevron = {true}
               badge={{ 
                 element:
