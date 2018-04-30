@@ -595,10 +595,7 @@ export default class privacypolicy extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    paddingTop: Constants.statusBarHeight,
-    backgroundColor: 'white',
+    paddingTop: 35,
   },
   title:
   {
@@ -628,7 +625,12 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   backContainer: {
-    flex: 0.08,
+    height: 45,
     flexDirection: 'row',
+    borderWidth: 1,
+    borderTopWidth: 0,
+    borderLeftWidth: 0,
+    borderRightWidth: 0,
+    borderBottomColor: 'rgba(0,0,0,0.05)',
   },
 });

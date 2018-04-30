@@ -171,13 +171,17 @@ export default class FAQ extends Component {
   render() {
     return (
       <View style={styles.container}>
+
         <Header style = {{backgroundColor: 'white'}} hasTabs = {true} >
-        <Left>
-        <Button transparent>
-        <Icon name="ios-arrow-back" size={40} color="#32a9ba"
-          onPress={this.onBackButton}/>
-        </Button>
-        </Left>
+          <Left>
+            <Button transparent>
+              <Icon
+                name="ios-arrow-back"
+                size={40}
+                color="#32a9ba"
+                onPress={this.onBackButton}/>
+            </Button>
+          </Left>
         </Header>
 
         <Text style={styles.title}>Frequently Asked Questions</Text>
@@ -189,21 +193,18 @@ export default class FAQ extends Component {
         </TouchableHighlight>
 
         <Collapsible collapsed={this.state.collapsed} align="center">
-
           <View style={styles.content}>
-
-          <Accordion
-          fluffySection={this.state.fluffySection}
-          sections={FLUFFYQ}
-          renderHeader={this._renderQuestion}
-          renderContent={this._renderContent}
-          duration={400}
-          onChange={this._setSection.bind(this)}
-        />
+            <Accordion
+              fluffySection={this.state.fluffySection}
+              sections={FLUFFYQ}
+              renderHeader={this._renderQuestion}
+              renderContent={this._renderContent}
+              duration={400}
+              onChange={this._setSection.bind(this)} />
           </View>
         </Collapsible>
 
-      <TouchableHighlight onPress={this._toggleExpanded}>
+        <TouchableHighlight onPress={this._toggleExpanded}>
           <View style={styles.header}>
             <Text style={styles.headerText}>Account</Text>
           </View>
@@ -211,18 +212,17 @@ export default class FAQ extends Component {
 
         <Collapsible collapsed={this.state.collapsed} align="center">
           <View style={styles.content}>
-          <Accordion
-          accountSection={this.state.accountSection}
-          sections={ACCOUNTQ}
-          renderHeader={this._renderQuestion}
-          renderContent={this._renderContent}
-          duration={400}
-          onChange={this._setSection.bind(this)}
-        />
+            <Accordion
+              accountSection={this.state.accountSection}
+              sections={ACCOUNTQ}
+              renderHeader={this._renderQuestion}
+              renderContent={this._renderContent}
+              duration={400}
+              onChange={this._setSection.bind(this)} />
           </View>
         </Collapsible>
 
-      <TouchableHighlight onPress={this._toggleExpanded}>
+        <TouchableHighlight onPress={this._toggleExpanded}>
           <View style={styles.header}>
             <Text style={styles.headerText}>Features</Text>
           </View>
@@ -230,14 +230,13 @@ export default class FAQ extends Component {
 
         <Collapsible collapsed={this.state.collapsed} align="center">
           <View style={styles.content}>
-          <Accordion
-          featureSection={this.state.featureSection}
-          sections={FEATUREQ}
-          renderHeader={this._renderQuestion}
-          renderContent={this._renderContent}
-          duration={400}
-          onChange={this._setSection.bind(this)}
-        />
+            <Accordion
+              featureSection={this.state.featureSection}
+              sections={FEATUREQ}
+              renderHeader={this._renderQuestion}
+              renderContent={this._renderContent}
+              duration={400}
+              onChange={this._setSection.bind(this)}/>
           </View>
         </Collapsible>
 

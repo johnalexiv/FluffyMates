@@ -104,7 +104,7 @@ const styles = StyleSheet.create({
     back: {
         flex: 1,
     },
-        backContainer: {
+    backContainer: {
         height: 45,
         flexDirection: 'row',
         borderWidth: 1,
