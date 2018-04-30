@@ -33,6 +33,7 @@ export default class MainScreen extends React.Component {
           list: [],
           refreshing: false,
           activeRowId: null,
+          currentPet: null,
         };
       }
 
@@ -66,9 +67,9 @@ export default class MainScreen extends React.Component {
     }
 
 
-  onProfilePress = () => {
-    this.props.navigation.navigate('PetProfile');
-  }
+    onProfilePress = (item) => {
+        this.props.navigation.navigate('PetProfile', {passedData: item});
+    }
 
   handleRefresh = () => {
 
@@ -148,11 +149,11 @@ export default class MainScreen extends React.Component {
             
             <ListItem
               key={item.id}
-              avatar = { <Avatar rounded large source = {item.source} /> }
+              avatar = { <Avatar rounded large source = {{uri: item.source}} /> }
               title={`${item.name}`}
               subtitle={item.breed}
               containerStyle={{ borderBottomWidth: 0 }}
-              button onPress ={this.onProfilePress}
+              button onPress ={this.onProfilePress(item)}
               hideChevron = {true}
               badge={{ 
                 element:
