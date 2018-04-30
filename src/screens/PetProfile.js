@@ -8,37 +8,33 @@ import {
     ScrollView,
 } from 'react-native';
 import Profile from '../components/PetProfile/Profile.js';
-import ScrollableTabView, { DefaultTabBar } from 'react-native-scrollable-tab-view';
-//import Icon from 'react-native-vector-icons';
-import { Icon, Container, Content } from 'native-base'; // Version can be specified in package.json
+import Icon from 'react-native-vector-icons/Feather';
 export default class PetProfile extends React.Component {
     static navigationOptions = {
         header: null,
     }
 
+    onBackButton = () => {
+		this.props.navigation.goBack(null);
+     }
+
+
     render() {
         return (
-            <ScrollableTabView
-                style={styles.container}
-                initialPage={1}
-                tabBarPosition='top'
-                locked={true}
-            >
-                <ScrollView tabLabel="ios-arrow-back" style={styles.tabView}>                    
-                    <View style={styles.sampleCard}>
-                        <Text>Back</Text>
-                    </View>
-                </ScrollView>
 
-                <View tabLabel="Miroku" style={styles.swipeView}>
-                    <Profile/>
+            <View style = {styles.container}>
+                <View style={styles.backContainer}>
+                    <View style={styles.back}>
+                        <Icon name="chevron-left" size={40} color="#32a9ba" 
+                            onPress={this.onBackButton}/>
+                    </View>
                 </View>
 
-                <ScrollView tabLabel="" style={styles.tabView}>
-             
-                </ScrollView>
-
-            </ScrollableTabView>
+                <View  style={styles.swipeView}>
+                    <Profile/>
+                </View>
+            </View>
+           
         );
     }
 }
@@ -69,6 +65,18 @@ const styles = StyleSheet.create({
         shadowOffset: { width: 2, height: 2, },
         shadowOpacity: 0.5,
         shadowRadius: 3,
+    },
+    back: {
+        flex: 1,
+    },
+        backContainer: {
+        height: 45,
+        flexDirection: 'row',
+        borderWidth: 1,
+        borderTopWidth: 0,
+        borderLeftWidth: 0,
+        borderRightWidth: 0,
+        borderBottomColor: 'rgba(0,0,0,0.05)',
     },
 });
 
