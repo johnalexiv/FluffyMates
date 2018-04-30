@@ -6,6 +6,7 @@
     import { Icon, Container, Content } from 'native-base'; // Version can be specified in package.json
     import { pets } from '../../petsdata.json'
     import SwipeCards from 'react-native-swipe-cards';
+    import Communications from 'react-native-communications';
 
     import colors                       from '../../style/colors.js'
     import Swiper                       from 'react-native-swiper'
@@ -86,20 +87,29 @@ export default class PetProfile extends Component {
                     <Icon style={styles.infoIcon} name="ios-home-outline" />
                     <Text style={styles.info}>Shelter: {this.props.petInfo.shelter}</Text>
                 </View>
+
                 <View style={styles.infoRow}>
                     <Icon style={styles.infoIcon} name="ios-call-outline" />
-                    <Text style={styles.info}>Phone #: {this.props.petInfo.phone}</Text>
+                    <Text 
+                        style={styles.info}
+                        onPress={() => Communications.phonecall(this.props.petInfo.phone, true)}>
+                            Phone #: {this.props.petInfo.phone}
+                    </Text>
                 </View>
+
                 <View style={styles.infoRow}>
                     <Icon style={styles.infoIcon} name="ios-map-outline" />
                     <Text style={styles.info}>Address:</Text>
                 </View>
-                    <View style={styles.infoRow}>
+
+                <View style={styles.infoRow}>
                     <Text style={styles.info}> {this.props.petInfo.address}</Text>
                 </View>
-                    <View style={styles.infoRow}>
+
+                <View style={styles.infoRow}>
                     <Text style={styles.info}> {this.props.petInfo.city}</Text>
                 </View>
+
             </View>
         )
     }
