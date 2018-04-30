@@ -32,7 +32,6 @@ export default class MainScreen extends React.Component {
         this.state = {
           list: [],
           refreshing: false,
-          activeRowId: null,
         };
       }
 
@@ -66,9 +65,10 @@ export default class MainScreen extends React.Component {
     }
 
 
-  onProfilePress = () => {
-    this.props.navigation.navigate('PetProfile');
-  }
+    onProfilePress = (id) => {
+        let item = id
+        this.props.navigation.navigate('PetProfile', { passedData: item });
+    }
 
   handleRefresh = () => {
 
@@ -152,7 +152,9 @@ export default class MainScreen extends React.Component {
               title={`${item.name}`}
               subtitle={item.breed}
               containerStyle={{ borderBottomWidth: 0 }}
-              button onPress ={this.onProfilePress}
+              button onPress = {() => 
+                this.onProfilePress(item.id)
+            }
               hideChevron = {true}
               badge={{ 
                 element:

@@ -9,6 +9,8 @@ import {
 } from 'react-native';
 import Profile from '../components/PetProfile/Profile.js';
 import Icon from 'react-native-vector-icons/Feather';
+import { pets } from '../petsdata.json'
+
 export default class PetProfile extends React.Component {
     static navigationOptions = {
         header: null,
@@ -18,6 +20,36 @@ export default class PetProfile extends React.Component {
 		this.props.navigation.goBack(null);
      }
 
+
+
+    generatePetData() {
+        var petData = null
+        let id = this.props.navigation.state.params.passedData
+        let species = id.charAt(0)
+
+        switch (species) {
+            case 'C':
+                petData  = this.returnArrayElementById(pets.cats, id);
+                break;
+
+            case 'D':
+                petData = this.returnArrayElementById(pets.dogs, id);
+                break;
+
+            default:
+                petData = 'default'
+                break;
+        }
+
+        return (petData);
+    }
+
+    returnArrayElementById(array, id) {
+        let index = array.findIndex(function(array) {
+            return array.id === id; 
+        })
+        return (array[index]);
+    }
 
     render() {
         return (
@@ -31,8 +63,11 @@ export default class PetProfile extends React.Component {
                 </View>
 
                 <View  style={styles.swipeView}>
-                    <Profile/>
+                    <Profile
+                        petInfo = {this.generatePetData()}
+                    />
                 </View>
+
             </View>
            
         );

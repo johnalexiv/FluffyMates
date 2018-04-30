@@ -11,15 +11,23 @@
     import Swiper                       from 'react-native-swiper'
 
 export default class PetProfile extends Component {
+    constructor(props) { 
+        super(props);
+
+        this.state = {
+            id: null
+        };
+    }
+
     static navigationOptions = {
         tabBarVisible: false
     }
 
+ 
     render() {
         return (
             <Container>
                 <Content style={styles.content}>
-          
                     { this.renderSwiper() }
                     { this.renderInfo() }
                     { this.renderInfo2() }
@@ -30,11 +38,13 @@ export default class PetProfile extends Component {
         )
     }
 
+
+    
     // for the pet profile images
     renderSwiper() {
         return (
             <Image style={{width: 375, height: 400,  }} 
-            source = {{ uri: pets.dogs[0].photo }}  />
+            source = {{ uri: this.props.petInfo.photo }}  />
         )
     }
 
@@ -42,14 +52,14 @@ export default class PetProfile extends Component {
     renderInfo() {
         return (
             <View style={styles.holder}>
-                <Text style={styles.petName}>{pets.dogs[0].name}</Text>
+                <Text style={styles.petName}>{this.props.petInfo.name}</Text>
                 <View style={styles.infoRow}>
                     <Icon style={styles.infoIcon} name="ios-paw-outline" />
-                    <Text style={styles.info}>Breed: {pets.dogs[0].breed}</Text>
+                    <Text style={styles.info}>Breed: {this.props.petInfo.breed}</Text>
                 </View>
                 <View style={styles.infoRow}>
                     <Icon style={styles.infoIcon} name="ios-locate-outline" />
-                    <Text style={styles.info}>Location:  {pets.dogs[0].radius} miles away</Text>
+                    <Text style={styles.info}>Location:  {this.props.petInfo.radius} miles away</Text>
                 </View>
             </View>
         )
@@ -60,7 +70,7 @@ export default class PetProfile extends Component {
         return (
             <View style={styles.holder}>
                 <View style={styles.infoRow}>
-                    <Text style={styles.info2}>{pets.dogs[0].age} · {pets.dogs[0].sex} · {pets.dogs[0].size}</Text>
+                    <Text style={styles.info2}>{this.props.petInfo.age} · {this.props.petInfo.sex} · {this.props.petInfo.size}</Text>
                 </View>
             </View>
         )
@@ -74,21 +84,21 @@ export default class PetProfile extends Component {
             
                 <View style={styles.infoRow}>
                     <Icon style={styles.infoIcon} name="ios-home-outline" />
-                    <Text style={styles.info}>Shelter: {pets.dogs[0].shelter}</Text>
+                    <Text style={styles.info}>Shelter: {this.props.petInfo.shelter}</Text>
                 </View>
                 <View style={styles.infoRow}>
                     <Icon style={styles.infoIcon} name="ios-call-outline" />
-                    <Text style={styles.info}>Phone #: {pets.dogs[0].phone}</Text>
+                    <Text style={styles.info}>Phone #: {this.props.petInfo.phone}</Text>
                 </View>
                 <View style={styles.infoRow}>
                     <Icon style={styles.infoIcon} name="ios-map-outline" />
                     <Text style={styles.info}>Address:</Text>
                 </View>
                     <View style={styles.infoRow}>
-                    <Text style={styles.info}> {pets.dogs[0].address}</Text>
+                    <Text style={styles.info}> {this.props.petInfo.address}</Text>
                 </View>
                     <View style={styles.infoRow}>
-                    <Text style={styles.info}> {pets.dogs[0].city}</Text>
+                    <Text style={styles.info}> {this.props.petInfo.city}</Text>
                 </View>
             </View>
         )
@@ -101,7 +111,7 @@ export default class PetProfile extends Component {
                 <Text style={styles.headerTitle}>More Info:</Text>
                 <View style={ styles.tagContainer }>
                 <View style={styles.tag}>
-                    <Text style={styles.tagLabel}>{pets.dogs[0].health}</Text>
+                    <Text style={styles.tagLabel}>{this.props.petInfo.health}</Text>
                 </View>
                 </View>
             </View>
