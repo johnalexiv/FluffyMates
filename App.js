@@ -19,7 +19,7 @@ export default class App extends React.Component {
     }
     constructor() {
         super();
-        filters.species = "D";
+        filters.species = "C";
         filters.index = 0;
         console.log(`Species: ${filters.species }`)
         Loading.load(v => this.setState({loaded: true}));

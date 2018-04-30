@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { Component } from 'react';
 import {
     StyleSheet,
     Text,
     View,
     Image,
     Button,
+    FlatList, 
+    ActivityIndicator,
     ScrollView,
     TouchableOpacity,
 } from 'react-native';
@@ -16,13 +18,22 @@ import LikedHistory from './LikedHistory';
 import Settings from './Settings';
 import TabBar from './tabBar';
 import Filters from '../components/filters/filters';
+import { List, ListItem, Avatar, Badge } from 'react-native-elements';
+import Swipeout from 'react-native-swipeout';
+import Communications from 'react-native-communications';
+
+import PetProfile from './PetProfile';
+import { pets } from '../petsdata.json'
 
 export default class MainScreen extends React.Component {
     constructor(props) {
         super(props);
 
         this.state = {
-          cards: []
+          cards: [],
+          list: [],
+          refreshing: false,
+          activeRowId: null,
         };
       }
 
@@ -55,6 +66,114 @@ export default class MainScreen extends React.Component {
         this.props.navigation.navigate('AboutUs');
     }
 
+
+  onProfilePress = () => {
+    this.props.navigation.navigate('PetProfile');
+  }
+
+  handleRefresh = () => {
+
+    this.setState({
+      refreshing: true,
+      list: this.props.data,
+    }, () => {
+      this.setState({
+        refreshing: false,
+      })
+    })
+    
+  };
+
+  renderSeparator = () => {
+    return (
+      <View
+        style={{
+          height: 1,
+          width: "90%",
+          backgroundColor: "#CED0CE",
+          marginLeft: "5%"
+        }}
+      />
+    );
+  };
+
+  deleteItem = (key) => {
+    var array = this.props.data
+    var index = array.findIndex(function(array) {
+      return array.id === key; 
+    })
+    array.splice(index, 1)
+    this.setState({list: array.slice(0)})
+  }
+
+  renderLikes() {
+    const B = (props) => <Text style={{fontWeight: 'bold'}}>{props.children}</Text>
+    return (
+        <FlatList
+          style = {styles.flatList}
+          data = {this.state.cards}
+          ItemSeparatorComponent = {this.renderSeparator}
+          onEndReachedThreshold = {50}
+          refreshing = {this.state.refreshing}
+          onRefresh = {this.handleRefresh}
+          ListHeaderComponent = {() => (!this.state.cards.length ?
+            <View style = {styles.emptyMessageContainer}>
+              <Text style= {styles.emptyMessageTitle}>
+                No pets here.
+              </Text>
+              <Text style = {styles.emptyMessageBody}>
+                <B>Swipe right</B> to add your potential fluffy{"\n"}
+                mate to this page. Unless you already{"\n"}
+                have, in which case: <B>pull to refresh</B>{"\n"}
+                to see the list here. 
+              </Text>  
+            </View>
+          : null)}
+
+          renderItem = {({ item }) => (
+
+          <Swipeout 
+            autoClose = 'true'
+            backgroundColor ='transparent'
+            buttonWidth = {80}
+            right = {[{
+              text: 'Delete',
+              backgroundColor: '#F44646',
+              onPress: () => {
+                {
+                  this.deleteItem(item.id)
+                }
+              }
+            }]}
+            >
+            
+            <ListItem
+              key={item.id}
+              avatar = { <Avatar rounded large source = {item.source} /> }
+              title={`${item.name}`}
+              subtitle={item.breed}
+              containerStyle={{ borderBottomWidth: 0 }}
+              button onPress ={this.onProfilePress}
+              hideChevron = {true}
+              badge={{ 
+                element:
+                  <Badge 
+                    value = {<Image source={require('../images/phone.png')} style = {{width: 40, height: 40, alignContent: 'flex-end', alignSelf: 'center'}}/>}
+                    containerStyle = {{ backgroundColor: 'transparent', alignSelf: 'center', justifyContent: 'center', height: 80, paddingTop: 10 }}
+                    onPress={() => Communications.phonecall('7023843333', true)}
+                />
+              }}
+
+            />
+          
+          </Swipeout>
+
+        )}
+
+        />
+    );
+  }
+
     render() {
         return (
             <ScrollableTabView
@@ -70,8 +189,6 @@ export default class MainScreen extends React.Component {
             <View style={styles.sampleCard}>
             <View style={styles.container}>
                 <View style={styles.whiteSpace}></View>
-
-
                 <View style={styles.buttons}>
 
                     <View style={styles.viewLoginButton}>
@@ -134,9 +251,8 @@ export default class MainScreen extends React.Component {
 
                 <View tabLabel="ios-heart" style={styles.tabView}>
                     <View style={styles.likedHistoryContainer}>
-                        <LikedHistory
-                            data = {this.state.cards}
-                        />
+                        data = {this.state.cards}
+                        {this.renderLikes()}
                     </View>
                 </View>
 
@@ -156,6 +272,28 @@ const styles = StyleSheet.create({
     tabView: {
         flex: 1,
     },
+    flatList: {
+        flex: 1,
+      },
+      emptyMessageContainer: {
+        justifyContent: 'center',
+        alignContent: 'center',
+        marginTop: '75%',
+        marginLeft: '10%',
+        marginRight: '10%',
+      },
+      emptyMessageTitle: {
+        fontSize: 20,
+        color: '#989898',
+        textAlign: 'center',
+      },
+      emptyMessageBody: {
+        marginTop: 8,
+        fontSize: 15,
+        color: '#989898',
+        textAlign: 'center',
+        height: 80
+      },
     likedHistoryContainer: {
         flex: 1,
         borderWidth: 1,
