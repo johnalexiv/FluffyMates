@@ -30,7 +30,6 @@ export default class MainScreen extends React.Component {
         super(props);
 
         this.state = {
-          cards: [],
           list: [],
           refreshing: false,
           activeRowId: null,
@@ -38,10 +37,10 @@ export default class MainScreen extends React.Component {
       }
 
     onUpdate = (val) => {
-        let array = this.state.cards.slice(0)
+        let array = this.state.list.slice(0)
         array.push(val)
         this.setState({
-            cards: array.slice(0)
+            list: array.slice(0)
         })
     };
 
@@ -75,7 +74,7 @@ export default class MainScreen extends React.Component {
 
     this.setState({
       refreshing: true,
-      list: this.props.data,
+      list: this.state.list,
     }, () => {
       this.setState({
         refreshing: false,
@@ -98,7 +97,7 @@ export default class MainScreen extends React.Component {
   };
 
   deleteItem = (key) => {
-    var array = this.props.data
+    var array = this.state.list
     var index = array.findIndex(function(array) {
       return array.id === key; 
     })
@@ -111,12 +110,12 @@ export default class MainScreen extends React.Component {
     return (
         <FlatList
           style = {styles.flatList}
-          data = {this.state.cards}
+          data = {this.state.list}
           ItemSeparatorComponent = {this.renderSeparator}
           onEndReachedThreshold = {50}
           refreshing = {this.state.refreshing}
           onRefresh = {this.handleRefresh}
-          ListHeaderComponent = {() => (!this.state.cards.length ?
+          ListHeaderComponent = {() => (!this.state.list.length ?
             <View style = {styles.emptyMessageContainer}>
               <Text style= {styles.emptyMessageTitle}>
                 No pets here.
@@ -251,7 +250,6 @@ export default class MainScreen extends React.Component {
 
                 <View tabLabel="ios-heart" style={styles.tabView}>
                     <View style={styles.likedHistoryContainer}>
-                        data = {this.state.cards}
                         {this.renderLikes()}
                     </View>
                 </View>
