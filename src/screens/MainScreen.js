@@ -100,18 +100,17 @@ export default class MainScreen extends React.Component {
         this.props.navigation.navigate('PetProfile', { passedData: item });
     }
 
-  handleRefresh = () => {
+    handleRefresh = () => {
+        this.setState({
+            refreshing: true,
+            list: this.state.list,
+        }, () => {
+            this.setState({
+            refreshing: false,
+            })
+        })
 
-    this.setState({
-      refreshing: true,
-      list: this.state.list,
-    }, () => {
-      this.setState({
-        refreshing: false,
-      })
-    })
-    
-  };
+    };
 
   renderSeparator = () => {
     return (
@@ -279,6 +278,7 @@ export default class MainScreen extends React.Component {
 
                 <View tabLabel="ios-paw" style={styles.swipeView}>
                     <SwipeCards
+                        onProfilePress={this.onProfilePress}
                         onUpdate={this.onUpdate}
                     />
                 </View>
