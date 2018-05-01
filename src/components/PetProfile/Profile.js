@@ -18,11 +18,14 @@ export default class PetProfile extends Component {
         this.state = {
             id: null
         };
+
+
     }
 
     static navigationOptions = {
         tabBarVisible: false
     }
+
 
  
     render() {
@@ -43,8 +46,11 @@ export default class PetProfile extends Component {
     
     // for the pet profile images
     renderSwiper() {
+        const dimensions = Dimensions.get('window');
+        const imageWidth = dimensions.width;
         return (
-            <Image style={{width: 375, height: 400,  }} 
+            
+            <Image style={{width: imageWidth, height: 400,  }} 
             source = {{ uri: this.props.petInfo.photo }}  />
         )
     }
