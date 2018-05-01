@@ -6,7 +6,7 @@ import {
     Image,
     Button,
     ImageBackground,
-    FlatList, 
+    FlatList,
     ActivityIndicator,
     ScrollView,
     TouchableOpacity,
@@ -51,7 +51,7 @@ class Card extends React.Component {
         petID: '',
        }
     }
-  
+
 
     onPressButton = (id) => {
         let item = id
@@ -60,19 +60,19 @@ class Card extends React.Component {
 
 
     render() {
-      return ( 
+      return (
         <View style = { styles.card }>
-  
+
           <ImageBackground
             source = {{uri: this.props.photo }}
-  
-            style = { {width: '100%', height: '100%'} } > 
+
+            style = { {width: '100%', height: '100%'} } >
             <View style = {styles.emptySpace}>
             <Text></Text>
             </View>
-  
+
             <View style = { styles.moreInfoContainer }>
-               
+
                 <TouchableOpacity
                   onPress= {() =>  this.onPressButton(this.props.id) }
                   style={styles.moreInfoButton}>
@@ -84,22 +84,22 @@ class Card extends React.Component {
                 </TouchableOpacity>
             </View>
           </ImageBackground>
-  
+
         </View>
       )
     }
   }
-   
+
   class NoMoreCards extends Component {
     constructor(props) {
       super(props);
     }
-  
+
     render() {
       return (
         <View style = {styles.noMoreCardsContainer}>
           <Text style={styles.noMoreCardsTitle}>
-            You've reached the end!
+            Youve reached the end!
           </Text>
           <Text style={styles.noMoreCardsBody}>
             Please check back soon.
@@ -108,7 +108,7 @@ class Card extends React.Component {
       )
     }
   }
-   
+
 
 
 export default class MainScreen extends React.Component {
@@ -128,7 +128,7 @@ export default class MainScreen extends React.Component {
           selectedSex: "null",
           selectedSize: "null",
         };
-      
+
       }
 
       sliderOneValuesChangeStart = () => {
@@ -136,7 +136,7 @@ export default class MainScreen extends React.Component {
           sliderOneChanging: true,
         });
       }
-   
+
       sliderOneValuesChange = (values) => {
         let newValues = [0];
         newValues[0] = values[0];
@@ -144,13 +144,13 @@ export default class MainScreen extends React.Component {
           sliderOneValue: newValues,
         });
       }
-   
+
       sliderOneValuesChangeFinish = () => {
         this.setState({
           sliderOneChanging: false,
         });
       }
-   
+
       onSpeciesChangeText = (text) => {
           this.setState({selectedSpecies: text});
           filters.species = text[0];
@@ -160,11 +160,11 @@ export default class MainScreen extends React.Component {
           } else if (filters.species == "C") {
             this.setState({cards: [...pets.cats] });
           } else if (filters.species == "B") {
-            this.setState({cards: [...pets.bird] });
+            this.setState({cards: [...pets.birds] });
           }
           this.forceUpdate();
         }
-   
+
         onBreedChangeText = (text) => {
             this.setState({selectedBreed: text});
           }
@@ -177,7 +177,7 @@ export default class MainScreen extends React.Component {
        onSexChangeText = (text) => {
                   this.setState({selectedSex: text});
                 }
-   
+
        onSizeChangeText = (text) => {
                    this.setState({selectedSize: text});
                    }
@@ -191,14 +191,14 @@ export default class MainScreen extends React.Component {
        var dogCount = (Object.keys(pets.dogs).length);
        var catCount = (Object.keys(pets.cats).length);
        var birdCount = (Object.keys(pets.birds).length);
-   
+
       for(let i = 0; i < dogCount; i++)
        {
          color.add(pets.dogs[i].color);
          breeds.add(pets.dogs[i].breed2);
          sp.add(pets.dogs[i].species);
        }
-   
+
        for(let i = 0; i < catCount; i++)
         {
           color.add(pets.cats[i].color);
@@ -211,15 +211,15 @@ export default class MainScreen extends React.Component {
           breeds.add(pets.birds[i].breed2);
           sp.add(pets.birds[i].species);
         }
-   
+
        sp.forEach(function(sp){
          species.push({value: sp})
        });
-   
+
        color.forEach(function(color){
          colors.push({value: color})
        });
-   
+
        breeds.forEach(function(breeds){
          breed.push({value: breeds})
        });
@@ -234,7 +234,7 @@ export default class MainScreen extends React.Component {
          value: 'Both',
        },
        ];
-   
+
        let age = [
        {
          value: 'Puppy',
@@ -249,7 +249,7 @@ export default class MainScreen extends React.Component {
          value: 'Senior',
        },
        ];
-   
+
        let size = [
        {
          value: 'Small',
@@ -276,7 +276,7 @@ export default class MainScreen extends React.Component {
                   onChangeText={this.onSpeciesChangeText}
                 />
            </View>
-   
+
            <View>
            <Dropdown
                   label='Breed'
@@ -287,7 +287,7 @@ export default class MainScreen extends React.Component {
                   onChangeText={this.onBreedChangeText}
                 />
            </View>
-   
+
            <View>
            <Dropdown
                   label='Color'
@@ -298,7 +298,7 @@ export default class MainScreen extends React.Component {
                   onChangeText={this.onColorChangeText}
                 />
            </View>
-   
+
            <View>
            <Dropdown
                   label='Gender'
@@ -309,7 +309,7 @@ export default class MainScreen extends React.Component {
                   onChangeText={this.onSexChangeText}
                 />
            </View>
-   
+
            <View>
            <Dropdown
                   label='Age'
@@ -320,7 +320,7 @@ export default class MainScreen extends React.Component {
                   onChangeText={this.onAgeChangeText}
                 />
            </View>
-   
+
            <View>
            <Dropdown
                   label='Size'
@@ -331,7 +331,7 @@ export default class MainScreen extends React.Component {
                   onChangeText={this.onSizeChangeText}
                 />
            </View>
-   
+
      <View style={styles.sliders}>
                <View style={styles.sliderOne}>
                  <Text style={styles.textLeft}>Within:</Text>
@@ -347,40 +347,40 @@ export default class MainScreen extends React.Component {
                  onValuesChangeStart={this.sliderOneValuesChangeStart}
                  onValuesChange={this.sliderOneValuesChange}
                  onValuesChangeFinish={this.sliderOneValuesChangeFinish}
-   
+
                  selectedStyle={{
                    backgroundColor: '#37B8CB',
                  }}
-   
+
                  unselectedStyle={{
                    backgroundColor: 'silver',
                  }}
-   
+
                  trackStyle={{
                    height:10,
                    backgroundColor: 'red',
                  }}
-   
+
                  touchDimensions={{
                    height: 40,
                    width: 40,
                    borderRadius: 20,
                    slipDisplacement: 40,
                  }}
-   
+
                  containerStyle={{
                    height:40,
                    marginLeft: 20
                  }}
-   
+
                  icon= {true}
-   
+
                  customMarker = {CustomMarker}
                />
            </View>
            </View>
          );
-   
+
    }
 
       handleYup = (card) => {
@@ -388,7 +388,7 @@ export default class MainScreen extends React.Component {
         this.onUpdate(card.id);
         console.log(`Yup for ${card.name}`)
       }
-    
+
       handleNope (card) {
         filters.index = filters.index + 1;
         console.log(`Nope for ${card.name}`)
@@ -408,11 +408,11 @@ export default class MainScreen extends React.Component {
             handleYup={this.handleYup}
             handleNope={this.handleNope}
             stack={true}
-            stackDepth={10} 
+            stackDepth={10}
           />
         )
       }
-    
+
     onUpdate = (val) => {
         let array = this.state.list.slice(0)
         array.push(val)
@@ -433,7 +433,7 @@ export default class MainScreen extends React.Component {
             case 'D':
                 petData = this.returnArrayElementById(pets.dogs, id);
                 break;
-              
+
             case 'B':
                 petData = this.returnArrayElementById(pets.birds, id);
                 break;
@@ -449,7 +449,7 @@ export default class MainScreen extends React.Component {
 
     returnArrayElementById(array, id) {
         let index = array.findIndex(function(array) {
-            return array.id === id; 
+            return array.id === id;
         })
         return (array[index]);
     }
@@ -470,7 +470,7 @@ export default class MainScreen extends React.Component {
     onPolicyPress = () => {
         this.props.navigation.navigate('privacypolicy');
     }
-    
+
     onAboutPress = () => {
         this.props.navigation.navigate('AboutUs');
     }
@@ -491,7 +491,7 @@ export default class MainScreen extends React.Component {
         refreshing: false,
       })
     })
-    
+
   };
 
   renderSeparator = () => {
@@ -510,14 +510,14 @@ export default class MainScreen extends React.Component {
   deleteItem = (key) => {
     var array = this.state.list
     let index = array.findIndex(function(array) {
-        return array === key; 
+        return array === key;
     })
 
     array.splice(index, 1)
     this.setState({list: array.slice(0)})
   }
 
-  
+
 
   renderLikes() {
     const B = (props) => <Text style={{fontWeight: 'bold'}}>{props.children}</Text>
@@ -538,14 +538,14 @@ export default class MainScreen extends React.Component {
                 <B>Swipe right</B> to add your potential fluffy{"\n"}
                 mate to this page. Unless you already{"\n"}
                 have, in which case: <B>pull to refresh</B>{"\n"}
-                to see the list here. 
-              </Text>  
+                to see the list here.
+              </Text>
             </View>
           : null)}
 
           renderItem = {({ item }) => (
 
-          <Swipeout 
+          <Swipeout
             autoClose = 'true'
             backgroundColor ='transparent'
             buttonWidth = {80}
@@ -559,20 +559,20 @@ export default class MainScreen extends React.Component {
               }
             }]}f
             >
-            
+
             <ListItem
               key={item}
               avatar = { <Avatar rounded large source = {{uri: this.generatePetData(item).photo}} /> }
               title={this.state.currentPet.name}
               subtitle={this.state.currentPet.breed}
               containerStyle={{ borderBottomWidth: 0 }}
-              button onPress = {() => 
+              button onPress = {() =>
                 this.onProfilePress(item)
             }
               hideChevron = {true}
-              badge={{ 
+              badge={{
                 element:
-                  <Badge 
+                  <Badge
                     value = {<Image source={require('../images/phone.png')} style = {{width: 40, height: 40, alignContent: 'flex-end', alignSelf: 'center'}}/>}
                     containerStyle = {{ backgroundColor: 'transparent', alignSelf: 'center', justifyContent: 'center', height: 80, paddingTop: 10 }}
                     onPress={() => Communications.phonecall(this.state.currentPet.phone, true)}
@@ -580,7 +580,7 @@ export default class MainScreen extends React.Component {
               }}
 
             />
-          
+
           </Swipeout>
 
         )}
@@ -685,7 +685,7 @@ const styles = StyleSheet.create({
       paddingVertical: 20,
       marginLeft: 150,
       color: 'darkgray'
-  
+
     },
     textLeft:
     {
@@ -693,7 +693,7 @@ const styles = StyleSheet.create({
       paddingVertical: 20,
       fontSize:20,
       color: 'darkgray'
-  
+
     },
     title: {
       fontSize: 20,
@@ -703,7 +703,7 @@ const styles = StyleSheet.create({
       flexDirection: 'row',
       justifyContent: 'space-around',
     },
-  
+
     label:
     {
     marginTop: 20,
@@ -746,7 +746,7 @@ const styles = StyleSheet.create({
         shadowColor: '#ccc',
         shadowOffset: { width: 2, height: 2, },
         shadowOpacity: 0.5,
-        shadowRadius: 3,    
+        shadowRadius: 3,
     },
     sampleCard: {
         flex: 1,
