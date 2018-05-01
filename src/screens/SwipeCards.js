@@ -78,7 +78,7 @@ class Card extends React.Component {
                 <MoreInfoButton
                   name = {this.props.name}
                   breed = {this.props.breed}
-                  distance = {this.props.radius}
+                  distance = {`${this.props.radius}`}
                   />
 
               </TouchableOpacity>

@@ -53,9 +53,9 @@ class Card extends React.Component {
     }
   
 
-    onProfilePress = (id) => {
+    onPressButton = (id) => {
         let item = id
-        this.props.navigation.navigate('PetProfile', { passedData: item });
+        this.props.onProfilePress(item)
     }
 
 
@@ -74,12 +74,12 @@ class Card extends React.Component {
             <View style = { styles.moreInfoContainer }>
                
                 <TouchableOpacity
-                  onPress= {() =>  this.onProfilePress(this.state.currentPet) }
+                  onPress= {() =>  this.onPressButton(this.props.id) }
                   style={styles.moreInfoButton}>
                   <MoreInfoButton
                     name = {this.props.name}
                     breed = {this.props.breed}
-                    distance = {this.props.distance}
+                    distance = {this.props.radius}
                     />
                 </TouchableOpacity>
             </View>
@@ -403,7 +403,7 @@ export default class MainScreen extends React.Component {
         return (
           <SwipeCards
             cards={this.state.cards}
-            renderCard={(cardData) => <Card {...cardData} />}
+            renderCard={(cardData) => <Card {...cardData} onProfilePress = {this.onProfilePress}/>}
             renderNoMoreCards={() => <NoMoreCards />}
             handleYup={this.handleYup}
             handleNope={this.handleNope}
