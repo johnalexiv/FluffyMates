@@ -56,7 +56,7 @@ export default class Filters extends React.Component {
    onSpeciesChangeText = (text) => {
        this.setState({selectedSpecies: text});
        filters.species = text[0];
-       console.log(`Species: ${filters.species }`)
+       //console.log(`Species: ${filters.species }`)
      }
 
      onBreedChangeText = (text) => {
@@ -84,6 +84,7 @@ export default class Filters extends React.Component {
     var species = [];
     var dogCount = (Object.keys(pets.dogs).length);
     var catCount = (Object.keys(pets.cats).length);
+    var birdCount = (Object.keys(pets.birds).length);
 
    for(let i = 0; i < dogCount; i++)
     {
@@ -98,6 +99,12 @@ export default class Filters extends React.Component {
        breeds.add(pets.cats[i].breed2);
        sp.add(pets.cats[i].species);
      }
+     for(let i = 0; i < birdCount; i++)
+      {
+        color.add(pets.birds[i].color);
+        breeds.add(pets.birds[i].breed2);
+        sp.add(pets.birds[i].species);
+      }
 
     sp.forEach(function(sp){
       species.push({value: sp})
