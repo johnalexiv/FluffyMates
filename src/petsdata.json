@@ -1049,7 +1049,6 @@
       "phone" : "702-384-3333",
       "shelter" : "The Animal Foundation",
       "health" :"Spayed / Neutered",
-<<<<<<< HEAD
       "photo" : "https://dl5zpyw5k3jeb.cloudfront.net/photos/pets/37667983/1/?bust=1508199128"
     }
   ],
@@ -1434,10 +1433,6 @@
       "health" :"Spayed / Neutered",
       "photo" : "https://dl5zpyw5k3jeb.cloudfront.net/photos/pets/41242639/1/?bust=1521825120"
     }
-=======
-      "photo" : "https://dl5zpyw5k3jeb.cloudfront.net/photos/pets/41357820/1/?bust=1523228838.jpeg"
-    },
->>>>>>> 552e92c57db830a6fb1b5b1fcc0a6fa2ce76f20d
   ]
   }
 }
