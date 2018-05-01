@@ -192,7 +192,6 @@ export default class MainScreen extends React.Component {
        var species = [];
        var dogCount = (Object.keys(pets.dogs).length);
        var count = (Object.keys(pets.cats).length);
-       var birdCount = (Object.keys(pets.birds).length);
        var rabbitCount = (Object.keys(pets.rabbits).length);
 
       for(let i = 0; i < dogCount; i++)
@@ -210,13 +209,11 @@ export default class MainScreen extends React.Component {
           color.add(pets.birds[i].color);
           breeds.add(pets.birds[i].breed2);
           sp.add(pets.birds[i].species);
-        }
-        for(let i = 0; i < rabbitCount; i++)
-        {
           color.add(pets.rabbits[i].color);
           breeds.add(pets.rabbits[i].breed2);
           sp.add(pets.rabbits[i].species);
         }
+        
        sp.forEach(function(sp){
          species.push({value: sp})
        });
