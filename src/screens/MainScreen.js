@@ -406,6 +406,8 @@ export default class MainScreen extends React.Component {
             handleNope={this.handleNope}
             stack={true}
             stackDepth={10}
+            onClickHandler = { () => { } }
+
           />
         )
       }
