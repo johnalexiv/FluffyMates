@@ -115,7 +115,7 @@ export default class MainScreen extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-          cards: [...pets.dogs, ...pets.cats, ...pets.birds],
+          cards: [...pets.dogs, ...pets.cats, ...pets.birds, ...pets.rabbits],
           list: [],
           refreshing: false,
           currentPet: null,
@@ -161,6 +161,8 @@ export default class MainScreen extends React.Component {
             this.setState({cards: [...pets.cats] });
           } else if (filters.species == "B") {
             this.setState({cards: [...pets.birds] });
+          }else if (filters.species == "R") {
+            this.setState({cards: [...pets.rabbits] });
           }
           this.forceUpdate();
         }
@@ -191,6 +193,7 @@ export default class MainScreen extends React.Component {
        var dogCount = (Object.keys(pets.dogs).length);
        var catCount = (Object.keys(pets.cats).length);
        var birdCount = (Object.keys(pets.birds).length);
+       var rabbitCount = (Object.keys(pets.rabbits).length);
 
       for(let i = 0; i < dogCount; i++)
        {
@@ -211,7 +214,12 @@ export default class MainScreen extends React.Component {
           breeds.add(pets.birds[i].breed2);
           sp.add(pets.birds[i].species);
         }
-
+        for(let i = 0; i < rabbitCount; i++)
+        {
+          color.add(pets.rabbits[i].color);
+          breeds.add(pets.rabbits[i].breed2);
+          sp.add(pets.rabbits[i].species);
+        }
        sp.forEach(function(sp){
          species.push({value: sp})
        });
@@ -438,6 +446,10 @@ export default class MainScreen extends React.Component {
 
             case 'B':
                 petData = this.returnArrayElementById(pets.birds, id);
+                break;
+
+            case 'R':
+                petData = this.returnArrayElementById(pets.rabbits, id);
                 break;
 
             default:

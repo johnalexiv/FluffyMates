@@ -36,6 +36,14 @@ export default class PetProfile extends React.Component {
                 petData = this.returnArrayElementById(pets.dogs, id);
                 break;
 
+            case 'B':
+            petData = this.returnArrayElementById(pets.birds, id);
+            break;
+
+            case 'R':
+            petData = this.returnArrayElementById(pets.rabbits, id);
+            break;
+
             default:
                 petData = 'default'
                 break;
