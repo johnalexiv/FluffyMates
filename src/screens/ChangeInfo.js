@@ -59,9 +59,19 @@ export default class ChangeInfo extends React.Component {
 		header: null,
 	}   
 
+	onBackButton = () => {
+		this.props.navigation.goBack(null);
+	}
+
 	render() {
 		return (
 			<KeyboardAvoidingView behavior="padding" style={styles.container}>
+				<View style={styles.backContainer}>
+					<View style={styles.back}>
+						<Icon name="chevron-left" size={40} color="#32a9ba" 
+							onPress={this.onBackButton}/>
+					</View>
+				</View>
 
 				<View style={styles.formContainer}>
 					<View style={styles.inputFormat}>
@@ -123,8 +133,10 @@ const styles = StyleSheet.create({
 		flex: 1,
 	},
 	container: {
-        flex: 1,
-        backgroundColor: 'white',
+		flex: 1,
+		justifyContent: 'center',
+		backgroundColor: 'white',
+		paddingTop: 35,
 	},
 	signupButton: {
         flex: 1,
@@ -162,7 +174,7 @@ const styles = StyleSheet.create({
     },
     formContainer: {
 		flex: 1,
-		justifyContent: 'flex-start',
+		justifyContent: 'center',
 		paddingBottom: 10,
 	},
 	inputFormat: {
@@ -182,4 +194,16 @@ const styles = StyleSheet.create({
 		paddingLeft: 10,
 		color: 'black'
 	},
+	back: {
+		flex: 1,
+	  },
+	  backContainer: {
+		height: 45,
+		flexDirection: 'row',
+		borderWidth: 1,
+		borderTopWidth: 0,
+		borderLeftWidth: 0,
+		borderRightWidth: 0,
+		borderBottomColor: 'rgba(0,0,0,0.05)',
+	  },
 });

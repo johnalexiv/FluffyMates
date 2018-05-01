@@ -8,10 +8,11 @@ import {
   Image,
   ScrollView
 } from 'react-native';
-import {Header, Button, Left, Icon } from 'native-base';
+import {Header, Button, Left } from 'native-base';
 import * as Animatable from 'react-native-animatable';
 import Collapsible from 'react-native-collapsible';
 import Accordion from 'react-native-collapsible/Accordion';
+import Icon from 'react-native-vector-icons/Feather';
 
 const ACCOUNTQ = [
   {
@@ -75,6 +76,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
     alignItems : 'center',
+    paddingTop: 35,
   }, 
 
   header: {
@@ -124,7 +126,18 @@ const styles = StyleSheet.create({
     marginTop:0,
     paddingBottom:10,
   },
-
+  back: {
+    flex: 1,
+  },
+  backContainer: {
+    height: 45,
+    flexDirection: 'row',
+    borderWidth: 1,
+    borderTopWidth: 0,
+    borderLeftWidth: 0,
+    borderRightWidth: 0,
+    borderBottomColor: 'rgba(0,0,0,0.05)',
+  },
 });
 
 export default class FAQ extends Component {
@@ -141,6 +154,10 @@ export default class FAQ extends Component {
 
   onBackButton = () => {
 		this.props.navigation.goBack(null);
+  }
+
+  static navigationOptions = {
+    header: null,
   }
 
   _toggleExpanded = (section) => {
@@ -186,6 +203,12 @@ export default class FAQ extends Component {
   render() {
     return (
       <View style={styles.container}>
+        <View style={styles.backContainer}>
+            <View style={styles.back}>
+                <Icon name="chevron-left" size={40} color="#32a9ba" 
+                    onPress={this.onBackButton}/>
+            </View>
+        </View>
 
         <ScrollView>
           <Text style={styles.title}>FAQ</Text>
