@@ -597,14 +597,12 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingTop: 35,
   },
-  title:
-  {
+  title: {
       marginTop: 10,
       fontSize: 30,
       textAlign: 'center'
   },
-  subtitle:
-  {
+  subtitle: {
     fontSize:15,
     marginTop:0,
     textAlignVertical:'center',

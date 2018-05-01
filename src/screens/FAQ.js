@@ -5,10 +5,10 @@ import {
   Text,
   View,
   TouchableHighlight,
-  Image
+  Image,
+  ScrollView
 } from 'react-native';
 import {Header, Button, Left, Icon } from 'native-base';
-
 import * as Animatable from 'react-native-animatable';
 import Collapsible from 'react-native-collapsible';
 import Accordion from 'react-native-collapsible/Accordion';
@@ -73,32 +73,17 @@ const FLUFFYQ = [
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    //justifyContent: 'center',
     backgroundColor: '#fff',
-    //paddingTop: Constants.statusBarHeight,
     alignItems : 'center',
   }, 
-  title: {
-    textAlign: 'center',
-    fontSize: 22,
-    fontWeight: '300',
-    marginBottom: 20,
-  },
-  question: {
-    backgroundColor: '#fff',
-    padding: 10,
-  },
+
   header: {
-    backgroundColor: '#fff',
     padding: 10,
-  },
-  headerText: {
-    textAlign: 'center',
-    fontSize: 16,
-    fontWeight: '500',
+    width: 375,
+    backgroundColor: '#37B8CB'
   },
   content: {
-    padding: 20,
+    padding: 10,
     backgroundColor: '#fff',
   },
   active: {
@@ -107,20 +92,39 @@ const styles = StyleSheet.create({
   inactive: {
     backgroundColor: '#fff',
   },
-  selectTitle: {
-    fontSize: 14,
-    fontWeight: '500',
+  title:{
+    fontSize: 30,
+    fontWeight: 'bold',
+    color: '#4d4d4d',
+    marginTop: 15,
+    marginBottom: 15,
+
+    textAlign: 'center',
+  },
+  subtitle: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: '#fff',
+    marginTop:0,
+    padding: 4,
+    textAlignVertical:'center',
+    textAlign: 'center',
+    backgroundColor: '#37B8CB'
+  },
+  question: {
+    fontSize: 15,
+    fontWeight: 'bold',
+    color: '#4d4d4d',
     padding: 10,
   },
-  back: {
-    flex: 1,
-    color:  'white',
+  answer: {
+    fontSize: 14,
+    color: '#4d4d4d',
+    textAlign: 'justify',
+    marginTop:0,
+    paddingBottom:10,
   },
-  backContainer: {
-    flex: 0.08,
-    flexDirection: 'row',
-    color : 'white',
-  },
+
 });
 
 export default class FAQ extends Component {
@@ -129,39 +133,50 @@ export default class FAQ extends Component {
     fluffySection: false,
     featureSection: false,
     accountSection: false,
+
+    collapsedFluffy: false,
+    collapsedFeatures: false,
+    collapsedAccount: false,
   };
 
   onBackButton = () => {
 		this.props.navigation.goBack(null);
   }
 
-  _toggleExpanded = () => {
-    this.setState({ collapsed: !this.state.collapsed });
+  _toggleExpanded = (section) => {
+    switch (section) {
+      case 'FluffyMates':
+        this.setState({ collapsedFluffy: !this.state.collapsedFluffy })
+        break;
+      case 'Account':
+        this.setState({ collapsedAccount: !this.state.collapsedAccount })
+        break;
+      case 'Features':
+        this.setState({ collapsedFeatures: !this.state.collapsedFeatures })
+        break;
+      default:
+        console.log('idk')
+        break;
+
+    }
   }
 
   _setSection(section) {
     this.setState({ activeSection: section });
   }
 
-  _renderHeader(section, i, isActive) {
-    return (
-      <Animatable.View duration={400} style={[styles.header, isActive ? styles.active : styles.inactive]} transition="backgroundColor">
-        <Text style={styles.headerText}>{section.title}</Text>
-      </Animatable.View>
-    );
-  }
   _renderQuestion(section, i, isActive) {
     return (
       <Animatable.View duration={400} style={[styles.question, isActive ? styles.active : styles.inactive]} transition="backgroundColor">
-        <Text style={styles.headerText}>{section.title}</Text>
+        <Text style={styles.question}>{section.title}</Text>
       </Animatable.View>
     );
   }
 
   _renderContent(section, i, isActive) {
     return (
-      <Animatable.View duration={400}  style={[styles.content, isActive ? styles.active : styles.inactive]} transition="backgroundColor">
-        <Animatable.Text animation={isActive ? 'bounceIn' : undefined}>{section.content}</Animatable.Text>
+      <Animatable.View duration={10}  style={[styles.content, isActive ? styles.active : styles.inactive]} transition="backgroundColor">
+        <Text style ={styles.answer}>{section.content}</Text>
       </Animatable.View>
     );
   }
@@ -172,74 +187,63 @@ export default class FAQ extends Component {
     return (
       <View style={styles.container}>
 
-        <Header style = {{backgroundColor: 'white'}} hasTabs = {true} >
-          <Left>
-            <Button transparent>
-              <Icon
-                name="ios-arrow-back"
-                size={40}
-                color="#32a9ba"
-                onPress={this.onBackButton}/>
-            </Button>
-          </Left>
-        </Header>
+        <ScrollView>
+          <Text style={styles.title}>FAQ</Text>
 
-        <Text style={styles.title}>Frequently Asked Questions</Text>
+          <TouchableHighlight onPress={this._toggleExpanded.bind(this, 'FluffyMates')}>
+            <View style={styles.header}>
+              <Text style={styles.subtitle}>FLUFFYMATES</Text>
+            </View>
+          </TouchableHighlight>
 
-        <TouchableHighlight onPress={this._toggleExpanded}>
-          <View style={styles.header}>
-            <Text style={styles.headerText}>FluffyMates</Text>
-          </View>
-        </TouchableHighlight>
+          <Collapsible collapsed={this.state.collapsedFluffy} align="center">
+            <View style={styles.content}>
+              <Accordion
+                fluffySection={this.state.fluffySection}
+                sections={FLUFFYQ}
+                renderHeader={this._renderQuestion}
+                renderContent={this._renderContent}
+                duration={400}
+                onChange={this._setSection.bind(this)} />
+            </View>
+          </Collapsible>
 
-        <Collapsible collapsed={this.state.collapsed} align="center">
-          <View style={styles.content}>
-            <Accordion
-              fluffySection={this.state.fluffySection}
-              sections={FLUFFYQ}
-              renderHeader={this._renderQuestion}
-              renderContent={this._renderContent}
-              duration={400}
-              onChange={this._setSection.bind(this)} />
-          </View>
-        </Collapsible>
+          <TouchableHighlight onPress={this._toggleExpanded.bind(this, 'Account')}>
+            <View style={styles.header}>
+              <Text style={styles.subtitle}>ACCOUNT</Text>
+            </View>
+          </TouchableHighlight>
 
-        <TouchableHighlight onPress={this._toggleExpanded}>
-          <View style={styles.header}>
-            <Text style={styles.headerText}>Account</Text>
-          </View>
-        </TouchableHighlight>
+          <Collapsible collapsed={this.state.collapsedAccount} align="center">
+            <View style={styles.content}>
+              <Accordion
+                accountSection={this.state.accountSection}
+                sections={ACCOUNTQ}
+                renderHeader={this._renderQuestion}
+                renderContent={this._renderContent}
+                duration={400}
+                onChange={this._setSection.bind(this)} />
+            </View>
+          </Collapsible>
 
-        <Collapsible collapsed={this.state.collapsed} align="center">
-          <View style={styles.content}>
-            <Accordion
-              accountSection={this.state.accountSection}
-              sections={ACCOUNTQ}
-              renderHeader={this._renderQuestion}
-              renderContent={this._renderContent}
-              duration={400}
-              onChange={this._setSection.bind(this)} />
-          </View>
-        </Collapsible>
+          <TouchableHighlight onPress={this._toggleExpanded.bind(this, 'Features')}>
+            <View style={styles.header}>
+              <Text style={styles.subtitle}>FEATURES</Text>
+            </View>
+          </TouchableHighlight>
 
-        <TouchableHighlight onPress={this._toggleExpanded}>
-          <View style={styles.header}>
-            <Text style={styles.headerText}>Features</Text>
-          </View>
-        </TouchableHighlight>
-
-        <Collapsible collapsed={this.state.collapsed} align="center">
-          <View style={styles.content}>
-            <Accordion
-              featureSection={this.state.featureSection}
-              sections={FEATUREQ}
-              renderHeader={this._renderQuestion}
-              renderContent={this._renderContent}
-              duration={400}
-              onChange={this._setSection.bind(this)}/>
-          </View>
-        </Collapsible>
-
+          <Collapsible collapsed={this.state.collapsedFeatures} align="center">
+            <View style={styles.content}>
+              <Accordion
+                featureSection={this.state.featureSection}
+                sections={FEATUREQ}
+                renderHeader={this._renderQuestion}
+                renderContent={this._renderContent}
+                duration={400}
+                onChange={this._setSection.bind(this)}/>
+            </View>
+          </Collapsible>
+        </ScrollView>
       </View>
     );
   }
