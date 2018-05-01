@@ -7,6 +7,7 @@
     import { pets } from '../../petsdata.json'
     import SwipeCards from 'react-native-swipe-cards';
     import Communications from 'react-native-communications';
+    import openMap from 'react-native-open-maps';
 
     import colors                       from '../../style/colors.js'
     import Swiper                       from 'react-native-swiper'
@@ -27,6 +28,7 @@ export default class PetProfile extends Component {
     }
 
 
+    
  
     render() {
         return (
@@ -42,6 +44,9 @@ export default class PetProfile extends Component {
         )
     }
 
+    _goToShelter() {
+        openMap({ latitude: 36.1765063, longitude: -115.1076457 });
+      }
 
     
     // for the pet profile images
@@ -109,11 +114,11 @@ export default class PetProfile extends Component {
                 </View>
 
                 <View style={styles.infoRow}>
-                    <Text style={styles.info}> {this.props.petInfo.address}</Text>
+                    <Text style={styles.info} onPress={this._goToShelter}> {this.props.petInfo.address}</Text>
                 </View>
 
                 <View style={styles.infoRow}>
-                    <Text style={styles.info}> {this.props.petInfo.city}</Text>
+                    <Text style={styles.info} onPress={this._goToShelter}> {this.props.petInfo.city}</Text>
                 </View>
 
             </View>
@@ -136,7 +141,8 @@ export default class PetProfile extends Component {
 }
 const styles = StyleSheet.create({
     content: {
-        backgroundColor: '#ffffff'
+        backgroundColor: '#ffffff',
+        flex: 1
     },
     holder: {
         padding: 15,
