@@ -5,12 +5,12 @@ import {
     View,
     Image,
     Button,
+    ImageBackground,
     FlatList, 
     ActivityIndicator,
     ScrollView,
     TouchableOpacity,
 } from 'react-native';
-import SwipeCards from './SwipeCards';
 import ScrollableTabView, { DefaultTabBar } from 'react-native-scrollable-tab-view';
 import Icon from 'react-native-vector-icons/Ionicons';
 import "prop-types";
@@ -21,21 +21,398 @@ import Filters from '../components/filters/filters';
 import { List, ListItem, Avatar, Badge } from 'react-native-elements';
 import Swipeout from 'react-native-swipeout';
 import Communications from 'react-native-communications';
-
 import PetProfile from './PetProfile';
 import { pets } from '../petsdata.json'
+import filters from '../../global';
+import MoreInfoButton from './MoreInfoButtons';
+import SwipeCards from 'react-native-swipe-cards';
+import { Dropdown } from 'react-native-material-dropdown';
+import "prop-types";
+import MultiSlider from '@ptomasroos/react-native-multi-slider';
+import CustomMarker from '../components/filters/CustomMarker';
+
+class Card extends React.Component {
+    constructor(props) {
+      super(props);
+      this.state = {
+        sliderOneChanging: false,
+        sliderOneValue: [25],
+        allPets: [],
+        status: '',
+        pet: [],
+        petName: '',
+        petBreed: '',
+        petDescription: '',
+        petPictures: [],
+        petPicture: '',
+        petURL: '',
+        petBirthDate: '',
+        potLocation: '',
+        petID: '',
+       }
+    }
+  
+
+    onProfilePress = (id) => {
+        let item = id
+        this.props.navigation.navigate('PetProfile', { passedData: item });
+    }
+
+
+    render() {
+      return ( 
+        <View style = { styles.card }>
+  
+          <ImageBackground
+            source = {{uri: this.props.photo }}
+  
+            style = { {width: '100%', height: '100%'} } > 
+            <View style = {styles.emptySpace}>
+            <Text></Text>
+            </View>
+  
+            <View style = { styles.moreInfoContainer }>
+               
+                <TouchableOpacity
+                  onPress= {() =>  this.onProfilePress(this.state.currentPet) }
+                  style={styles.moreInfoButton}>
+                  <MoreInfoButton
+                    name = {this.props.name}
+                    breed = {this.props.breed}
+                    distance = {this.props.distance}
+                    />
+                </TouchableOpacity>
+            </View>
+          </ImageBackground>
+  
+        </View>
+      )
+    }
+  }
+   
+  class NoMoreCards extends Component {
+    constructor(props) {
+      super(props);
+    }
+  
+    render() {
+      return (
+        <View style = {styles.noMoreCardsContainer}>
+          <Text style={styles.noMoreCardsTitle}>
+            You've reached the end!
+          </Text>
+          <Text style={styles.noMoreCardsBody}>
+            Please check back soon.
+          </Text>
+        </View>
+      )
+    }
+  }
+   
+
 
 export default class MainScreen extends React.Component {
     constructor(props) {
-        super(props);
-
+        super(props)
         this.state = {
+          cards: [...pets.dogs, ...pets.cats, ...pets.birds],
           list: [],
           refreshing: false,
           currentPet: null,
+          sliderOneChanging: false,
+          sliderOneValue: [100],
+          selectedSpecies: "null",
+          selectedBreed: "null",
+          selectedColor: "null",
+          selectedAge: "null",
+          selectedSex: "null",
+          selectedSize: "null",
         };
+      
       }
 
+      sliderOneValuesChangeStart = () => {
+        this.setState({
+          sliderOneChanging: true,
+        });
+      }
+   
+      sliderOneValuesChange = (values) => {
+        let newValues = [0];
+        newValues[0] = values[0];
+        this.setState({
+          sliderOneValue: newValues,
+        });
+      }
+   
+      sliderOneValuesChangeFinish = () => {
+        this.setState({
+          sliderOneChanging: false,
+        });
+      }
+   
+      onSpeciesChangeText = (text) => {
+          this.setState({selectedSpecies: text});
+          filters.species = text[0];
+          console.log(`Species: ${filters.species }`)
+          if (filters.species == "D") {
+            this.setState({cards: [...pets.dogs] });
+          } else if (filters.species == "C") {
+            this.setState({cards: [...pets.cats] });
+          } else if (filters.species == "B") {
+            this.setState({cards: [...pets.bird] });
+          }
+          this.forceUpdate();
+        }
+   
+        onBreedChangeText = (text) => {
+            this.setState({selectedBreed: text});
+          }
+       onColorChangeText = (text) => {
+              this.setState({selectedColor: text});
+         }
+       onAgeChangeText = (text) => {
+                this.setState({selectedAge: text});
+              }
+       onSexChangeText = (text) => {
+                  this.setState({selectedSex: text});
+                }
+   
+       onSizeChangeText = (text) => {
+                   this.setState({selectedSize: text});
+                   }
+     renderFilters() {
+       var color = new Set();
+       var breeds = new Set();
+       var sp = new Set();
+       var colors = [];
+       var breed = [];
+       var species = [];
+       var dogCount = (Object.keys(pets.dogs).length);
+       var catCount = (Object.keys(pets.cats).length);
+       var birdCount = (Object.keys(pets.birds).length);
+   
+      for(let i = 0; i < dogCount; i++)
+       {
+         color.add(pets.dogs[i].color);
+         breeds.add(pets.dogs[i].breed2);
+         sp.add(pets.dogs[i].species);
+       }
+   
+       for(let i = 0; i < catCount; i++)
+        {
+          color.add(pets.cats[i].color);
+          breeds.add(pets.cats[i].breed2);
+          sp.add(pets.cats[i].species);
+        }
+        for(let i = 0; i < birdCount; i++)
+        {
+          color.add(pets.birds[i].color);
+          breeds.add(pets.birds[i].breed2);
+          sp.add(pets.birds[i].species);
+        }
+   
+       sp.forEach(function(sp){
+         species.push({value: sp})
+       });
+   
+       color.forEach(function(color){
+         colors.push({value: color})
+       });
+   
+       breeds.forEach(function(breeds){
+         breed.push({value: breeds})
+       });
+       let gender = [
+       {
+         value: 'Female',
+       },
+       {
+         value: 'Male',
+       },
+       {
+         value: 'Both',
+       },
+       ];
+   
+       let age = [
+       {
+         value: 'Puppy',
+       },
+       {
+         value: 'Young',
+       },
+       {
+         value: 'Adult',
+       },
+       {
+         value: 'Senior',
+       },
+       ];
+   
+       let size = [
+       {
+         value: 'Small',
+       },
+       {
+         value: 'Medium',
+       },
+       {
+         value: 'Large',
+       },
+       {
+         value: 'Extra Large',
+       },
+       ];
+         return (
+           <View>
+           <View>
+           <Dropdown
+                  label='Species'
+                  data={species}
+                  fontSize = {20}
+                  textColor = {'#37B8CB'}
+                  value = {this.selectedSpecies}
+                  onChangeText={this.onSpeciesChangeText}
+                />
+           </View>
+   
+           <View>
+           <Dropdown
+                  label='Breed'
+                  data={breed}
+                  fontSize = {20}
+                  textColor = {'#37B8CB'}
+                  value = {this.selectedBreed}
+                  onChangeText={this.onBreedChangeText}
+                />
+           </View>
+   
+           <View>
+           <Dropdown
+                  label='Color'
+                  data={colors}
+                  fontSize = {20}
+                  textColor = {'#37B8CB'}
+                  value = {this.selectedColor}
+                  onChangeText={this.onColorChangeText}
+                />
+           </View>
+   
+           <View>
+           <Dropdown
+                  label='Gender'
+                  data={gender}
+                  fontSize = {20}
+                  textColor = {'#37B8CB'}
+                  value = {this.selectedSex}
+                  onChangeText={this.onSexChangeText}
+                />
+           </View>
+   
+           <View>
+           <Dropdown
+                  label='Age'
+                  data={age}
+                  fontSize = {20}
+                  textColor = {'#37B8CB'}
+                  value = {this.selectedAge}
+                  onChangeText={this.onAgeChangeText}
+                />
+           </View>
+   
+           <View>
+           <Dropdown
+                  label='Size'
+                  data={size}
+                  fontSize = {20}
+                  textColor = {'#37B8CB'}
+                  value = {this.selectedSize}
+                  onChangeText={this.onSizeChangeText}
+                />
+           </View>
+   
+     <View style={styles.sliders}>
+               <View style={styles.sliderOne}>
+                 <Text style={styles.textLeft}>Within:</Text>
+                 <Text style={[styles.textRight, this.state.sliderOneChanging && {color: '#A9A9A9' }]}>{this.state.sliderOneValue}</Text>
+                 <Text style ={styles.label} >mi</Text>
+               </View>
+               <MultiSlider
+                 values={this.state.sliderOneValue}
+                 step={1}
+                 min ={1}
+                 max = {600}
+                 sliderLength={280}
+                 onValuesChangeStart={this.sliderOneValuesChangeStart}
+                 onValuesChange={this.sliderOneValuesChange}
+                 onValuesChangeFinish={this.sliderOneValuesChangeFinish}
+   
+                 selectedStyle={{
+                   backgroundColor: '#37B8CB',
+                 }}
+   
+                 unselectedStyle={{
+                   backgroundColor: 'silver',
+                 }}
+   
+                 trackStyle={{
+                   height:10,
+                   backgroundColor: 'red',
+                 }}
+   
+                 touchDimensions={{
+                   height: 40,
+                   width: 40,
+                   borderRadius: 20,
+                   slipDisplacement: 40,
+                 }}
+   
+                 containerStyle={{
+                   height:40,
+                   marginLeft: 20
+                 }}
+   
+                 icon= {true}
+   
+                 customMarker = {CustomMarker}
+               />
+           </View>
+           </View>
+         );
+   
+   }
+
+      handleYup = (card) => {
+        filters.index = filters.index + 1;
+        this.onUpdate(card.id);
+        console.log(`Yup for ${card.name}`)
+      }
+    
+      handleNope (card) {
+        filters.index = filters.index + 1;
+        console.log(`Nope for ${card.name}`)
+      }
+      handleMaybe (card) {
+        filters.index = filters.index + 1;
+        console.log(`Maybe for ${card.name}`)
+      }
+      renderSwipeCards() {
+        // If you want a stack of cards instead of one-per-one view, activate stack mode
+        // stack={true}
+        return (
+          <SwipeCards
+            cards={this.state.cards}
+            renderCard={(cardData) => <Card {...cardData} />}
+            renderNoMoreCards={() => <NoMoreCards />}
+            handleYup={this.handleYup}
+            handleNope={this.handleNope}
+            stack={true}
+            stackDepth={10} 
+          />
+        )
+      }
+    
     onUpdate = (val) => {
         let array = this.state.list.slice(0)
         array.push(val)
@@ -55,6 +432,10 @@ export default class MainScreen extends React.Component {
 
             case 'D':
                 petData = this.returnArrayElementById(pets.dogs, id);
+                break;
+              
+            case 'B':
+                petData = this.returnArrayElementById(pets.birds, id);
                 break;
 
             default:
@@ -100,17 +481,18 @@ export default class MainScreen extends React.Component {
         this.props.navigation.navigate('PetProfile', { passedData: item });
     }
 
-    handleRefresh = () => {
-        this.setState({
-            refreshing: true,
-            list: this.state.list,
-        }, () => {
-            this.setState({
-            refreshing: false,
-            })
-        })
+  handleRefresh = () => {
 
-    };
+    this.setState({
+      refreshing: true,
+      list: this.state.list,
+    }, () => {
+      this.setState({
+        refreshing: false,
+      })
+    })
+    
+  };
 
   renderSeparator = () => {
     return (
@@ -272,15 +654,12 @@ export default class MainScreen extends React.Component {
             </View>
                 <ScrollView tabLabel= 'md-options' style={styles.tabView}>
                     <View style={styles.sampleCard}>
-                      <Filters/>
+                      {this.renderFilters()}
                       </View>
                 </ScrollView>
 
                 <View tabLabel="ios-paw" style={styles.swipeView}>
-                    <SwipeCards
-                        onProfilePress={this.onProfilePress}
-                        onUpdate={this.onUpdate}
-                    />
+                        {this.renderSwipeCards()}
                 </View>
 
                 <View tabLabel="ios-heart" style={styles.tabView}>
@@ -298,6 +677,37 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         paddingTop: 35,
+    },  sliders: {
+      width: 280,
+    },
+    textRight: {
+      textAlign: 'right',
+      paddingVertical: 20,
+      marginLeft: 150,
+      color: 'darkgray'
+  
+    },
+    textLeft:
+    {
+      textAlign: 'left',
+      paddingVertical: 20,
+      fontSize:20,
+      color: 'darkgray'
+  
+    },
+    title: {
+      fontSize: 20,
+      textAlign: 'left',
+    },
+    sliderOne: {
+      flexDirection: 'row',
+      justifyContent: 'space-around',
+    },
+  
+    label:
+    {
+    marginTop: 20,
+    color: 'darkgray'
     },
     swipeView: {
         flex: 1,
@@ -405,4 +815,55 @@ const styles = StyleSheet.create({
         flex: 1.7,
         backgroundColor: 'white',
     },
+    card: {
+        flex: 1,
+      },
+      noMoreCardsContainer: {
+        marginLeft: '10%',
+        marginRight: '10%',
+        justifyContent: 'center',
+        alignContent: 'center',
+      },
+      noMoreCardsTitle: {
+        fontSize: 20,
+        textAlign: 'center',
+        color: '#989898',
+      },
+      noMoreCardsBody: {
+        marginTop: 8,
+        fontSize: 15,
+        textAlign: 'center',
+        color: '#989898',
+        height: 80
+      },
+      emptySpace: {
+        flex: 3.8
+      },
+      moreInfoContainer: {
+        flex: .8,
+      },
+      moreInfoButton: {
+        flex: 1,
+      },
+      name: {
+        fontSize: 60,
+        color: 'white',
+        fontWeight: 'bold',
+      },
+      breed: {
+        fontSize: 30,
+        color: 'white',
+      },
+      pin: {
+        height: 25,
+        width: 25,
+      },
+      distance: {
+        fontSize: 25,
+        color: 'white',
+      },
+      moreInfo: {
+        height: 30,
+        width: 30,
+      },
 });
