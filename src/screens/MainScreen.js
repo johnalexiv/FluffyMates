@@ -117,6 +117,7 @@ export default class MainScreen extends React.Component {
         this.state = {
           cards: [...pets.dogs, ...pets.cats, ...pets.birds, ...pets.rabbits],
           list: [],
+          reverseList: [],
           refreshing: false,
           currentPet: null,
           sliderOneChanging: false,
@@ -156,13 +157,13 @@ export default class MainScreen extends React.Component {
           filters.species = text[0];
           console.log(`Species: ${filters.species }`)
           if (filters.species == "D") {
-            this.setState({cards: [...pets.dogs] });
+            this.setState({cards: this.shuffle(pets.dogs) });
           } else if (filters.species == "C") {
-            this.setState({cards: [...pets.cats] });
+            this.setState({cards: this.shuffle(pets.cats) });
           } else if (filters.species == "B") {
-            this.setState({cards: [...pets.birds] });
+            this.setState({cards: this.shuffle(pets.birds) });
           }else if (filters.species == "R") {
-            this.setState({cards: [...pets.rabbits] });
+            this.setState({cards: this.shuffle(pets.rabbits) });
           }
           this.forceUpdate();
         }
@@ -398,8 +399,9 @@ export default class MainScreen extends React.Component {
         // stack={true}
         return (
           <SwipeCards
-            cards={this.state.cards}
-            renderCard={(cardData) => <Card {...cardData} onProfilePress = {this.onProfilePress}/>}
+            cards={this.shuffle(this.state.cards)}
+            key = {this.state.cards.id}
+            renderCard={(cardData) => <Card {...cardData} onProfilePress = {this.onProfilePress} key = {cardData.id} />}
             renderNoMoreCards={() => <NoMoreCards />}
             handleYup={this.handleYup}
             handleNope={this.handleNope}
@@ -407,16 +409,44 @@ export default class MainScreen extends React.Component {
             stackDepth={10}
             onClickHandler = { () => { } }
 
+
           />
         )
       }
 
+      shuffle(array) {
+        var currentIndex = array.length, temporaryValue, randomIndex;
+      
+        // While there remain elements to shuffle...
+        while (0 !== currentIndex) {
+      
+          // Pick a remaining element...
+          randomIndex = Math.floor(Math.random() * currentIndex);
+          currentIndex -= 1;
+      
+          // And swap it with the current element.
+          temporaryValue = array[currentIndex];
+          array[currentIndex] = array[randomIndex];
+          array[randomIndex] = temporaryValue;
+        }
+      
+        return array;
+      }
+
+
     onUpdate = (val) => {
-        let array = this.state.list.slice(0)
+      let array = this.state.list.slice(0)
+      let found = array.findIndex(function(array) {
+        return array === val;
+      })
+      if (found == -1) {
         array.push(val)
         this.setState({
-            list: array.slice(0)
+            list: array.slice(0),
+            reverseList: array.reverse()
         })
+      }
+
     };
 
     generatePetData(id) {
@@ -526,7 +556,7 @@ export default class MainScreen extends React.Component {
     return (
         <FlatList
           style = {styles.flatList}
-          data = {this.state.list}
+          data = {this.state.reverseList}
           ItemSeparatorComponent = {this.renderSeparator}
           onEndReachedThreshold = {50}
           refreshing = {this.state.refreshing}
@@ -548,7 +578,7 @@ export default class MainScreen extends React.Component {
           renderItem = {({ item }) => (
 
           <Swipeout
-            autoClose = 'true'
+            autoClose = {true}
             backgroundColor ='transparent'
             buttonWidth = {80}
             right = {[{
