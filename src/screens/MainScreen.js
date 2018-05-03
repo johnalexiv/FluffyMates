@@ -410,8 +410,9 @@ export default class MainScreen extends React.Component {
         // stack={true}
         return (
           <SwipeCards
-            cards={this.state.cards}
-            renderCard={(cardData) => <Card {...cardData} onProfilePress = {this.onProfilePress}/>}
+            cards={this.shuffle(this.state.cards)}
+            key = {this.state.cards.id}
+            renderCard={(cardData) => <Card {...cardData} onProfilePress = {this.onProfilePress} key = {cardData.id} />}
             renderNoMoreCards={() => <NoMoreCards />}
             handleYup={this.handleYup}
             handleNope={this.handleNope}
@@ -423,12 +424,36 @@ export default class MainScreen extends React.Component {
         )
       }
 
+      shuffle(array) {
+        var currentIndex = array.length, temporaryValue, randomIndex;
+      
+        // While there remain elements to shuffle...
+        while (0 !== currentIndex) {
+      
+          // Pick a remaining element...
+          randomIndex = Math.floor(Math.random() * currentIndex);
+          currentIndex -= 1;
+      
+          // And swap it with the current element.
+          temporaryValue = array[currentIndex];
+          array[currentIndex] = array[randomIndex];
+          array[randomIndex] = temporaryValue;
+        }
+      
+        return array;
+      }
+
     onUpdate = (val) => {
         let array = this.state.list.slice(0)
-        array.push(val)
-        this.setState({
-            list: array.slice(0),
+        let found = array.findIndex(function(array) {
+          return array === val;
         })
+        if (found == -1) {
+          array.push(val)
+          this.setState({
+              list: array.slice(0),
+          })
+        }
     };
 
     generatePetData(id) {
