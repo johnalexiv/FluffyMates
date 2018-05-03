@@ -65,23 +65,34 @@ class Card extends React.Component {
 
           <ImageBackground
             source = {{uri: this.props.photo }}
+            style = {{width: '100%', height: '100%'}}
+            imageStyle={{resizeMode: 'contain', width: 375}} >
 
-            style = { {width: '100%', height: '100%'} } >
             <View style = {styles.emptySpace}>
             <Text></Text>
             </View>
 
             <View style = { styles.moreInfoContainer }>
 
-                <TouchableOpacity
-                  onPress= {() =>  this.onPressButton(this.props.id) }
-                  style={styles.moreInfoButton}>
-                  <MoreInfoButton
-                    name = {this.props.name}
-                    breed = {this.props.breed}
-                    distance = {this.props.radius}
-                    />
-                </TouchableOpacity>
+              <ImageBackground
+                source = {require('../images/shade_box.png')}
+                style = {styles.shadeBox}>
+
+                <View style = {styles.moreInfoEmptySpace}>
+                </View>
+
+                <View style = {styles.moreInfoContent}>
+                  <TouchableOpacity
+                    onPress= {() =>  this.onPressButton(this.props.id) }
+                    style={styles.moreInfoButton}>
+                      <MoreInfoButton
+                        name = {this.props.name}
+                        breed = {this.props.breed}
+                        distance = {this.props.radius} />
+                  </TouchableOpacity>
+                </View>
+
+              </ImageBackground>
             </View>
           </ImageBackground>
 
@@ -117,7 +128,6 @@ export default class MainScreen extends React.Component {
         this.state = {
           cards: [...pets.dogs, ...pets.cats, ...pets.birds, ...pets.rabbits],
           list: [],
-          reverseList: [],
           refreshing: false,
           currentPet: null,
           sliderOneChanging: false,
@@ -443,7 +453,6 @@ export default class MainScreen extends React.Component {
         array.push(val)
         this.setState({
             list: array.slice(0),
-            reverseList: array.reverse()
         })
       }
 
@@ -556,7 +565,7 @@ export default class MainScreen extends React.Component {
     return (
         <FlatList
           style = {styles.flatList}
-          data = {this.state.reverseList}
+          data = {this.state.list}
           ItemSeparatorComponent = {this.renderSeparator}
           onEndReachedThreshold = {50}
           refreshing = {this.state.refreshing}
@@ -735,11 +744,9 @@ const styles = StyleSheet.create({
       flexDirection: 'row',
       justifyContent: 'space-around',
     },
-
-    label:
-    {
-    marginTop: 20,
-    color: 'darkgray'
+    label: {
+      marginTop: 20,
+      color: 'darkgray'
     },
     swipeView: {
         flex: 1,
@@ -750,152 +757,163 @@ const styles = StyleSheet.create({
     flatList: {
         flex: 1,
       },
-      emptyMessageContainer: {
-        justifyContent: 'center',
-        alignContent: 'center',
-        marginTop: '75%',
-        marginLeft: '10%',
-        marginRight: '10%',
-      },
-      emptyMessageTitle: {
-        fontSize: 20,
-        color: '#989898',
-        textAlign: 'center',
-      },
-      emptyMessageBody: {
-        marginTop: 8,
-        fontSize: 15,
-        color: '#989898',
-        textAlign: 'center',
-        height: 80
-      },
-    likedHistoryContainer: {
-        flex: 1,
-        borderWidth: 1,
-        backgroundColor: '#fff',
-        borderColor: 'rgba(0,0,0,0.1)',
-        margin: 5,
-        shadowColor: '#ccc',
-        shadowOffset: { width: 2, height: 2, },
-        shadowOpacity: 0.5,
-        shadowRadius: 3,
+    emptyMessageContainer: {
+      justifyContent: 'center',
+      alignContent: 'center',
+      marginTop: '75%',
+      marginLeft: '10%',
+      marginRight: '10%',
     },
-    sampleCard: {
-        flex: 1,
-        borderWidth: 1,
-        backgroundColor: '#fff',
-        borderColor: 'rgba(0,0,0,0.1)',
-        margin: 5,
-        padding: 15,
-        shadowColor: '#ccc',
-        shadowOffset: { width: 2, height: 2, },
-        shadowOpacity: 0.5,
-        shadowRadius: 3,
+    emptyMessageTitle: {
+      fontSize: 20,
+      color: '#989898',
+      textAlign: 'center',
     },
+    emptyMessageBody: {
+      marginTop: 8,
+      fontSize: 15,
+      color: '#989898',
+      textAlign: 'center',
+      height: 80
+    },
+    shadeBox: {
+      width: '100%',
+      height: '100%',
+    },
+    moreInfoEmptySpace: {
+      flex: 1
+    },
+    moreInfoContent: {
+      flex: 4
+    },
+  likedHistoryContainer: {
+      flex: 1,
+      borderWidth: 1,
+      backgroundColor: '#fff',
+      borderColor: 'rgba(0,0,0,0.1)',
+      margin: 5,
+      shadowColor: '#ccc',
+      shadowOffset: { width: 2, height: 2, },
+      shadowOpacity: 0.5,
+      shadowRadius: 3,
+  },
+  sampleCard: {
+      flex: 1,
+      borderWidth: 1,
+      backgroundColor: '#fff',
+      borderColor: 'rgba(0,0,0,0.1)',
+      margin: 5,
+      padding: 15,
+      shadowColor: '#ccc',
+      shadowOffset: { width: 2, height: 2, },
+      shadowOpacity: 0.5,
+      shadowRadius: 3,
+  },
 
-    loginSwiper: {
-        flex: 15,
-        // paddingTop: 30,
-    },
-    buttons: {
-        flex: 3,
-        justifyContent: 'flex-start',
-    },
-    viewSignupButton: {
-        flex: 3,
-        margin: 5,
-        justifyContent: 'flex-start',
-        paddingHorizontal: 30,
-    },
-    signupButton: {
-        flex: 1,
-        backgroundColor: 'transparent',
-        justifyContent: 'center',
-        borderRadius: 50,
-        shadowColor: 'black',
-        shadowOpacity: 0.2,
-        shadowRadius: 2,
-        shadowOffset: {width: 2, height: 2},
-    },
-    viewLoginButton: {
-        flex: 2,
-        margin: 5,
-        paddingHorizontal: 50,
-    },
-    loginButton: {
-        flex: 1,
-        justifyContent: 'center',
-        backgroundColor: '#FFFFFF',
-        borderColor: '#ababab',
-        borderWidth: 1,
-        borderRadius: 50,
-        shadowColor: '#989898',
-        shadowOpacity: 0.1,
-        shadowRadius: 1,
-        shadowOffset: {width: 2, height: 2},
-    },
-    termsAndConditions: {
-        flex: 2,
-        backgroundColor: 'white',
-        alignItems: 'center',
-        paddingHorizontal: 40,
-        paddingTop: 10,
-        // paddingBottom: 20,
-        justifyContent: 'space-around',
-    },
-    whiteSpace: {
-        flex: 1.7,
-        backgroundColor: 'white',
-    },
-    card: {
-        flex: 1,
-      },
-      noMoreCardsContainer: {
-        marginLeft: '10%',
-        marginRight: '10%',
-        justifyContent: 'center',
-        alignContent: 'center',
-      },
-      noMoreCardsTitle: {
-        fontSize: 20,
-        textAlign: 'center',
-        color: '#989898',
-      },
-      noMoreCardsBody: {
-        marginTop: 8,
-        fontSize: 15,
-        textAlign: 'center',
-        color: '#989898',
-        height: 80
-      },
-      emptySpace: {
-        flex: 3.8
-      },
-      moreInfoContainer: {
-        flex: .8,
-      },
-      moreInfoButton: {
-        flex: 1,
-      },
-      name: {
-        fontSize: 60,
-        color: 'white',
-        fontWeight: 'bold',
-      },
-      breed: {
-        fontSize: 30,
-        color: 'white',
-      },
-      pin: {
-        height: 25,
-        width: 25,
-      },
-      distance: {
-        fontSize: 25,
-        color: 'white',
-      },
-      moreInfo: {
-        height: 30,
-        width: 30,
-      },
+  loginSwiper: {
+      flex: 15,
+      // paddingTop: 30,
+  },
+  buttons: {
+      flex: 3,
+      justifyContent: 'flex-start',
+  },
+  viewSignupButton: {
+      flex: 3,
+      margin: 5,
+      justifyContent: 'flex-start',
+      paddingHorizontal: 30,
+  },
+  signupButton: {
+      flex: 1,
+      backgroundColor: 'transparent',
+      justifyContent: 'center',
+      borderRadius: 50,
+      shadowColor: 'black',
+      shadowOpacity: 0.2,
+      shadowRadius: 2,
+      shadowOffset: {width: 2, height: 2},
+  },
+  viewLoginButton: {
+      flex: 2,
+      margin: 5,
+      paddingHorizontal: 50,
+  },
+  loginButton: {
+      flex: 1,
+      justifyContent: 'center',
+      backgroundColor: '#FFFFFF',
+      borderColor: '#ababab',
+      borderWidth: 1,
+      borderRadius: 50,
+      shadowColor: '#989898',
+      shadowOpacity: 0.1,
+      shadowRadius: 1,
+      shadowOffset: {width: 2, height: 2},
+  },
+  termsAndConditions: {
+      flex: 2,
+      backgroundColor: 'white',
+      alignItems: 'center',
+      paddingHorizontal: 40,
+      paddingTop: 10,
+      // paddingBottom: 20,
+      justifyContent: 'space-around',
+  },
+  whiteSpace: {
+      flex: 1.7,
+      backgroundColor: 'white',
+  },
+  card: {
+    flex: 1,
+    backgroundColor: 'white',
+  },
+  noMoreCardsContainer: {
+    marginLeft: '10%',
+    marginRight: '10%',
+    justifyContent: 'center',
+    alignContent: 'center',
+  },
+  noMoreCardsTitle: {
+    fontSize: 20,
+    textAlign: 'center',
+    color: '#989898',
+  },
+  noMoreCardsBody: {
+    marginTop: 8,
+    fontSize: 15,
+    textAlign: 'center',
+    color: '#989898',
+    height: 80
+  },
+  emptySpace: {
+    flex: 3
+  },
+  moreInfoContainer: {
+    flex: 1,
+  },
+  moreInfoButton: {
+    flex: 1,
+  },
+  name: {
+    fontSize: 60,
+    color: 'white',
+    fontWeight: 'bold',
+  },
+  breed: {
+    fontSize: 30,
+    color: 'white',
+  },
+  pin: {
+    height: 25,
+    width: 25,
+  },
+  distance: {
+    fontSize: 25,
+    color: 'white',
+  },
+  moreInfo: {
+    height: 30,
+    width: 30,
+  },
 });
