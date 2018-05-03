@@ -67,8 +67,7 @@ class Card extends React.Component {
 
           <ImageBackground
             source = {{uri: this.props.photo }}
-            style = {{width: width, height: '100%'}}
-            imageStyle={{resizeMode: 'contain'}} >
+            style = {{width: '100%', height: '100%'}} >
 
             <View style = {styles.emptySpace}>
             <Text></Text>
@@ -428,11 +427,7 @@ export default class MainScreen extends React.Component {
         let array = this.state.list.slice(0)
         array.push(val)
         this.setState({
-<<<<<<< HEAD
             list: array.slice(0),
-=======
-            list: array.slice(0)
->>>>>>> parent of ba49e55... Fixed Swipecards glitch, added shuffle, My Pets changes
         })
     };
 
