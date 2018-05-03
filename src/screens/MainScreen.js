@@ -10,6 +10,7 @@ import {
     ActivityIndicator,
     ScrollView,
     TouchableOpacity,
+    Dimensions,
 } from 'react-native';
 import ScrollableTabView, { DefaultTabBar } from 'react-native-scrollable-tab-view';
 import Icon from 'react-native-vector-icons/Ionicons';
@@ -60,13 +61,14 @@ class Card extends React.Component {
 
 
     render() {
+      const width = Dimensions.get('window').width
       return (
         <View style = { styles.card }>
 
           <ImageBackground
             source = {{uri: this.props.photo }}
-            style = {{width: '100%', height: '100%'}}
-            imageStyle={{resizeMode: 'contain', width: 375}} >
+            style = {{width: width, height: '100%'}}
+            imageStyle={{resizeMode: 'contain'}} >
 
             <View style = {styles.emptySpace}>
             <Text></Text>
@@ -715,87 +717,86 @@ export default class MainScreen extends React.Component {
 }
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        paddingTop: 35,
-    },  sliders: {
-      width: 280,
+  container: {
+    flex: 1,
+    paddingTop: 35,
+  },
+  sliders: {
+    width: 280,
+  },
+  textRight: {
+    textAlign: 'right',
+    paddingVertical: 20,
+    marginLeft: 150,
+    color: 'darkgray'
     },
-    textRight: {
-      textAlign: 'right',
-      paddingVertical: 20,
-      marginLeft: 150,
-      color: 'darkgray'
+  textLeft: {
+    textAlign: 'left',
+    paddingVertical: 20,
+    fontSize:20,
+    color: 'darkgray'
 
-    },
-    textLeft:
-    {
-      textAlign: 'left',
-      paddingVertical: 20,
-      fontSize:20,
-      color: 'darkgray'
-
-    },
-    title: {
-      fontSize: 20,
-      textAlign: 'left',
-    },
-    sliderOne: {
-      flexDirection: 'row',
-      justifyContent: 'space-around',
-    },
-    label: {
-      marginTop: 20,
-      color: 'darkgray'
-    },
-    swipeView: {
-        flex: 1,
-    },
-    tabView: {
-        flex: 1,
-    },
-    flatList: {
-        flex: 1,
-      },
-    emptyMessageContainer: {
-      justifyContent: 'center',
-      alignContent: 'center',
-      marginTop: '75%',
-      marginLeft: '10%',
-      marginRight: '10%',
-    },
-    emptyMessageTitle: {
-      fontSize: 20,
-      color: '#989898',
-      textAlign: 'center',
-    },
-    emptyMessageBody: {
-      marginTop: 8,
-      fontSize: 15,
-      color: '#989898',
-      textAlign: 'center',
-      height: 80
-    },
-    shadeBox: {
-      width: '100%',
-      height: '100%',
-    },
-    moreInfoEmptySpace: {
-      flex: 1
-    },
-    moreInfoContent: {
-      flex: 4
-    },
-  likedHistoryContainer: {
+  },
+  title: {
+    fontSize: 20,
+    textAlign: 'left',
+  },
+  sliderOne: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+  },
+  label: {
+    marginTop: 20,
+    color: 'darkgray'
+  },
+  swipeView: {
       flex: 1,
-      borderWidth: 1,
-      backgroundColor: '#fff',
-      borderColor: 'rgba(0,0,0,0.1)',
-      margin: 5,
-      shadowColor: '#ccc',
-      shadowOffset: { width: 2, height: 2, },
-      shadowOpacity: 0.5,
-      shadowRadius: 3,
+  },
+  tabView: {
+      flex: 1,
+  },
+  flatList: {
+      flex: 1,
+    },
+  emptyMessageContainer: {
+    justifyContent: 'center',
+    alignContent: 'center',
+    marginTop: '75%',
+    marginLeft: '10%',
+    marginRight: '10%',
+  },
+  emptyMessageTitle: {
+    fontSize: 20,
+    color: '#989898',
+    textAlign: 'center',
+  },
+  emptyMessageBody: {
+    marginTop: 8,
+    fontSize: 15,
+    color: '#989898',
+    textAlign: 'center',
+    height: 80
+  },
+  shadeBox: {
+    width: '100%',
+    height: '100%',
+  },
+  moreInfoEmptySpace: {
+    flex: 1
+  },
+  moreInfoContent: {
+    flex: 4
+  },
+  likedHistoryContainer: {
+    flex: 1,
+    borderWidth: 1,
+    backgroundColor: '#fff',
+    borderColor: 'rgba(0,0,0,0.1)',
+    margin: 5,
+    shadowColor: '#ccc',
+    shadowOffset: { width: 2, height: 2, },
+    shadowOpacity: 0.5,
+    shadowRadius: 3,
   },
   sampleCard: {
       flex: 1,
@@ -809,7 +810,6 @@ const styles = StyleSheet.create({
       shadowOpacity: 0.5,
       shadowRadius: 3,
   },
-
   loginSwiper: {
       flex: 15,
       // paddingTop: 30,
@@ -867,6 +867,8 @@ const styles = StyleSheet.create({
   card: {
     flex: 1,
     backgroundColor: 'white',
+    justifyContent: 'center',
+    alignContent: 'center',
   },
   noMoreCardsContainer: {
     marginLeft: '10%',

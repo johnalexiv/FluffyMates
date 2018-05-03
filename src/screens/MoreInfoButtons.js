@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image, ImageBackground } from 'react-native';
+import { StyleSheet, Text, View, Image } from 'react-native';
 
 export default class MoreInfoButton extends React.Component {
     constructor(props) {
@@ -10,36 +10,32 @@ export default class MoreInfoButton extends React.Component {
     return (
 
       <View style={styles.container}>
-      
-        <ImageBackground
-            source = {require('../images/shade_box.png')}
-            style = {styles.shadeBox}>
 
-          <View style={styles.topRows}>
-            <Text style={styles.name}> {this.props.name} </Text>
-            <Text style={styles.breed}> {this.props.breed} </Text>    
+        <View style={styles.topRows}>
+          <Text style={styles.name}> {this.props.name} </Text>
+          <Text style={styles.breed}> {this.props.breed} </Text>    
+        </View>
+
+        <View style={styles.bottomRow}>
+
+          <View style={styles.pinContainer}>
+            <Image
+              source = {require('../images/destination-pin.png')}
+              style = {styles.pin} />
           </View>
 
-          <View style={styles.bottomRow}>
-
-            <View style={styles.pinContainer}>
-              <Image
-                source = {require('../images/destination-pin.png')}
-                style = {styles.pin} />
-            </View>
-
-            <View style={styles.distanceContainer}>
-              <Text style={styles.distance}> {this.props.distance} miles away </Text>
-            </View>
-
-            <View style={styles.moreInfoContainer}>
-              <Image
-                source = {require('../images/more-info.png')}
-                style = {styles.moreInfo} />
-            </View>
-
+          <View style={styles.distanceContainer}>
+            <Text style={styles.distance}> {this.props.distance} miles away </Text>
           </View>
-        </ImageBackground>
+
+          <View style={styles.moreInfoContainer}>
+            <Image
+              source = {require('../images/more-info.png')}
+              style = {styles.moreInfo} />
+          </View>
+
+        </View>
+
       </View>
     );
   }
@@ -50,10 +46,6 @@ const styles = StyleSheet.create({
     flex: 1,
     height: '100%',
     width: '100%',
-  },
-  shadeBox: {
-    width: '100%',
-    height: '100%',
   },
   topRows: {
     flex: 2,
