@@ -19,7 +19,7 @@ export default class FilterCard extends React.Component {
 
                 <View style={styles.imageWindow}>
                     <Image style={styles.image}
-                        source={require('../../images/dogs.png')}
+                        source={require('../../images/myPetsPage.png')}
                         resizeMode="contain"
                     />
                 </View>

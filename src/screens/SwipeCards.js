@@ -143,7 +143,7 @@ export default class extends React.Component {
     return (
       <SwipeCards
         cards={this.state.cards}
-        renderCard={(cardData) => <Card {...cardData} onProfilePress = {this.props.onProfilePress} key = {cardData.id}/>}
+        renderCard={(cardData) => <Card {...cardData} onProfilePress = {this.props.onProfilePress}/>}
         renderNoMoreCards={() => <NoMoreCards />}
         handleYup={this.handleYup}
         handleNope={this.handleNope}
